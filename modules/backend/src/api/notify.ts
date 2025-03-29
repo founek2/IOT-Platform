@@ -1,7 +1,6 @@
 import fieldDescriptors from 'common/lib/fieldDescriptors';
 import { NotifyModel } from 'common/lib/models/notifyModel';
 import { transformNotifyForBE } from 'common/lib/utils/transform';
-import { controlDevicePermissionMiddleware } from 'common/lib/middlewares/device/controlDevicePermissionMiddleware';
 import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
 import Router from '@koa/router';
 import Koa from "koa"
@@ -32,7 +31,7 @@ export default () => {
     )
     api.put("/",
         tokenAuthMiddleware(),
-        controlDevicePermissionMiddleware({ paramKey: 'deviceId' }),
+        readDevicePermissionMiddleware({ paramKey: 'deviceId' }),
         formDataMiddleware(fieldDescriptors, { allowedForms: ['EDIT_NOTIFY'] }),
         async (ctx) => {
             const { deviceId, nodeId } = ctx.params;
