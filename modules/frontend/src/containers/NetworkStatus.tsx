@@ -33,6 +33,8 @@ export default function NetworkStatus({ socket }: NetworkStatusProps) {
             if (timeout) clearTimeout(timeout)
 
             timeout = setTimeout(() => {
+                if (ref.current) return;
+                
                 const snackbarKey = enqueueSnackbar(ErrorMessages.getMessage("unstableConnection"), { persist: true })
                 ref.current = snackbarKey
             }, 800)
