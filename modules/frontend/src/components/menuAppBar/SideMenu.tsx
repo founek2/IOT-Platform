@@ -8,7 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import uiMessages, { UiMessageKey } from 'common/src/localization/uiMessages';
 import { RouteMenu } from 'common/src/privileges';
 import React from 'react';
@@ -35,6 +35,9 @@ function createMenuListItem({ path, name, Icon }: RouteMenu, location: Location)
                         <Icon />
                     </ListItemIcon>
                     <ListItemText primary={uiMessages.getMessage(name)} />
+                    {path.startsWith('http') ? <ListItemIcon >
+                        <OpenInNewIcon fontSize='small' color='disabled' />
+                    </ListItemIcon> : null}
                 </ListItemButton>
             </ListItem>
         </Link>
