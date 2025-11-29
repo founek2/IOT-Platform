@@ -32,7 +32,7 @@ function EditNotify({ id, onDelete, config }: EditNotifyProps) {
 
     return (
         <Grid container key={id} spacing={2}>
-            <Grid item xs={12} display="flex" alignItems="center" justifyContent="space-between">
+            <Grid size={{ xs: 12 }} display="flex" alignItems="center" justifyContent="space-between">
                 <FormLabel component="legend">Notifikace {id}:</FormLabel>
                 <IconButton aria-label="Delete a sensor" onClick={(e) => onDelete(id)} sx={{ marginRight: -1 }}>
                     <ClearIcon />
@@ -50,7 +50,7 @@ function EditNotify({ id, onDelete, config }: EditNotifyProps) {
                 deepPath={`EDIT_NOTIFY.description.${id}`}
             />
         </Grid> */}
-            <Grid item md={12} xs={12}>
+            <Grid size={{ md: 12, xs: 12 }}>
                 <Typography color="primary" onClick={() => setOpen(!openAdvanced)} sx={{ cursor: "pointer" }} textAlign="center">
                     Rozšířené {editedAdvanced && '⭣'}
                 </Typography>
@@ -58,7 +58,7 @@ function EditNotify({ id, onDelete, config }: EditNotifyProps) {
             {openAdvanced && (
                 <Fragment>
                     {/* <div className={classes.contentInner}> */}
-                    <Grid item md={4} xs={12}>
+                    <Grid size={{ md: 4, xs: 12 }}>
                         <FieldConnector
                             component="Select"
                             deepPath={`EDIT_NOTIFY.advanced.interval.${id}`}
@@ -66,7 +66,7 @@ function EditNotify({ id, onDelete, config }: EditNotifyProps) {
                             fullWidth
                         />
                     </Grid>
-                    <Grid item md={2} xs={6}>
+                    <Grid size={{ md: 2, xs: 6 }}>
                         <FieldConnector
                             deepPath={`EDIT_NOTIFY.advanced.from.${id}`}
                             fieldProps={{
@@ -76,7 +76,7 @@ function EditNotify({ id, onDelete, config }: EditNotifyProps) {
                             fullWidth
                         />
                     </Grid>
-                    <Grid item md={2} xs={6}>
+                    <Grid size={{ md: 2, xs: 6 }}>
                         <FieldConnector
                             deepPath={`EDIT_NOTIFY.advanced.to.${id}`}
                             fieldProps={{
@@ -87,7 +87,7 @@ function EditNotify({ id, onDelete, config }: EditNotifyProps) {
                         />
                     </Grid>
                     {/* </div> */}
-                    <Grid item xs={12} md={4}>
+                    <Grid size={{ xs: 12, md: 4 }}>
                         <FieldConnector
                             deepPath={`EDIT_NOTIFY.advanced.daysOfWeek.${id}`}
                             component={(props) => <DaysOfWeekPicker {...props} />}

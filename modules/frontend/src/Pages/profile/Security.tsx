@@ -18,14 +18,14 @@ function Security() {
             {data?.map((t) => {
                 const createdAt = new Date(t.createdAt)
                 const title = t.userAgent ? `${t.userAgent.device.vendor} ${t.userAgent.device.model}, ${t.userAgent.os.name} ${t.userAgent.os.version}, ${t.userAgent.browser.name} ${t.userAgent.browser.version}` : "Neznámé zařízení";
-                return <Grid item xs={12} key={t._id}>
+                return <Grid size={{ xs: 12 }} key={t._id}>
                     <Paper sx={{ p: 2 }}>
                         <Grid container justifyContent="space-between">
-                            <Grid item md={9}>
+                            <Grid size={{ md: 9 }}>
                                 <Typography fontWeight={500}>{title}</Typography>
                                 <Typography variant='body2' color={grey[500]}>{createdAt.toLocaleDateString()}, {createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</Typography>
                             </Grid>
-                            <Grid item xs={12} md={3} display="flex" alignItems="center" justifyContent="end">
+                            <Grid size={{ xs: 12, md: 3 }} display="flex" alignItems="center" justifyContent="end">
                                 {currentAccessToken?.iss === t._id ? <Typography>Tato relace</Typography> : <Button startIcon={<DeleteIcon />} onClick={() => removeSignInMutation(t._id)} disabled={pendingRemove}>
                                     Odebrat
                                 </Button>}

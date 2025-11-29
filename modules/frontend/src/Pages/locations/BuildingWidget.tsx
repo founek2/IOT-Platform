@@ -34,11 +34,7 @@ export const BuildingWidget = React.forwardRef<HTMLDivElement, BuildingWidgetPro
 
         return (
             <Grid
-                item
-                xs={12}
-                md={10}
-                lg={8}
-                xl={7}
+                size={{ xs: 12, md: 10, lg: 8, xl: 7 }}
                 sx={{ opacity: isDragable ? 0.4 : 1, paddingBottom: 2 }}
                 className={className}
                 ref={ref}

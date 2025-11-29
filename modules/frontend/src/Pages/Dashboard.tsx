@@ -36,7 +36,7 @@ export default function Dashboard() {
     const dataPaired = dataConnections?.filter(item => item.type == ConnectionType.device);
 
     return <Grid container justifyContent="center" spacing={2}>
-        <Grid item xs={12} md={7} lg={6} xl={3}>
+        <Grid size={{ xs: 12, md: 7, lg: 6, xl: 3 }}>
             <Card sx={{ padding: 2 }}>
                 <CardHeader title="Aktivní spojení" />
                 <CardContent>
@@ -45,7 +45,7 @@ export default function Dashboard() {
             </Card>
         </Grid>
 
-        <Grid item xs={12} md={7} lg={6} xl={3}>
+        <Grid size={{ xs: 12, md: 7, lg: 6, xl: 3 }}>
             <Card sx={{ padding: 2 }}>
                 <CardHeader title="Aktivní spojení" />
                 <CardContent>

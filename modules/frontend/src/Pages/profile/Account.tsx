@@ -15,7 +15,7 @@ function Account() {
 
     return (
         <Grid container justifyContent="center">
-            <Grid item>
+            <Grid>
                 <Button variant='contained' onClick={() => navigate({ search: `?editUser=current` })}>Upravit informace</Button>
             </Grid>
         </Grid>

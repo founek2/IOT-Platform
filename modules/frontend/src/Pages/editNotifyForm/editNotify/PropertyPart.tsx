@@ -33,7 +33,7 @@ function PropertyPart({ id, config }: PropertyPartProps) {
 
     return (
         <Fragment>
-            <Grid item md={4} xs={12}>
+            <Grid size={{ md: 4, xs: 12 }}>
                 <FieldConnector
                     component="Select"
                     deepPath={`EDIT_NOTIFY.propertyId.${id}`}
@@ -49,7 +49,7 @@ function PropertyPart({ id, config }: PropertyPartProps) {
             </Grid>
             {selectedProperty ? (
                 <Fragment>
-                    <Grid item md={4} xs={12}>
+                    <Grid size={{ md: 4, xs: 12 }}>
                         <FieldConnector
                             component="Select"
                             deepPath={`EDIT_NOTIFY.type.${id}`}
@@ -65,7 +65,7 @@ function PropertyPart({ id, config }: PropertyPartProps) {
                         />
                     </Grid>
                     {selectedType && selectedType !== NotifyType.always ? (
-                        <Grid item md={4} xs={12}>
+                        <Grid size={{ md: 4, xs: 12 }}>
                             {isEnum ? <FieldConnector
                                 component='Select'
                                 deepPath={`EDIT_NOTIFY.value.${id}`}
@@ -90,7 +90,7 @@ function PropertyPart({ id, config }: PropertyPartProps) {
                     ) : null}
                 </Fragment>
             ) : null}
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
                 <FieldConnector
                     deepPath={`EDIT_NOTIFY.textTemplate.${id}`}
                     fullWidth

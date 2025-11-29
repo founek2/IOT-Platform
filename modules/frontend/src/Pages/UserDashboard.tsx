@@ -22,7 +22,7 @@ import { ThingDialog } from './room/ThingDialog';
 
 const Widget = React.forwardRef<HTMLDivElement, { children: JSX.Element[] | JSX.Element }>(function ({ children }) {
     return (
-        <Grid item xs={6} md={4} xl={4}>
+        <Grid size={{ xs: 6, md: 4, xl: 4 }}>
             {children}
         </Grid>
     );
@@ -182,7 +182,7 @@ export default function UserDashboard() {
                             type="property"
                             dragDisabled={!editMode}
                             render={(_, ref) => (
-                                <Grid item xs={12}>
+                                <Grid size={12}>
                                     <Paper
                                         ref={ref}
                                         sx={{

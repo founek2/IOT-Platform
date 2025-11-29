@@ -1,18 +1,17 @@
-import React from 'react';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { SxProps, Theme, useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import useTheme from '@mui/material/styles/useTheme';
-import { useAppSelector } from '../../../hooks';
-import { Device, deviceSelectors } from '../../../store/slices/application/devicesSlice';
-import { getDevicesById, getThing, getThingsById } from '../../../selectors/getters';
-import { Thing } from '../../../store/slices/application/thingsSlice';
 import { ComponentType, IThingProperty, IThingPropertyBase } from 'common/src/models/interface/thing';
-import { SimpleSensor } from '../roomWidget/SimpleSensor';
-import { WithRequired } from '../../../types';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { SxProps, Theme } from '@mui/material/styles';
+import { useAppSelector } from '../../../hooks';
+import { getDevicesById, getThingsById } from '../../../selectors/getters';
+import { Device } from '../../../store/slices/application/devicesSlice';
+import { Thing } from '../../../store/slices/application/thingsSlice';
+import { WithRequired } from '../../../types';
+import { SimpleSensor } from '../roomWidget/SimpleSensor';
 
 interface SensorBadgesProps {
     thingId: Thing['_id'];

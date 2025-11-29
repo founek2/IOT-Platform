@@ -1,4 +1,4 @@
-import { createSelector, Dictionary, EntityId } from '@reduxjs/toolkit';
+import { createSelector, EntityId } from '@reduxjs/toolkit';
 import { IThing } from 'common/src/models/interface/thing';
 import { RootState } from '../store';
 import { Device } from '../store/slices/application/devicesSlice';
@@ -12,7 +12,7 @@ export const getColorMode = (state: RootState) => state.preferences.setting.colo
 export const getDevicePreferences = (state: RootState) =>
     devicePreferencesSelectors.selectAll(state.preferences.devices);
 
-export const getPreferencesOrder = <T extends { order: number }>(key: string, preferences: Dictionary<T>) =>
+export const getPreferencesOrder = <T extends { order: number }>(key: string, preferences: Record<EntityId, T>) =>
     preferences[key]?.order ?? 333;
 
 export const getApplication = (state: RootState) => state.application;

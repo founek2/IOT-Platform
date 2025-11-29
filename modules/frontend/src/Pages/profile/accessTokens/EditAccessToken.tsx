@@ -26,10 +26,10 @@ function EditDeviceForm({ formName, accessToken }: DiscoverySectionProps) {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
                 <FieldConnector fieldProps={{ fullWidth: true }} deepPath={`${formName}.name`} />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
                 <FieldConnector
                     fieldProps={{ fullWidth: true }}
                     deepPath={`${formName}.permissions`}
@@ -73,11 +73,11 @@ function EditDeviceForm({ formName, accessToken }: DiscoverySectionProps) {
                     fullWidth
                     options={TokenPermissions}
 
-                    // selectOptions={TokenPermissions.map(({ value, label }) => (
-                    //     <MenuItem value={value} key={label}>
-                    //         {label}
-                    //     </MenuItem>
-                    // ))}
+                // selectOptions={TokenPermissions.map(({ value, label }) => (
+                //     <MenuItem value={value} key={label}>
+                //         {label}
+                //     </MenuItem>
+                // ))}
                 />
             </Grid>
         </Grid>

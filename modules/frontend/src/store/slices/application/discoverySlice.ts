@@ -3,7 +3,7 @@ import { Discovery, discoveryApi } from '../../../endpoints/discovery';
 
 // Define a type for the slice state
 
-const discoveryAdapter = createEntityAdapter<Discovery>({
+const discoveryAdapter = createEntityAdapter<Discovery, string>({
     // Assume IDs are stored in a field other than `book.id`
     selectId: (device) => device._id,
     // Keep the "all IDs" array sorted based on book titles

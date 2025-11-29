@@ -15,16 +15,16 @@ function EditUserForm({ formName, onEnter, editGroups }: UserFormProps) {
 
     return (
         <Grid container spacing={3}>
-            <Grid item md={6} xs={12}>
+            <Grid size={{ md: 6, xs: 12 }}>
                 <FieldConnector deepPath={`${formName}.info.firstName`} fullWidth />
             </Grid>
-            <Grid item md={6} xs={12}>
+            <Grid size={{ md: 6, xs: 12 }}>
                 <FieldConnector deepPath={`${formName}.info.lastName`} fullWidth />
             </Grid>
-            <Grid item md={6} xs={12}>
+            <Grid size={{ md: 6, xs: 12 }}>
                 <FieldConnector deepPath={`${formName}.info.userName`} fullWidth />
             </Grid>
-            <Grid item md={6} xs={12}>
+            <Grid size={{ md: 6, xs: 12 }}>
                 <FieldConnector
                     fieldProps={{
                         type: 'email',
@@ -33,7 +33,7 @@ function EditUserForm({ formName, onEnter, editGroups }: UserFormProps) {
                     deepPath={`${formName}.info.email`}
                 />
             </Grid>
-            <Grid item md={6} xs={12}>
+            <Grid size={{ md: 6, xs: 12 }}>
                 <FieldConnector
                     component="PasswordField"
                     deepPath={`${formName}.auth.password`}
@@ -42,7 +42,7 @@ function EditUserForm({ formName, onEnter, editGroups }: UserFormProps) {
                 />
             </Grid>
             {editGroups ? (
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                     <FieldConnector
                         deepPath={`${formName}.groups`}
                         component="ChipArray"

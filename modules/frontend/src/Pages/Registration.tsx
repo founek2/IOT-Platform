@@ -35,7 +35,7 @@ export default function Registration() {
 
     return (
         <Grid container justifyContent="center">
-            <Grid item xs={12} md={7} lg={6} xl={4}>
+            <Grid size={{ xs: 12, md: 7, lg: 6, xl: 4 }}>
                 <Card sx={{ padding: 2 }}>
                     <CardContent>
                         <EditUserForm formName="REGISTRATION" />

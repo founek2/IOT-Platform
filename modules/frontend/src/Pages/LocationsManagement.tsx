@@ -93,7 +93,7 @@ export default function LocationsManagement({ title }: DevicesProps) {
         <>
             <DiscoverySection />
             <Grid container justifyContent="center" sx={{ padding: 2 }}>
-                <Grid item xs={12} md={7} lg={6} xl={5}>
+                <Grid size={{ xs: 12, md: 7, lg: 6, xl: 5 }}>
                     <TextField
                         variant="standard"
                         label="Vyhledávání"

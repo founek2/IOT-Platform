@@ -114,7 +114,7 @@ export default function EditNotifyPage() {
 
                         {sensorCount > 0 &&
                             [...Array(sensorCount).keys()].map((i) => (
-                                <Grid key={i} item pb={2}>
+                                <Grid key={i} pb={2}>
                                     <EditNotify id={i} onDelete={removeSensorByIndex} config={thing.config} />
                                 </Grid>
                             ))}

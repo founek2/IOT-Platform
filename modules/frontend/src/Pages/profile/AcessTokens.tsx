@@ -84,12 +84,12 @@ function AccessTokens() {
     return (
         <>
             <Grid container spacing={2}>
-                <Grid item xs={12} display="flex" justifyContent="center">
+                <Grid size={{ xs: 12 }} display="flex" justifyContent="center">
                     <Button onClick={() => setOpenDialog({ type: OpenDialog.Create, id: '' })} variant="contained">
                         Vytvořit token
                     </Button>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>

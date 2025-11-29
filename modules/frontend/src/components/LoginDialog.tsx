@@ -1,23 +1,22 @@
 import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
+import { logger } from 'common/lib/logger';
 import { AuthType } from 'common/src/constants';
 import { getFieldVal } from 'common/src/utils/getters';
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useGetAuthProvidersQuery, useLazyGetAuthTypesQuery, useSignInMutation } from '../endpoints/signIn';
 import { useAppSelector } from '../hooks';
 import { useForm } from '../hooks/useForm';
-import { useGetAuthProvidersQuery, useLazyGetAuthTypesQuery, useSignInMutation } from '../endpoints/signIn';
 import { head } from '../utils/ramda';
 import FieldConnector from './FieldConnector';
 import AuthProviderButtons from './loginDialog/AuthProviderButtons';
-import useTheme from '@mui/material/styles/useTheme';
-import { useNavigate } from 'react-router-dom';
-import { logger } from 'common/lib/logger';
 
 interface LoginForm {
     userName: string;
@@ -107,7 +106,7 @@ export default function LoginDialog({ onClose, open }: LoginDialogProps) {
                 })}
             >
                 <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12 }}>
                         <FieldConnector
                             autoFocus
                             deepPath="LOGIN.userName"
@@ -123,7 +122,7 @@ export default function LoginDialog({ onClose, open }: LoginDialogProps) {
                             onEnter={actionHandler}
                         />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12 }}>
                         <FieldConnector
                             autoFocus
                             deepPath="LOGIN.password"

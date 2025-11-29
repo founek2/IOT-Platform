@@ -3,7 +3,7 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 export type DevicePreferences = { _id: string; order: number };
 // Define a type for the slice state
 
-const devicePreferencesAdapter = createEntityAdapter<DevicePreferences>({
+const devicePreferencesAdapter = createEntityAdapter<DevicePreferences, string>({
     // Assume IDs are stored in a field other than `book.id`
     selectId: (thing) => thing._id,
 });

@@ -55,7 +55,7 @@ export function PropertySelect({ onChange, sx = {} }: PropertySelectDialogProps)
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid size={{ xs: 6 }}>
                 <List
                     subheader={<ListSubheader>Zařízení</ListSubheader>}
                     sx={[{ bgcolor: 'background.paper', overflow: 'auto' }, ...(Array.isArray(sx) ? sx : [sx])]}
@@ -63,7 +63,7 @@ export function PropertySelect({ onChange, sx = {} }: PropertySelectDialogProps)
                     {deviceItems}
                 </List>
             </Grid>
-            <Grid item xs={6}>
+            <Grid size={{ xs: 6 }}>
                 <List
                     subheader={<ListSubheader>Vlastnost</ListSubheader>}
                     sx={[{ bgcolor: 'background.paper', overflow: 'auto' }, ...(Array.isArray(sx) ? sx : [sx])]}

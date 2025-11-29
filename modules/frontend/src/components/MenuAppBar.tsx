@@ -1,5 +1,4 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,6 +14,7 @@ import LoginDialog from './LoginDialog';
 import { SideMenu } from './menuAppBar/SideMenu';
 import { UserMenu } from './menuAppBar/UserMenu';
 import { useAppBarContext } from '../hooks/useAppBarContext';
+import { useTheme } from '@mui/material';
 
 export function MenuAppBar() {
     const theme = useTheme();

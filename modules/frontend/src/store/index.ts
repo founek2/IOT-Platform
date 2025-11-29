@@ -1,12 +1,10 @@
-import { CombinedState, configureStore, isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
+import { configureStore, isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
+import errorMessages from 'common/src/localization/error';
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import { api } from '../endpoints/api';
 import rootReducer from './slices';
-import { notificationActions } from './slices/notificationSlice';
-import { $CombinedState } from '@reduxjs/toolkit';
-import errorMessages from 'common/src/localization/error';
 import { authorizationActions } from './slices/application/authorizationActions';
-import { logger } from 'common/src/logger';
+import { notificationActions } from './slices/notificationSlice';
 
 export const rtkQueryErrorLogger: Middleware =
     ({ dispatch }) =>
@@ -17,16 +15,19 @@ export const rtkQueryErrorLogger: Middleware =
                     console.error(action)
                     // console.warn('We got a rejected action!');
                     //   toast.warn({ title: 'Async error!', message: action.error.data.message })
-                    if (action.payload?.data?.error === 'disabledToken') {
-                        dispatch(authorizationActions.signOut() as any);
-                        dispatch(notificationActions.add({ message: errorMessages.getMessage("invalidToken"), options: { variant: 'warning' } }))
-                    } else if (action?.payload?.data?.error) {
-                        dispatch(
-                            notificationActions.add({
-                                message: errorMessages.getMessage(action.payload.data.error),
-                                options: { variant: 'error' },
-                            })
-                        );
+                    const actionPayload = action.payload as { data?: { error?: string } };
+                    if ('data' in actionPayload && actionPayload.data?.error) {
+                        if (actionPayload.data.error === 'disabledToken') {
+                            dispatch(authorizationActions.signOut() as any);
+                            dispatch(notificationActions.add({ message: errorMessages.getMessage("invalidToken"), options: { variant: 'warning' } }))
+                        } else if (actionPayload.data.error) {
+                            dispatch(
+                                notificationActions.add({
+                                    message: errorMessages.getMessage(actionPayload.data.error as any || 'unexpectedError'),
+                                    options: { variant: 'error' },
+                                })
+                            );
+                        }
                     } else {
                         dispatch(notificationActions.add({ message: 'Nastala chyba', options: { variant: 'error' } }))
                     };

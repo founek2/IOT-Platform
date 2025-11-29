@@ -86,7 +86,7 @@ export function DeviceDialogForm({ open, onClose, title, onSave, deviceToEdit }:
                             rooms={availableRooms}
                             buildings={buildings.map((b) => b.name)}
                         />
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <FieldConnector
                                 deepPath={`${formName}.permissions`}
                                 // onEnter={onEnter}

@@ -6,7 +6,7 @@ import { usersApi } from '../../../endpoints/users';
 import { normalizeDevices } from '../../../utils/normalizr';
 
 
-const usersAdapter = createEntityAdapter<User>({
+const usersAdapter = createEntityAdapter<User, string>({
     // Assume IDs are stored in a field other than `book.id`
     selectId: (user) => user._id,
 });

@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { MenuItem, useTheme } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
-import { TextFieldProps } from '@mui/material/TextField';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import useTheme from '@mui/material/styles/useTheme';
 import Select, { SelectProps } from '@mui/material/Select';
-import { MenuItem } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { useState } from 'react';
 
 export interface SelectOption {
     label: string;

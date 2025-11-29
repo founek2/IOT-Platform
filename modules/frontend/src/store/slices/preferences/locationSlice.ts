@@ -3,7 +3,7 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 export type LocationPreferences = { _id: string; order: number };
 // Define a type for the slice state
 
-const locationreferencesAdapter = createEntityAdapter<LocationPreferences>({
+const locationreferencesAdapter = createEntityAdapter<LocationPreferences, string>({
     // Assume IDs are stored in a field other than `book.id`
     selectId: (thing) => thing._id,
 });

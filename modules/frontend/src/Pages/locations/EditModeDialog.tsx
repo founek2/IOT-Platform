@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import ChairIcon from '@mui/icons-material/Chair';
+import { ListItemButton } from '@mui/material';
 
 export interface EditModeDialogProps {
     open: boolean;
@@ -18,18 +19,18 @@ export function EditModeDialog({ open, onClose }: EditModeDialogProps) {
         <Dialog onClose={() => onClose(undefined)} open={open}>
             <DialogTitle>Zvolte co budete uspořádávat</DialogTitle>
             <List sx={{ pt: 0 }}>
-                <ListItem button onClick={() => onClose('rooms')}>
+                <ListItemButton onClick={() => onClose('rooms')}>
                     <ListItemIcon>
                         <ChairIcon />
                     </ListItemIcon>
                     <ListItemText primary="Místnosti" />
-                </ListItem>
-                <ListItem button onClick={() => onClose('buildings')}>
+                </ListItemButton>
+                <ListItemButton onClick={() => onClose('buildings')}>
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
                     <ListItemText primary="Budovy" />
-                </ListItem>
+                </ListItemButton>
             </List>
         </Dialog>
     );

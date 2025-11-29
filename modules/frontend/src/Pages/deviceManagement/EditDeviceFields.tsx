@@ -13,10 +13,10 @@ export function EditDeviceFields({
 }) {
     return (
         <>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
                 <FieldConnector component="TextField" deepPath={`${formName}.info.name`} fullWidth />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
                 <FieldConnector
                     deepPath={`${formName}.info.location.building`}
                     component="Autocomplete"
@@ -24,7 +24,7 @@ export function EditDeviceFields({
                     options={buildings.map((building) => ({ label: building, value: building }))}
                 />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
                 <FieldConnector
                     deepPath={`${formName}.info.location.room`}
                     // onEnter={onEnter}

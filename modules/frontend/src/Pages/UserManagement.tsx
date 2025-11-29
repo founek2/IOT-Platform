@@ -30,7 +30,7 @@ export default function UserManagement() {
     return (
         <>
             <Grid container justifyContent="center">
-                <Grid item xs={12} md={7} lg={6} xl={3}>
+                <Grid size={{ xs: 12, md: 7, lg: 6, xl: 3 }}>
                     <Card sx={{ padding: 4 }}>
                         <DataList data={data || []} getHumanText={extractHumanText} onClick={(user) => navigate({ search: `?editUser=${user._id}` })} />
                     </Card>

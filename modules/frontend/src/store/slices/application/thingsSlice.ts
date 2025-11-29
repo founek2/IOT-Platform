@@ -16,7 +16,7 @@ export type Thing = Omit<IThing, '_id' | 'state'> & {
     state?: Record<string, PropertyState | undefined>;
 };
 
-const thingsAdapter = createEntityAdapter<Thing>({
+const thingsAdapter = createEntityAdapter<Thing, string>({
     selectId: (thing) => thing._id,
     sortComparer: (a, b) => a.config.name.localeCompare(b.config.name),
 });

@@ -20,7 +20,7 @@ function Profile() {
 
     return (
         <Grid container pt={2} alignItems="center" flexDirection="column" pl={1} pr={1} maxWidth={800} width="100%" margin="0 auto" >
-            <Grid item>
+            <Grid>
                 <Breadcrumbs aria-label="breadcrumb">
                     {menu.map(({ icon: Icon, text, link }) => (
                         <Link to={link} key={link} className="util--flex">
@@ -37,7 +37,7 @@ function Profile() {
                     ))}
                 </Breadcrumbs>
             </Grid>
-            <Grid item pt={3} width="100%" display="flex" justifyContent="center">
+            <Grid pt={3} width="100%" display="flex" justifyContent="center">
                 <Routes>
                     <Route element={<Security />} path="security" />
                     <Route element={<AccessTokens />} path="accessTokens" />

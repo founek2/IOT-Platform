@@ -5,7 +5,7 @@ import { byPreferences } from '../../../utils/sort';
 export type PropertyPreferences = { _id: string; thingId: string, order: number };
 // Define a type for the slice state
 
-const propertyPreferencesAdapter = createEntityAdapter<PropertyPreferences>({
+const propertyPreferencesAdapter = createEntityAdapter<PropertyPreferences, string>({
     // Assume IDs are stored in a field other than `book.id`
     selectId: (property) => property._id,
 });
