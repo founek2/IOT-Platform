@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import parseJwt from "common/lib/utils/parseJwtToken";
+import { useEffect, useState } from 'react';
 import internalStorage, { AccessTokenData } from '../services/internalStorage';
-import { Thing } from '../store/slices/application/thingsSlice';
-import parseJwt from "common/lib/utils/parseJwtToken"
 
 export function useAccessToken() {
     const [accessToken, setAccessToken] = useState<AccessTokenData>()
