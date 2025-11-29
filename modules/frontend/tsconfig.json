@@ -21,14 +21,11 @@
         // "noFallthroughCasesInSwitch": true,
         // "strict": true
     },
-    "paths": {
-        "common": [
-            "../common/lib"
-        ],
-        "common/*": [
-            "../common/lib/*"
-        ],
-    },
+    "references": [
+        {
+            "path": "../common"
+        }
+    ],
     "include": [
         "src",
         "custom.d.ts"
