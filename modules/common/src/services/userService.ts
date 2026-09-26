@@ -1,19 +1,19 @@
 import argon2 from 'argon2';
 import addHours from 'date-fns/addHours';
-import { logger } from '../logger';
+import { logger } from '../logger/index.js';
 import mongoose from 'mongoose';
 import dotify from 'node-dotify';
 import { Either, Left, Right } from 'purify-ts/Either';
 import { Just, Maybe, Nothing } from 'purify-ts/Maybe';
-import { AuthType } from '../constants';
-import { DeviceModel } from '../models/deviceModel';
-import { IAccessToken, IOauth, IRefreshToken, IUser, Permission } from '../models/interface/userInterface';
-import { NotifyModel } from '../models/notifyModel';
-import { IToken, TokenModel, TokenType } from '../models/tokenModel';
-import { UserModel } from '../models/userModel';
-import { JwtService } from '../services/jwtService';
-import { Security } from './SecurityService';
-import { IUserDocument } from '../models/schema/userSchema';
+import { AuthType } from '../constants/index.js';
+import { DeviceModel } from '../models/deviceModel.js';
+import { IAccessToken, IOauth, IRefreshToken, IUser, Permission } from '../models/interface/userInterface.js';
+import { NotifyModel } from '../models/notifyModel.js';
+import { IToken, TokenModel, TokenType } from '../models/tokenModel.js';
+import { UserModel } from '../models/userModel.js';
+import { JwtService } from '../services/jwtService.js';
+import { Security } from './SecurityService.js';
+import { IUserDocument } from '../models/schema/userSchema.js';
 import { EitherAsync } from 'purify-ts';
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -191,9 +191,9 @@ export class UserService {
         UserModel.updateOne({ _id: ObjectId(id) }, { 'auth.oauth': undefined });
     }
 
-    async getAuthorization(id: IUser['_id']) {
+    async getAuthorization(id: IUser['_id']): Promise<Maybe<IOauth>> {
         let doc = await UserModel.findOne({ _id: ObjectId(id) }, { 'auth.oauth': 1 }).lean();
-        return doc?.auth.oauth ? Just(doc.auth.oauth) : Nothing;
+        return doc?.auth.oauth ? Just(doc.auth.oauth) : (Nothing as Maybe<IOauth>);
     }
 
     /**

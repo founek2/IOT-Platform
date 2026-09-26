@@ -1,4 +1,4 @@
-import chainHandler from './chainHandler'
+import chainHandler from './chainHandler.js'
 
 describe("getInPath", () => {
     test("simple", () => {

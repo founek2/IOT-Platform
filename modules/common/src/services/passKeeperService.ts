@@ -1,6 +1,6 @@
 import { Maybe, Nothing } from "purify-ts";
 import { EventEmitter } from "stream";
-import { BusEmitterType, Pass } from "../interfaces/asyncEmitter";
+import { BusEmitterType, Pass } from "../interfaces/asyncEmitter.js";
 
 export class PassKeeper extends EventEmitter {
     pass: Maybe<Pass>
@@ -9,7 +9,7 @@ export class PassKeeper extends EventEmitter {
     constructor(bus: BusEmitterType) {
         super();
 
-        this.pass = Nothing;
+        this.pass = Nothing as Maybe<Pass>;
         this.bus = bus;
 
         bus.on("new_pass", (result) => {

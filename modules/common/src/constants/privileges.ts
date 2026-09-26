@@ -3,7 +3,7 @@
  */
 
 import { append } from 'ramda';
-import { IUser } from '../models/interface/userInterface';
+import { IUser } from '../models/interface/userInterface.js';
 
 const adminAllowedGroups = [
     { name: 'user', text: 'uživatel' },

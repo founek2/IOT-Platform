@@ -1,4 +1,4 @@
-import validationFactory from './validationFactory';
+import validationFactory from './validationFactory.js';
 
 
 describe('Validation factory', function () {

@@ -1,9 +1,9 @@
-import { logger } from '../logger';
+import { logger } from '../logger/index.js';
 import mongoose, { Model } from 'mongoose';
-import { IThing } from './interface/thing';
-import { deviceSchemaPlain, IDeviceDocument } from './schema/deviceSchema';
-import { IDevice } from './interface/device';
-import { IUser } from './interface/userInterface';
+import { IThing } from './interface/thing.js';
+import { deviceSchemaPlain, IDeviceDocument } from './schema/deviceSchema.js';
+import { IDevice } from './interface/device.js';
+import { IUser } from './interface/userInterface.js';
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;

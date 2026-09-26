@@ -1,9 +1,9 @@
-import { CONTROL_TYPES } from '../constants';
-import { IDevice } from '../models/interface/device';
-import { IThing, PropertyState } from '../models/interface/thing';
-import { IUser, Permission } from '../models/interface/userInterface';
-import { JwtService } from '../services/jwtService';
-import { UserService } from '../services/userService';
+import { CONTROL_TYPES } from '../constants/index.js';
+import { IDevice } from '../models/interface/device.js';
+import { IThing, PropertyState } from '../models/interface/thing.js';
+import { IUser, Permission } from '../models/interface/userInterface.js';
+import { JwtService } from '../services/jwtService.js';
+import { UserService } from '../services/userService.js';
 import { Context, Request as RequestKoa } from 'koa';
 
 export interface Config {

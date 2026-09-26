@@ -1,7 +1,7 @@
 import { Maybe } from "purify-ts";
-import { TypedEmitter } from "../emitter/typedEmitter";
-import { DeviceCommand, IDevice } from "../models/interface/device";
-import { IThing, IThingProperty } from "../models/interface/thing";
+import { TypedEmitter } from "../emitter/typedEmitter.js";
+import { DeviceCommand, IDevice } from "../models/interface/device.js";
+import { IThing, IThingProperty } from "../models/interface/thing.js";
 
 export type Pass = {
     password: string;

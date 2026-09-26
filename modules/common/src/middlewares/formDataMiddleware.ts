@@ -1,9 +1,9 @@
-import { logger } from '../logger';
-import { checkValidFormData } from '../utils/validation';
-import { trimData } from '../utils/trimData';
+import { logger } from '../logger/index.js';
+import { checkValidFormData } from '../utils/validation.js';
+import { trimData } from '../utils/trimData.js';
 import { Next } from 'koa';
-import { KoaContext } from '../types';
-import { sendError } from '../utils/sendError';
+import { KoaContext } from '../types/index.js';
+import { sendError } from '../utils/sendError.js';
 
 type Options = { ingoreRequired?: boolean; allowedForms?: string[] };
 type FormData = { [key: string]: any };

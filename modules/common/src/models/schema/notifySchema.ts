@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { INotifyThing } from "../interface/notifyInterface";
+import { INotifyThing } from "../interface/notifyInterface.js";
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;

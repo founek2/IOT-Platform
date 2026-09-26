@@ -1,4 +1,4 @@
-import { validationMessageKey } from '../localization/validationMessages';
+import { validationMessageKey } from '../localization/validationMessages.js';
 
 export type ValidationFn = (value: any, options?: any) => true | validationMessageKey;
 

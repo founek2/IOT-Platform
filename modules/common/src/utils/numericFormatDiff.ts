@@ -1,4 +1,4 @@
-import { IThingPropertyNumeric } from "../models/interface/thing";
+import { IThingPropertyNumeric } from "../models/interface/thing.js";
 
 export function numericFormatDiff(property: IThingPropertyNumeric) {
     if (!property.format) return 0;

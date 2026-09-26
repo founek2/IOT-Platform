@@ -1,9 +1,9 @@
-import { DeviceModel } from '../../models/deviceModel';
-import { HasState, KoaContext } from '../../types';
-import { Permission } from '../../models/interface/userInterface';
+import { DeviceModel } from '../../models/deviceModel.js';
+import { HasState, KoaContext } from '../../types/index.js';
+import { Permission } from '../../models/interface/userInterface.js';
 import { Next } from 'koa';
-import checkDeviceMiddleware from './checkDeviceMiddleware';
-import { sendError } from '../../utils/sendError';
+import checkDeviceMiddleware from './checkDeviceMiddleware.js';
+import { sendError } from '../../utils/sendError.js';
 
 /**
  * Middleware to check if device exists and user has permission to control it

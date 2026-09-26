@@ -1,12 +1,12 @@
 import mongoose, { Model, Document } from "mongoose";
-import { INotify, INotifyThingProperty } from "./interface/notifyInterface";
-import { notifyThingSchema } from "./schema/notifySchema";
-import { IDevice } from "./interface/device";
-import { IThing, IThingProperty } from "./interface/thing";
-import { IUser } from "./interface/userInterface";
-import { INTERNAL_NOTIFY_PROPERTIES, INTERNAL_THING_ID } from "../constants";
-import { NotifyType } from "./interface/notifyInterface"
-import { pushOrNewArray } from "../utils/pushOrNewArray";
+import { INotify, INotifyThingProperty } from "./interface/notifyInterface.js";
+import { notifyThingSchema } from "./schema/notifySchema.js";
+import { IDevice } from "./interface/device.js";
+import { IThing, IThingProperty } from "./interface/thing.js";
+import { IUser } from "./interface/userInterface.js";
+import { INTERNAL_NOTIFY_PROPERTIES, INTERNAL_THING_ID } from "../constants/index.js";
+import { NotifyType } from "./interface/notifyInterface.js"
+import { pushOrNewArray } from "../utils/pushOrNewArray.js";
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;

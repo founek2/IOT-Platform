@@ -1,5 +1,5 @@
 import { __, apply, compose, filter, forEach } from 'ramda';
-import isNotNil from './isNotNil';
+import isNotNil from './isNotNil.js';
 
 type handlers = Array<undefined | null | ((arg: any) => void)>
 

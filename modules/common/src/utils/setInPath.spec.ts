@@ -1,4 +1,4 @@
-import setInPath from './setInPath'
+import setInPath from './setInPath.js'
 import { clone } from 'ramda'
 
 describe("getInPath", () => {

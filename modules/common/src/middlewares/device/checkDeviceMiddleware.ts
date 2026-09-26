@@ -1,8 +1,8 @@
-import { DeviceModel } from '../../models/deviceModel';
+import { DeviceModel } from '../../models/deviceModel.js';
 import mongoose from 'mongoose';
-import { KoaContext } from '../../types';
+import { KoaContext } from '../../types/index.js';
 import { Next } from 'koa';
-import { sendError } from '../../utils/sendError';
+import { sendError } from '../../utils/sendError.js';
 
 /**
  * Middleware to check if device exists

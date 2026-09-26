@@ -1,9 +1,9 @@
 import { Next } from 'koa';
 import mongoose from 'mongoose';
-import { DiscoveryModel } from '../../models/deviceDiscoveryModel';
-import { Permission } from '../../models/interface/userInterface';
-import { HasState, KoaContext } from '../../types';
-import { sendError } from '../../utils/sendError';
+import { DiscoveryModel } from '../../models/deviceDiscoveryModel.js';
+import { Permission } from '../../models/interface/userInterface.js';
+import { HasState, KoaContext } from '../../types/index.js';
+import { sendError } from '../../utils/sendError.js';
 
 /**
  * Middleware to check if discovered device exists and user has permission to it

@@ -1,9 +1,9 @@
 import { not } from 'ramda';
-import { logger } from '../logger';
-import { Permission } from '../models/interface/userInterface';
-import { HasState, KoaContext, KoaHasContext } from '../types';
+import { logger } from '../logger/index.js';
+import { Permission } from '../models/interface/userInterface.js';
+import { HasState, KoaContext, KoaHasContext } from '../types/index.js';
 import { Next } from 'koa';
-import { sendError } from '../utils/sendError';
+import { sendError } from '../utils/sendError.js';
 
 type Options = {
     restricted?: boolean;

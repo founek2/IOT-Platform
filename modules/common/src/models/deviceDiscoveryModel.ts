@@ -1,6 +1,6 @@
 import mongoose, { Document, Model } from "mongoose";
-import { IDiscovery } from "./interface/discovery";
-import { IUser } from "./interface/userInterface";
+import { IDiscovery } from "./interface/discovery.js";
+import { IUser } from "./interface/userInterface.js";
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;

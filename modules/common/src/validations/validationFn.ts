@@ -1,8 +1,8 @@
 import { and, equals, has, is, isNil, or } from 'ramda';
-import { validationMessageKey } from '../localization/validationMessages';
-import isNotEmpty from '../utils/isNotEmpty';
-import { transformToForm } from './transformToForm';
-import { validateFormBE } from './index';
+import { validationMessageKey } from '../localization/validationMessages.js';
+import isNotEmpty from '../utils/isNotEmpty.js';
+import { transformToForm } from './transformToForm.js';
+import { validateFormBE } from './index.js';
 
 type ValidationResult = true | validationMessageKey;
 

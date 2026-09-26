@@ -1,4 +1,4 @@
-import { loggerFn } from './fn';
+import { loggerFn } from './fn.js';
 
 // @ts-ignore
 const isNode = typeof window === 'undefined';

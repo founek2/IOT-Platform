@@ -1,4 +1,4 @@
-import { IThing } from "./thing";
+import { IThing } from "./thing.js";
 
 export enum DeviceCommand {
     restart = "restart",

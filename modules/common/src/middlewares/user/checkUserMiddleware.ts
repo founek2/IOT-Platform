@@ -1,9 +1,9 @@
-import { UserModel } from '../../models/userModel';
+import { UserModel } from '../../models/userModel.js';
 import mongoose from 'mongoose';
-import { logger } from '../../logger';
-import { KoaContext } from '../../types';
+import { logger } from '../../logger/index.js';
+import { KoaContext } from '../../types/index.js';
 import { Next } from 'koa';
-import { sendError } from '../../utils/sendError';
+import { sendError } from '../../utils/sendError.js';
 
 /**
  * Middleware to check if user exists

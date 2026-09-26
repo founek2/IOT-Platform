@@ -1,5 +1,5 @@
 import { forEach, is, clone, forEachObjIndexed, uniq, F, isNil, ifElse, identity, mapObjIndexed } from 'ramda';
-import getInPath from '../utils/getInPath';
+import getInPath from '../utils/getInPath.js';
 import {
     getFieldDescriptor,
     getFormsData,
@@ -7,14 +7,14 @@ import {
     getFormDescriptors,
     getFormData,
     getRegisteredFields,
-} from '../utils/getters';
-import isNotEmpty from '../utils/isNotEmpty';
-import setInPath from '../utils/setInPath';
-import ValiadtionMessages from '../localization/validationMessages';
-import { ErrorMessageKey } from '../localization/error';
-import { FieldDescriptor, FieldDescriptors, FieldState, FormsData } from './types';
-import isObject from '../utils/isObject';
-export * from "./types"
+} from '../utils/getters.js';
+import isNotEmpty from '../utils/isNotEmpty.js';
+import setInPath from '../utils/setInPath.js';
+import ValiadtionMessages from '../localization/validationMessages.js';
+import { ErrorMessageKey } from '../localization/error.js';
+import { FieldDescriptor, FieldDescriptors, FieldState, FormsData } from './types.js';
+import isObject from '../utils/isObject.js';
+export * from "./types.js"
 
 export type types = {
     State: { formsData: FormsData; fieldDescriptors: FieldDescriptors };

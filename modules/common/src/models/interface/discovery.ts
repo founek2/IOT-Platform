@@ -1,5 +1,5 @@
-import { DeviceStatus } from './device';
-import { ComponentType, IThingProperty, PropertyClass } from './thing';
+import { DeviceStatus } from './device.js';
+import { ComponentType, IThingProperty, PropertyClass } from './thing.js';
 
 export interface IDiscoveryThing {
     _id?: any;

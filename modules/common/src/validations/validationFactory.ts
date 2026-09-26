@@ -1,6 +1,6 @@
-import ValiadtionMessages from '../localization/validationMessages';
-import { logger } from '../logger';
-import * as validationFunctions from './validationFn';
+import ValiadtionMessages from '../localization/validationMessages.js';
+import { logger } from '../logger/index.js';
+import * as validationFunctions from './validationFn.js';
 
 type functionsType = typeof validationFunctions;
 

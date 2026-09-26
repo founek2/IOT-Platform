@@ -1,4 +1,4 @@
-import isFn from './isFn'
+import isFn from './isFn.js'
 
 describe("getInPath", () => {
     test("simple", () => {

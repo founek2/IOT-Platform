@@ -1,4 +1,4 @@
-import { INotifyThingProperty, NotifyType } from '../models/interface/notifyInterface';
+import { INotifyThingProperty, NotifyType } from '../models/interface/notifyInterface.js';
 
 interface INotifyFE {
     propertyId: string[];

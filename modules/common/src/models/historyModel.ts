@@ -1,10 +1,10 @@
 import mongoose, { Model } from "mongoose";
-import { IThing, IThingProperty } from "./interface/thing";
-import { historicalSchemaPlain, IHistorical } from "./schema/historicalSchema";
-import { IDevice } from "./interface/device";
-import resetTime from "../utils/resetTime";
+import { IThing, IThingProperty } from "./interface/thing.js";
+import { historicalSchemaPlain, IHistorical } from "./schema/historicalSchema.js";
+import { IDevice } from "./interface/device.js";
+import resetTime from "../utils/resetTime.js";
 
-import { DAY_START_HOURS, DAY_END_HOURS } from "../constants";
+import { DAY_START_HOURS, DAY_END_HOURS } from "../constants/index.js";
 
 export function isDay(dateTime: Date) {
     return dateTime.getHours() >= DAY_START_HOURS && dateTime.getHours() < DAY_END_HOURS;

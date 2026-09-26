@@ -1,5 +1,5 @@
 
-import { checkValid, types, validateForm } from '../validations';
+import { checkValid, types, validateForm } from '../validations/index.js';
 
 export const checkValidFormData = (
     formData: { [formName: string]: any },

@@ -1,4 +1,4 @@
-import { messageFactory } from '.';
+import { messageFactory } from './index.js';
 
 export const messages = {
     notString: 'Zadaná hodnota musí být text',

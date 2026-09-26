@@ -1,5 +1,5 @@
-import { DeviceStatus } from "../models/interface/device";
-import { INotifyThingProperty, NotifyType } from "../models/interface/notifyInterface";
+import { DeviceStatus } from "../models/interface/device.js";
+import { INotifyThingProperty, NotifyType } from "../models/interface/notifyInterface.js";
 
 export const DAY_START_HOURS = 6;
 

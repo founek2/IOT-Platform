@@ -1,6 +1,6 @@
-import setInPath from '../utils/setInPath';
+import setInPath from '../utils/setInPath.js';
 import { forEachObjIndexed, is } from 'ramda';
-import { FormFieldDescriptors } from './types';
+import { FormFieldDescriptors } from './types.js';
 
 function recursive(transform: any, predicate: any, object: any) {
     const func =

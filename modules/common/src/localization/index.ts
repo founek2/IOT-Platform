@@ -1,4 +1,4 @@
-import { logger } from '../logger';
+import { logger } from '../logger/index.js';
 
 export type Message = ((options?: any) => string) | string;
 export type Messages = { [messageKey: string]: Message };

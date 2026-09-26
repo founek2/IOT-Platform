@@ -1,8 +1,8 @@
 import mongoose, { Model } from 'mongoose';
-import { IUser, PushSubscription, IRefreshToken } from './interface/userInterface';
-import { IUserDocument, userSchemaPlain } from './schema/userSchema';
-import { NotifyModel } from './notifyModel';
-import { DeviceModel } from './deviceModel';
+import { IUser, PushSubscription, IRefreshToken } from './interface/userInterface.js';
+import { IUserDocument, userSchemaPlain } from './schema/userSchema.js';
+import { NotifyModel } from './notifyModel.js';
+import { DeviceModel } from './deviceModel.js';
 
 const ObjectId = mongoose.Types.ObjectId;
 const Schema = mongoose.Schema;

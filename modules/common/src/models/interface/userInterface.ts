@@ -1,4 +1,4 @@
-import { AuthType } from '../../constants';
+import { AuthType } from '../../constants/index.js';
 
 export enum Permission {
     read = 'read',

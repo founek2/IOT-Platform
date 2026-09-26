@@ -1,5 +1,5 @@
-import { IDevice } from "./device";
-import { IThing } from "./thing";
+import { IDevice } from "./device.js";
+import { IThing } from "./thing.js";
 
 export interface HistoricalSensor {
     _id?: any;

@@ -17,7 +17,7 @@ const levelMaping: { [key: string]: number } = {
     DEBUG: 4,
     SILLY: 5
 }
-function getLoggerLevel(): Number {
+function getLoggerLevel(): number {
     const level = process.env.LOG_LEVEL ?? process.env.REACT_APP_LOG_LEVEL ?? ""
 
     return levelMaping[level] ?? (parseInt(level) || 2)

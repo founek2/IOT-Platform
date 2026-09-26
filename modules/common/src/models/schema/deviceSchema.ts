@@ -1,8 +1,8 @@
 import mongoose, { Document, Model } from 'mongoose';
 import hat from 'hat';
-import { IDevice } from '../interface/device';
-import { IUser } from '../interface/userInterface';
-import { thingSchema } from './thingSchema';
+import { IDevice } from '../interface/device.js';
+import { IUser } from '../interface/userInterface.js';
+import { thingSchema } from './thingSchema.js';
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;

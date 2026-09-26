@@ -1,4 +1,4 @@
-import { IThingProperty, PropertyDataType, IThingPropertyEnum, IThingPropertyNumeric } from '../models/interface/thing';
+import { IThingProperty, PropertyDataType, IThingPropertyEnum, IThingPropertyNumeric } from '../models/interface/thing.js';
 
 /**
  * Check whether value is valid as state of property

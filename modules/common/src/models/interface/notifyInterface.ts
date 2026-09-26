@@ -1,6 +1,6 @@
-import { IDevice } from './device';
-import { IThing, IThingProperty, PropertyDataType } from './thing';
-import { IUser } from './userInterface';
+import { IDevice } from './device.js';
+import { IThing, IThingProperty, PropertyDataType } from './thing.js';
+import { IUser } from './userInterface.js';
 
 export enum NotifyType {
     always = 'always',

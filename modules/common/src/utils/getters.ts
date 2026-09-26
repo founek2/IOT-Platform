@@ -4,9 +4,9 @@ import {
     FieldState,
     FormsData,
     RegisteredFields,
-} from '../validations/types';
+} from '../validations/types.js';
 import { compose, curry, o, prop } from 'ramda';
-import getInPath from './getInPath';
+import getInPath from './getInPath.js';
 
 type RootState = { formsData: FormsData; fieldDescriptors: FieldDescriptors };
 

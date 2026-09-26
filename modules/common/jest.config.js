@@ -1,7 +1,7 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
-module.exports = {
+export default {
     // All imported modules in your tests should be mocked automatically
     // automock: false,
 
@@ -83,8 +83,14 @@ module.exports = {
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
     modulePathIgnorePatterns: [
-        "dist"
+        "dist",
+        "lib"
     ],
+
+    extensionsToTreatAsEsm: ['.ts'],
+    moduleNameMapper: {
+        '^(\\.{1,2}/.*)\\.js$': '$1'
+    },
 
     // Activates notifications for test results
     // notify: false,
@@ -93,7 +99,7 @@ module.exports = {
     // notifyMode: "failure-change",
 
     // A preset that is used as a base for Jest's configuration
-    preset: 'ts-jest',
+    preset: 'ts-jest/presets/default-esm',
 
     // Run tests from one or more projects
     // projects: undefined,
@@ -138,6 +144,7 @@ module.exports = {
 
     // The test environment that will be used for testing
     testEnvironment: "node",
+    testMatch: ['<rootDir>/src/**/*.spec.ts'],
 
     // Options that will be passed to the testEnvironment
     // testEnvironmentOptions: {},

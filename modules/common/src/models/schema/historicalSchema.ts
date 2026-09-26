@@ -1,5 +1,5 @@
 import mongoose, { Document } from 'mongoose';
-import { HistoricalSensor } from '../interface/history';
+import { HistoricalSensor } from '../interface/history.js';
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;

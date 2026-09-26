@@ -1,6 +1,6 @@
 import { mergeDeepRight, prop, uniqBy } from 'ramda';
 import React from 'react';
-import { UiMessageKey } from '../localization/uiMessages';
+import { UiMessageKey } from '../localization/uiMessages.js';
 
 export interface AllowedGroup {
     text: string;

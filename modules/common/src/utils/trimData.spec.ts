@@ -1,4 +1,4 @@
-import { trimData } from './trimData';
+import { trimData } from './trimData.js';
 
 
 describe('Trim data', function () {

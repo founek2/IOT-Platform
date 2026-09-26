@@ -1,5 +1,5 @@
-import * as validationFn from './validationFn';
-import validationFactory from './validationFactory';
+import * as validationFn from './validationFn.js';
+import validationFactory from './validationFactory.js';
 
 const descriptor = {
     name: {

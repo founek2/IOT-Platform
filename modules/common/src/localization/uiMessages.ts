@@ -1,4 +1,4 @@
-import { messageFactory } from '.';
+import { messageFactory } from './index.js';
 
 const messages = {
     userManagement: 'Správe uživatelů',

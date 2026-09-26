@@ -1,6 +1,7 @@
-import { Config } from '../types';
-import { logger } from '../logger';
+import { Config } from '../types/index.js';
+import { logger } from '../logger/index.js';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
 
 function areWeTestingWithJest() {
     return process.env.JEST_WORKER_ID !== undefined;
@@ -16,11 +17,11 @@ function mustGetString(key: string, defaultValue?: string): string {
     return value ?? defaultValue as string;
 }
 
-const pathRef = path.join(__dirname, areWeTestingWithJest() ? '../../../../.test.env' : '../../../../.env');
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
+const pathRef = path.join(moduleDirectory, areWeTestingWithJest() ? '../../../../.test.env' : '../../../../.env');
 const finalPath = process.env.ENV_CONFIG_PATH ? process.env.ENV_CONFIG_PATH : path.resolve(pathRef);
-require('dotenv').config({
-    path: finalPath,
-});
+process.env.DOTENV_CONFIG_PATH = finalPath;
+await import('dotenv/config');
 logger.info(`loading .env from ${finalPath}, env=${process.env.NODE_ENV}`);
 
 const config: Config = {

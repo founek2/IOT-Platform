@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
-import { logger } from '../logger';
+import { logger } from '../logger/index.js';
 import { Either, Left, Right } from 'purify-ts';
-import { IUser } from '../models/interface/userInterface';
+import { IUser } from '../models/interface/userInterface.js';
 
 interface RefreshTokenPayload {
     jti: string,

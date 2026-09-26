@@ -1,11 +1,11 @@
-import validationFactory from './validations/validationFactory';
+import validationFactory from './validations/validationFactory.js';
 import { assocPath, isNil } from 'ramda';
-import { AuthType, NotifyIntervals } from './constants';
-import { DeviceCommand } from './models/interface/device';
-import { NotifyType } from './models/interface/notifyInterface';
-import { transformToForm } from './validations/transformToForm';
-import { FieldDescriptor, FieldDescriptors, FormFieldDescriptors } from './validations/types';
-import { ComponentType } from './models/interface/thing';
+import { AuthType, NotifyIntervals } from './constants/index.js';
+import { DeviceCommand } from './models/interface/device.js';
+import { NotifyType } from './models/interface/notifyInterface.js';
+import { transformToForm } from './validations/transformToForm.js';
+import { FieldDescriptor, FieldDescriptors, FormFieldDescriptors } from './validations/types.js';
+import { ComponentType } from './models/interface/thing.js';
 
 const LOGIN: FormFieldDescriptors = {
     userName: {

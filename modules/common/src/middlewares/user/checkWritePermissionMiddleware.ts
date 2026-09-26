@@ -1,8 +1,8 @@
-import checkUser from './checkUserMiddleware';
-import { HasState, KoaContext } from '../../types';
-import { Permission } from '../../models/interface/userInterface';
+import checkUser from './checkUserMiddleware.js';
+import { HasState, KoaContext } from '../../types/index.js';
+import { Permission } from '../../models/interface/userInterface.js';
 import { Next } from 'koa';
-import { sendError } from '../../utils/sendError';
+import { sendError } from '../../utils/sendError.js';
 
 /**
  * Middleware to check if user exists and initiator of request has permission to write

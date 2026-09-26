@@ -1,7 +1,7 @@
 import { Next } from 'koa';
-import { HasState, KoaContext } from '../../types';
-import { isRoot } from '../../utils/groups';
-import { sendError } from '../../utils/sendError';
+import { HasState, KoaContext } from '../../types/index.js';
+import { isRoot } from '../../utils/groups.js';
+import { sendError } from '../../utils/sendError.js';
 
 export function checkIsRootMiddleware<C extends KoaContext & HasState>() {
     return async (ctx: C, next: Next) => {

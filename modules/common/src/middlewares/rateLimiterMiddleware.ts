@@ -1,7 +1,7 @@
 import { RateLimiterMemory } from 'rate-limiter-flexible';
-import { KoaContext } from '../types';
+import { KoaContext } from '../types/index.js';
 import { Next } from 'koa';
-import { sendError } from '../utils/sendError';
+import { sendError } from '../utils/sendError.js';
 
 const opts = {
     points: 10, // 10 points

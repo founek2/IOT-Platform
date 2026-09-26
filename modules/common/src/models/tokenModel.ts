@@ -1,5 +1,5 @@
 import mongoose, { Document, Model } from 'mongoose';
-import { IUser } from './interface/userInterface';
+import { IUser } from './interface/userInterface.js';
 
 export enum TokenType {
     forgot_password = 'forgot_password',
