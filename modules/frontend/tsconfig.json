@@ -1,7 +1,7 @@
 {
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
-        "rootDir": "../",
+        "rootDir": "./",
         "outDir": "dist",
         "lib": [
             "dom",
@@ -17,11 +17,10 @@
         "module": "esnext",
         "jsx": "react",
         "types": [
-            "@types/webpack-env"
-        ]
-        // "allowSyntheticDefaultImports": true,
-        // "noFallthroughCasesInSwitch": true,
-        // "strict": true
+            "vite/client"
+        ],
+        "noFallthroughCasesInSwitch": true,
+        "strict": true
     },
     "include": [
         "src",

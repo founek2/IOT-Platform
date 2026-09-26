@@ -5,7 +5,7 @@ import formsData from './formDataSlice.js';
 import plugins from './pluginsSlice.js';
 import notifications from './notificationSlice.js';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/es/storage'; // defaults to localStorage for web
 import preferences from './preferences/index.js';
 
 const reducers = {

@@ -33,8 +33,8 @@ describe('Validation factory', function () {
         expect(fn([])).toEqual('notNumber');
         expect(fn(3)).toEqual(true);
         expect(fn(3.3232)).toEqual(true);
-        expect(fn('3.3232')).toEqual(true);
-        expect(fn('3')).toEqual(true);
+        expect(fn('3.3232')).toEqual('notNumber');
+        expect(fn('3')).toEqual('notNumber');
         expect(fn({})).toEqual('notNumber');
         expect(fn('')).toEqual('notNumber');
         expect(fn('3.333ds')).toEqual('notNumber');

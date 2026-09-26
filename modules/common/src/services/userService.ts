@@ -1,5 +1,5 @@
 import argon2 from 'argon2';
-import addHours from 'date-fns/addHours';
+import { addHours } from 'date-fns/addHours';
 import { logger } from '../logger/index.js';
 import mongoose from 'mongoose';
 import dotify from 'node-dotify';

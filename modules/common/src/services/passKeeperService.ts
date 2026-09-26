@@ -1,5 +1,5 @@
 import { Maybe, Nothing } from "purify-ts";
-import { EventEmitter } from "stream";
+import { EventEmitter } from "node:events";
 import { BusEmitterType, Pass } from "../interfaces/asyncEmitter.js";
 
 export class PassKeeper extends EventEmitter {

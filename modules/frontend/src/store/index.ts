@@ -48,9 +48,10 @@ export const store = configureStore({
             .concat(rtkQueryErrorLogger),
 });
 
-// Hot reload support
-if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('./slices', () => store.replaceReducer(rootReducer));
+if (import.meta.hot) {
+    import.meta.hot.accept('./slices/index.ts', (updatedModule) => {
+        if (updatedModule) store.replaceReducer(updatedModule.default);
+    });
 }
 
 export type AppStore = typeof store;

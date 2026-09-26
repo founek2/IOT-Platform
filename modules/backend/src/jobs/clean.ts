@@ -1,6 +1,6 @@
 import Agenda from 'agenda';
 import { AGENDA_JOB_TYPE } from 'common/constants/agenda';
-import subDays from 'date-fns/subDays';
+import { subDays } from 'date-fns/subDays';
 import { logger } from 'common/logger';
 
 export default function (agenda: Agenda) {

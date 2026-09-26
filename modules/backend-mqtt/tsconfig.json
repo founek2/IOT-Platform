@@ -6,7 +6,16 @@
         "module": "NodeNext",
         "moduleResolution": "NodeNext"
     },
-    "references": [{ "path": "../common" }],
-    "include": ["./src"],
-    "exclude": ["./dist", "src/**/*.spec.ts"]
+    "references": [
+        {
+            "path": "../common"
+        }
+    ],
+    "include": [
+        "./src"
+    ],
+    "exclude": [
+        "./dist",
+        "src/**/*.spec.ts"
+    ]
 }

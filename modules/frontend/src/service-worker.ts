@@ -36,6 +36,10 @@ registerRoute(
             return false;
         }
 
+        if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/socket.io/')) {
+            return false;
+        }
+
         // If this is a URL that starts with /_, skip.
         if (url.pathname.startsWith('/_')) {
             return false;

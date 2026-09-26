@@ -31,7 +31,8 @@ export const getCurrentUser = (state: RootState) => state.application.authorizat
 
 export const getCurrentUserId = (state: RootState) => state.application.authorization.currentUser?._id;
 
-export const getCurrentGroups = (state: RootState) => state.application.authorization.currentUser?.groups || [];
+const emptyArray: string[] = [];
+export const getCurrentGroups = (state: RootState) => state.application.authorization.currentUser?.groups || emptyArray;
 
 export const getDevices = (state: RootState) => state.application.devices;
 

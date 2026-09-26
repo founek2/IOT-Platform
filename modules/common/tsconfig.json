@@ -5,8 +5,8 @@
         "outDir": "lib",
         "moduleResolution": "NodeNext",
         "isolatedModules": true,
-                "types": [
-                    "jest"
+        "types": [
+            "jest"
         ]
     },
     "include": [
