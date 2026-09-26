@@ -7,11 +7,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import EditUserForm from '../components/EditUserForm';
-import { RegisterUserForm, useRegisterAndSignInMutation, useRegisterMutation } from '../endpoints/users';
-import { useForm } from '../hooks/useForm';
-import { notificationActions } from '../store/slices/notificationSlice';
-import SuccessMessages from 'common/src/localization/succcess';
+import EditUserForm from '../components/EditUserForm.js';
+import { RegisterUserForm, useRegisterAndSignInMutation, useRegisterMutation } from '../endpoints/users.js';
+import { useForm } from '../hooks/useForm.js';
+import { notificationActions } from '../store/slices/notificationSlice.js';
+import SuccessMessages from 'common/localization/succcess';
 
 export default function Registration() {
     const [registerAndSignIn, setRegisterAndSignIn] = useState(true);

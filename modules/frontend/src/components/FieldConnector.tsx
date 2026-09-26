@@ -1,19 +1,19 @@
 import type { SxProps, Theme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import fieldDescriptors from 'common/src/fieldDescriptors';
-import { logger } from 'common/src/logger';
-import chainHandler from 'common/src/utils/chainHandler';
-import getInPath from 'common/src/utils/getInPath';
-import { getFieldDescriptor, getFieldVal, getFormData, getRegisteredField } from 'common/src/utils/getters';
-import { onEnterRun } from 'common/src/utils/onEnter';
-import { isRequired } from 'common/src/validations';
+import fieldDescriptors from 'common/fieldDescriptors';
+import { logger } from 'common/logger';
+import chainHandler from 'common/utils/chainHandler';
+import getInPath from 'common/utils/getInPath';
+import { getFieldDescriptor, getFieldVal, getFormData, getRegisteredField } from 'common/utils/getters';
+import { onEnterRun } from 'common/utils/onEnter';
+import { isRequired } from 'common/validations';
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { formsDataActions as formsActions } from '../store/slices/formDataActions';
-import Autocomplete, { AutocompleteOption } from './fieldConnector/Autocomplete';
-import ChipArray from './fieldConnector/ChipArray';
-import Select from './fieldConnector/Select';
-import PasswordField from './fieldConnector/PasswordField';
+import { useAppDispatch, useAppSelector } from '../hooks/index.js';
+import { formsDataActions as formsActions } from '../store/slices/formDataActions.js';
+import Autocomplete, { AutocompleteOption } from './fieldConnector/Autocomplete.js';
+import ChipArray from './fieldConnector/ChipArray.js';
+import Select from './fieldConnector/Select.js';
+import PasswordField from './fieldConnector/PasswordField.js';
 
 const { registerField, unregisterField, setFormField, validateField, validateForm, updateRegisteredField } =
     formsActions;

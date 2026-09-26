@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import getLastUpdateText from '../utils/getLastUpdateText';
+import getLastUpdateText from '../utils/getLastUpdateText.js';
 
 /**
  * Force update here, because need update circle text/color and disable button when afk

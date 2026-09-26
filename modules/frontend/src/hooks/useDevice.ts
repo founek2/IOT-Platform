@@ -1,4 +1,4 @@
-import { IDevice, IDeviceStatus } from 'common/src/models/interface/device';
+import { IDevice, IDeviceStatus } from 'common/models/interface/device';
 import { createContext, useContext } from 'react';
 
 interface SimpleDevice {

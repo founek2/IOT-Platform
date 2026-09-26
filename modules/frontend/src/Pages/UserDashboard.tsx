@@ -3,22 +3,22 @@ import TrashIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import { CircularProgress, Grid, GridProps, IconButton, Paper, styled } from '@mui/material';
 import clsx from 'clsx';
-import { notEmpty } from 'common/src/utils/notEmpty';
+import { notEmpty } from 'common/utils/notEmpty';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Dialog } from '../components/Dialog';
-import { Draggable, DraggableProvider, DragItem, Droppable } from '../components/Draggable';
-import PropertySelect, { PropertySelectEvent } from '../components/PropertySelect';
-import { useDevicesAllQuery } from '../endpoints/devices';
-import { useUpdateThingStateMutation } from '../endpoints/thing';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { useAppBarContext } from '../hooks/useAppBarContext';
-import { ThingContext } from '../hooks/useThing';
-import { PropertyPreferences, propertyPreferencesReducerActions } from '../store/slices/preferences/dashboardSlice';
-import { byPreferences } from '../utils/sort';
-import PropertyRow from './room/PropertyRow';
-import { ThingDialog } from './room/ThingDialog';
+import { Dialog } from '../components/Dialog.js';
+import { Draggable, DraggableProvider, DragItem, Droppable } from '../components/Draggable.js';
+import PropertySelect, { PropertySelectEvent } from '../components/PropertySelect.js';
+import { useDevicesAllQuery } from '../endpoints/devices.js';
+import { useUpdateThingStateMutation } from '../endpoints/thing.js';
+import { useAppDispatch, useAppSelector } from '../hooks/index.js';
+import { useAppBarContext } from '../hooks/useAppBarContext.js';
+import { ThingContext } from '../hooks/useThing.js';
+import { PropertyPreferences, propertyPreferencesReducerActions } from '../store/slices/preferences/dashboardSlice.js';
+import { byPreferences } from '../utils/sort.js';
+import PropertyRow from './room/PropertyRow.js';
+import { ThingDialog } from './room/ThingDialog.js';
 
 const Widget = React.forwardRef<HTMLDivElement, { children: JSX.Element[] | JSX.Element }>(function ({ children }) {
     return (

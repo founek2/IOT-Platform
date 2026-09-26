@@ -1,5 +1,5 @@
-import { IDiscovery, IDiscoveryThing } from 'common/src/models/interface/discovery';
-import { api } from './api';
+import { IDiscovery, IDiscoveryThing } from 'common/models/interface/discovery';
+import { api } from './api.js';
 
 export type Discovery = Omit<IDiscovery, "_id" | "name" | "things"> & { _id: string, name?: string, things: { [nodeId: string]: IDiscoveryThing } };
 

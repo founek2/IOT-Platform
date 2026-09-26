@@ -6,14 +6,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { authorizationActions } from '../../store/slices/application/authorizationActions';
-import { preferencesActions } from '../../store/slices/preferences/setting';
-import { getColorMode, getCurrentUserId, getCurrentUserName } from '../../selectors/getters';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.js';
+import { authorizationActions } from '../../store/slices/application/authorizationActions.js';
+import { preferencesActions } from '../../store/slices/preferences/setting.js';
+import { getColorMode, getCurrentUserId, getCurrentUserName } from '../../selectors/getters.js';
 import { useNavigate } from 'react-router-dom';
-import { useSignOutMutation } from '../../endpoints/signOut';
-import { notificationActions } from '../../store/slices/notificationSlice';
-import SuccessMessages from 'common/src/localization/succcess';
+import { useSignOutMutation } from '../../endpoints/signOut.js';
+import { notificationActions } from '../../store/slices/notificationSlice.js';
+import SuccessMessages from 'common/localization/succcess';
 
 export function UserMenu() {
     const userName = useAppSelector(getCurrentUserName);

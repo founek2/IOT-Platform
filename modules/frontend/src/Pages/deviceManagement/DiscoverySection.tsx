@@ -6,17 +6,17 @@ import {
     useCreateDeviceMutation,
     useDeleteDiscoveryDeviceMutation,
     useDiscoveredDevicesQuery,
-} from '../../endpoints/discovery';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { DiscoveredWidget } from '../room/widgets/DiscoveredWidget';
-import { Dialog } from '../../components/Dialog';
-import { EditDeviceFields } from './EditDeviceFields';
-import { locationsSelector } from '../../selectors/locationsSelector';
-import { getFieldVal } from 'common/src/utils/getters';
-import { formsDataActions } from '../../store/slices/formDataActions';
-import { useForm } from '../../hooks/useForm';
-import { discoverySelectors } from '../../store/slices/application/discoverySlice';
-import { logger } from 'common/src/logger';
+} from '../../endpoints/discovery.js';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.js';
+import { DiscoveredWidget } from '../room/widgets/DiscoveredWidget.js';
+import { Dialog } from '../../components/Dialog.js';
+import { EditDeviceFields } from './EditDeviceFields.js';
+import { locationsSelector } from '../../selectors/locationsSelector.js';
+import { getFieldVal } from 'common/utils/getters';
+import { formsDataActions } from '../../store/slices/formDataActions.js';
+import { useForm } from '../../hooks/useForm.js';
+import { discoverySelectors } from '../../store/slices/application/discoverySlice.js';
+import { logger } from 'common/logger';
 
 const formName = 'CREATE_DEVICE';
 export default function DiscoverySection() {

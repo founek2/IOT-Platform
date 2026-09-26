@@ -8,12 +8,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../hooks';
-import { isLoggedIn } from '../selectors/getters';
-import LoginDialog from './LoginDialog';
-import { SideMenu } from './menuAppBar/SideMenu';
-import { UserMenu } from './menuAppBar/UserMenu';
-import { useAppBarContext } from '../hooks/useAppBarContext';
+import { useAppSelector } from '../hooks/index.js';
+import { isLoggedIn } from '../selectors/getters.js';
+import LoginDialog from './LoginDialog.js';
+import { SideMenu } from './menuAppBar/SideMenu.js';
+import { UserMenu } from './menuAppBar/UserMenu.js';
+import { useAppBarContext } from '../hooks/useAppBarContext.js';
 import { useTheme } from '@mui/material';
 
 export function MenuAppBar() {

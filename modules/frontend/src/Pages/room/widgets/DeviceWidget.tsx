@@ -2,18 +2,18 @@ import type { SxProps, Theme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/index';
-import { getDevice, getThing } from '../../../selectors/getters';
+import { useAppDispatch, useAppSelector } from '../../../hooks/index.js';
+import { getDevice, getThing } from '../../../selectors/getters.js';
 import { Link } from 'react-router-dom';
-import Circle from '../../../components/OnlineCircle';
-import { Device } from '../../../store/slices/application/devicesSlice';
+import Circle from '../../../components/OnlineCircle.js';
+import { Device } from '../../../store/slices/application/devicesSlice.js';
 import { DialogContentText, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from "react-router-dom"
-import { useSendDeviceCommandMutation } from '../../../endpoints/devices';
-import { DeviceCommand } from 'common/src/models/interface/device';
-import { logger } from 'common/src/logger';
-import { notificationActions } from '../../../store/slices/notificationSlice';
-import { Dialog as MyDialog } from '../../../components/Dialog';
+import { useSendDeviceCommandMutation } from '../../../endpoints/devices.js';
+import { DeviceCommand } from 'common/models/interface/device';
+import { logger } from 'common/logger';
+import { notificationActions } from '../../../store/slices/notificationSlice.js';
+import { Dialog as MyDialog } from '../../../components/Dialog.js';
 
 interface ThingWidgetProps {
     id: string;

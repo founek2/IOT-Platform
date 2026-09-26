@@ -3,14 +3,14 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ClearIcon from '@mui/icons-material/Clear';
-import { defaultNotifyAdvancedValues, NotifyIntervals } from 'common/src/constants';
-import { IThing } from 'common/src/models/interface/thing';
+import { defaultNotifyAdvancedValues, NotifyIntervals } from 'common/constants';
+import { IThing } from 'common/models/interface/thing';
 import React, { Fragment, useState } from 'react';
-import { useAppSelector } from '../../hooks';
-import DaysOfWeekPicker from './DaysOfWeekPicker';
-import PropertyPart from './editNotify/PropertyPart';
-import { getFieldVal } from 'common/src/utils/getters';
-import FieldConnector from '../../components/FieldConnector';
+import { useAppSelector } from '../../hooks/index.js';
+import DaysOfWeekPicker from './DaysOfWeekPicker.js';
+import PropertyPart from './editNotify/PropertyPart.js';
+import { getFieldVal } from 'common/utils/getters';
+import FieldConnector from '../../components/FieldConnector.js';
 
 interface EditNotifyProps {
     id: number;

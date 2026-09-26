@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Breadcrumbs, Grid, Typography } from '@mui/material';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
-import Account from './profile/Account';
-import AccessTokens from './profile/AcessTokens';
-import Security from './profile/Security';
+import Account from './profile/Account.js';
+import AccessTokens from './profile/AcessTokens.js';
+import Security from './profile/Security.js';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import SecurityIcon from '@mui/icons-material/Security';

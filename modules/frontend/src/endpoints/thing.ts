@@ -1,10 +1,10 @@
-import { INotifyThing, NotifyType } from 'common/src/models/interface/notifyInterface';
-import { IThingProperty } from 'common/src/models/interface/thing';
-import { Measurement } from 'common/src/types';
+import { INotifyThing, NotifyType } from 'common/models/interface/notifyInterface';
+import { IThingProperty } from 'common/models/interface/thing';
+import { Measurement } from 'common/types';
 import { subDays } from 'date-fns';
-import { Device } from '../store/slices/application/devicesSlice';
-import { Thing } from '../store/slices/application/thingsSlice';
-import { api } from './api';
+import { Device } from '../store/slices/application/devicesSlice.js';
+import { Thing } from '../store/slices/application/thingsSlice.js';
+import { api } from './api.js';
 
 interface HistoryResponse {
     docs: Measurement[];

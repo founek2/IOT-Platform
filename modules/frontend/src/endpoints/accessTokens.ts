@@ -1,5 +1,5 @@
-import { IAccessToken, Permission } from 'common/src/models/interface/userInterface';
-import { api } from './api';
+import { IAccessToken, Permission } from 'common/models/interface/userInterface';
+import { api } from './api.js';
 
 export type AccessToken = IAccessToken & { _id: string };
 export interface NewAccessTokenData {

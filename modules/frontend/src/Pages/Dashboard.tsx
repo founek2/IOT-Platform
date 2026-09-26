@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CircularProgress, Grid } from "@mui/material"
 import React from "react"
-import DataList from "../components/DataList";
-import PlotifyGauge from "../components/PlotifyGauge";
-import { BrokerConnectionItem, BrokerData, ConnectionType, ItemExtended, useBrokerQuery } from "../endpoints/broker"
-import { useDevicesAllQuery, useDevicesQuery } from "../endpoints/devices";
+import DataList from "../components/DataList.js";
+import PlotifyGauge from "../components/PlotifyGauge.js";
+import { BrokerConnectionItem, BrokerData, ConnectionType, ItemExtended, useBrokerQuery } from "../endpoints/broker.js"
+import { useDevicesAllQuery, useDevicesQuery } from "../endpoints/devices.js";
 
 
 function extractHumanText(item: ItemExtended) {

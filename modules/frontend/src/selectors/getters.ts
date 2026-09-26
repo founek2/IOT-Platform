@@ -1,11 +1,11 @@
 import { createSelector, EntityId } from '@reduxjs/toolkit';
-import { IThing } from 'common/src/models/interface/thing';
-import { RootState } from '../store';
-import { Device } from '../store/slices/application/devicesSlice';
-import { Thing, thingSelectors } from '../store/slices/application/thingsSlice';
-import { usersSelectors } from '../store/slices/application/usersSlice';
-import { devicePreferencesSelectors } from '../store/slices/preferences/deviceSlice';
-import { buildingsCachedSelector } from './devicesSelector';
+import { IThing } from 'common/models/interface/thing';
+import { RootState } from '../store/index.js';
+import { Device } from '../store/slices/application/devicesSlice.js';
+import { Thing, thingSelectors } from '../store/slices/application/thingsSlice.js';
+import { usersSelectors } from '../store/slices/application/usersSlice.js';
+import { devicePreferencesSelectors } from '../store/slices/preferences/deviceSlice.js';
+import { buildingsCachedSelector } from './devicesSelector.js';
 
 export const getColorMode = (state: RootState) => state.preferences.setting.colorMode;
 

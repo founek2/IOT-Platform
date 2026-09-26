@@ -3,19 +3,19 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { IUser } from 'common/src/models/interface/userInterface';
+import { IUser } from 'common/models/interface/userInterface';
 import React, { useState } from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsRemoteIcon from '@mui/icons-material/SettingsRemote';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { Device } from '../store/slices/application/devicesSlice';
+import { Device } from '../store/slices/application/devicesSlice.js';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Grid, SxProps, Theme } from '@mui/material';
-import { useAppSelector } from '../hooks';
-import { buildingsCachedSelector } from '../selectors/devicesSelector';
-import { getDevices, getThings } from '../selectors/getters';
-import { notEmpty } from 'common/src/utils/notEmpty';
+import { useAppSelector } from '../hooks/index.js';
+import { buildingsCachedSelector } from '../selectors/devicesSelector.js';
+import { getDevices, getThings } from '../selectors/getters.js';
+import { notEmpty } from 'common/utils/notEmpty';
 
 export interface PropertySelectEvent {
     target: { value: { deviceId: string; thingId: string; propertyId: string } };

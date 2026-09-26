@@ -5,7 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import React, { useState } from 'react';
-import SearchField from './fieldConnector/SearchField';
+import SearchField from './fieldConnector/SearchField.js';
 
 function containsText<T>(value: string | undefined, toText: (v: T) => string) {
     return (item: T): boolean => {

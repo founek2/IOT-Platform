@@ -9,20 +9,20 @@ import AddCircle from '@mui/icons-material/AddCircle';
 import { clone } from 'ramda';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import EditNotify from './editNotifyForm/EditNotify';
-import { getFieldVal } from 'common/src/utils/getters';
-import { getThing } from '../selectors/getters';
+import { useAppDispatch, useAppSelector } from '../hooks/index.js';
+import EditNotify from './editNotifyForm/EditNotify.js';
+import { getFieldVal } from 'common/utils/getters';
+import { getThing } from '../selectors/getters.js';
 import { Box, CircularProgress, Grid } from '@mui/material';
-import { useWebPush } from '../hooks/useWebPush';
-import { useForm } from '../hooks/useForm';
-import { EditNotificationsFormData } from '../endpoints/thing';
-import { useThingNotificationsQuery, useUpdateThingNotificationsMutation } from '../endpoints/thing';
-import { transformNotifyForFE } from "common/src/utils/transform"
-import { notificationActions } from '../store/slices/notificationSlice';
-import SuccessMessages from 'common/src/localization/succcess';
-import { logger } from 'common/src/logger';
-import { defaultNotifyAdvancedValues } from 'common/src/constants';
+import { useWebPush } from '../hooks/useWebPush.js';
+import { useForm } from '../hooks/useForm.js';
+import { EditNotificationsFormData } from '../endpoints/thing.js';
+import { useThingNotificationsQuery, useUpdateThingNotificationsMutation } from '../endpoints/thing.js';
+import { transformNotifyForFE } from "common/utils/transform"
+import { notificationActions } from '../store/slices/notificationSlice.js';
+import SuccessMessages from 'common/localization/succcess';
+import { logger } from 'common/logger';
+import { defaultNotifyAdvancedValues } from 'common/constants';
 
 const FIELDS: (keyof Omit<EditNotificationsFormData, "count" | "advanced">)[] = ['propertyId', 'type', 'value', 'textTemplate'];
 const FIELDS_ADVANCED: (keyof EditNotificationsFormData["advanced"])[] = ['interval', 'from', 'to', 'daysOfWeek'];

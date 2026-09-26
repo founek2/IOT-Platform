@@ -5,16 +5,16 @@ import { EntityId } from '@reduxjs/toolkit';
 import clsx from 'clsx';
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { Draggable, DraggableProvider } from '../../components/Draggable';
-import { GridRoom } from '../../components/GridRoom';
-import { LocationTypography } from '../../components/LocationTypography';
-import { useAppDispatch, useAppSelector } from '../../hooks/index';
-import { useAppBarContext } from '../../hooks/useAppBarContext';
-import { getRoomLocation } from '../../selectors/getters';
-import { devicePreferencesReducerActions } from '../../store/slices/preferences/deviceSlice';
-import { ThingPreferences, thingPreferencesReducerActions } from '../../store/slices/preferences/thingSlice';
-import { byPreferences } from '../../utils/sort';
-import { ThingWidget } from './widgets/ThingWidget';
+import { Draggable, DraggableProvider } from '../../components/Draggable.js';
+import { GridRoom } from '../../components/GridRoom.js';
+import { LocationTypography } from '../../components/LocationTypography.js';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.js';
+import { useAppBarContext } from '../../hooks/useAppBarContext.js';
+import { getRoomLocation } from '../../selectors/getters.js';
+import { devicePreferencesReducerActions } from '../../store/slices/preferences/deviceSlice.js';
+import { ThingPreferences, thingPreferencesReducerActions } from '../../store/slices/preferences/thingSlice.js';
+import { byPreferences } from '../../utils/sort.js';
+import { ThingWidget } from './widgets/ThingWidget.js';
 
 interface RoomContentProps {
     thingIDs: string[];

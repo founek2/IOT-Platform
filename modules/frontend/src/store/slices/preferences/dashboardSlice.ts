@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notEmpty } from 'common/src/utils/notEmpty';
-import { byPreferences } from '../../../utils/sort';
+import { notEmpty } from 'common/utils/notEmpty';
+import { byPreferences } from '../../../utils/sort.js';
 
 export type PropertyPreferences = { _id: string; thingId: string, order: number };
 // Define a type for the slice state

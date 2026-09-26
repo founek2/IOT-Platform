@@ -1,4 +1,4 @@
-import { logger } from 'common/src/logger/index';
+import { logger } from 'common/logger/index';
 import type { Identifier, XYCoord } from 'dnd-core';
 import React, { useRef } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';

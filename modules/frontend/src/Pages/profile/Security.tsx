@@ -1,9 +1,9 @@
 import { Button, CircularProgress, Grid, Paper, Skeleton, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import React from 'react';
-import { useGetActiveSignInQuery, useRemoveActiveSignInMutation } from '../../endpoints/signIn';
+import { useGetActiveSignInQuery, useRemoveActiveSignInMutation } from '../../endpoints/signIn.js';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useAccessToken } from '../../hooks/useAccessToken';
+import { useAccessToken } from '../../hooks/useAccessToken.js';
 import { SecurityLoader } from './Security.loader';
 
 function Security() {

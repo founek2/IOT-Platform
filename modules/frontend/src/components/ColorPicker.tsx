@@ -23,7 +23,7 @@ import {
 // import { HuePicker, TwitterPicker } from 'react-color';
 import { RgbColorPicker } from 'react-colorful';
 import Paper from '@mui/material/Paper';
-import { Dialog } from './Dialog';
+import { Dialog } from './Dialog.js';
 
 const COLORS = [
     '#FFFFFF',

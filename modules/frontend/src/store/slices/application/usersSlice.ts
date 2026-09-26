@@ -1,9 +1,9 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { IDevice } from 'common/src/models/interface/device';
-import { devicesApi } from '../../../endpoints/devices';
-import { User } from '../../../endpoints/signIn';
-import { usersApi } from '../../../endpoints/users';
-import { normalizeDevices } from '../../../utils/normalizr';
+import { IDevice } from 'common/models/interface/device';
+import { devicesApi } from '../../../endpoints/devices.js';
+import { User } from '../../../endpoints/signIn.js';
+import { usersApi } from '../../../endpoints/users.js';
+import { normalizeDevices } from '../../../utils/normalizr.js';
 
 
 const usersAdapter = createEntityAdapter<User, string>({

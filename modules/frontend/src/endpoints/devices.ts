@@ -1,7 +1,7 @@
-import { DeviceCommand, IDevice } from 'common/src/models/interface/device';
-import { Measurement } from 'common/src/types';
-import { Device } from '../store/slices/application/devicesSlice';
-import { api } from './api';
+import { DeviceCommand, IDevice } from 'common/models/interface/device';
+import { Measurement } from 'common/types';
+import { Device } from '../store/slices/application/devicesSlice.js';
+import { api } from './api.js';
 
 export interface EditDeviceFormData {
     info: Device['info'];

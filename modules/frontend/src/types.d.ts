@@ -1,7 +1,7 @@
-import { validationMessageKey } from 'common/src/localization/validationMessages';
+import { validationMessageKey } from 'common/localization/validationMessages';
 import { Action } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
-import { RootState } from './store';
+import { RootState } from './store/index.js';
 
 type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> & Partial<Pick<Type, Key>>;
 

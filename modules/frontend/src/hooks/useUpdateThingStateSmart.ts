@@ -1,10 +1,10 @@
-import { logger } from 'common/src/logger';
+import { logger } from 'common/logger';
 import { useCallback, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '.';
-import { UpdateThingStateArgs, useUpdateThingStateMutation } from '../endpoints/thing';
-import { getThing } from '../selectors/getters';
-import { Thing, thingsReducerActions } from '../store/slices/application/thingsSlice';
-import { notificationActions } from '../store/slices/notificationSlice';
+import { UpdateThingStateArgs, useUpdateThingStateMutation } from '../endpoints/thing.js';
+import { getThing } from '../selectors/getters.js';
+import { Thing, thingsReducerActions } from '../store/slices/application/thingsSlice.js';
+import { notificationActions } from '../store/slices/notificationSlice.js';
 
 const SECOND_1 = 1_000;
 

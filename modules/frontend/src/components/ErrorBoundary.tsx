@@ -1,4 +1,4 @@
-import { logger } from 'common/src/logger';
+import { logger } from 'common/logger';
 import React from 'react';
 /* global umami */
 

@@ -1,5 +1,5 @@
-import type { IThingProperty } from 'common/src/models/interface/thing';
-import { Measurement } from 'common/src/types';
+import type { IThingProperty } from 'common/models/interface/thing';
+import { Measurement } from 'common/types';
 
 export function convertNumericHistoryToGraphData(data: Measurement[], propertyId: IThingProperty['propertyId']) {
     let result: { x: Array<Date>; y: Array<number> } = { x: [], y: [] };

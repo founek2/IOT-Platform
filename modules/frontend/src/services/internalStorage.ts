@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { generateDeviceId } from '../utils/generateDeviceId';
+import { generateDeviceId } from '../utils/generateDeviceId.js';
 
 type EventMap = Record<string, any>;
 
@@ -29,7 +29,7 @@ class MyEmitter<T extends EventMap> implements Emitter<T> {
 
 export type AccessTokenData = {
     token: string
-    expiresAt: Number
+    expiresAt: number
 };
 export interface EmitterEvents {
     new_access_token: AccessTokenData;
@@ -49,7 +49,7 @@ class InternalStorage extends MyEmitter<EmitterEvents> {
 
     getAccessToken(): AccessTokenData | undefined {
         const data = localStorage.getItem(STORAGE_KEY)
-        return data ? JSON.parse(data) : data
+        return data ? JSON.parse(data) : undefined
     }
 
     deleteAccessToken() {

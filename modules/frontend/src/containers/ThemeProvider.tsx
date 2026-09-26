@@ -2,8 +2,8 @@ import React, { useEffect, useMemo } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
-import { useAppSelector } from '../hooks';
-import { getColorMode } from '../selectors/getters';
+import { useAppSelector } from '../hooks/index.js';
+import { getColorMode } from '../selectors/getters.js';
 
 export const LIGHT_BACKGROUND = "#fafafa"
 export const DARK_BACKGROUND = "#4c4c4c"

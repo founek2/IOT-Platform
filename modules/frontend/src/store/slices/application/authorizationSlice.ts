@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { signInApi, User } from '../../../endpoints/signIn';
-import { usersApi } from '../../../endpoints/users';
-import parseJwt from "common/src/utils/parseJwtToken"
-import internalStorage from '../../../services/internalStorage';
+import { signInApi, User } from '../../../endpoints/signIn.js';
+import { usersApi } from '../../../endpoints/users.js';
+import parseJwt from "common/utils/parseJwtToken"
+import internalStorage from '../../../services/internalStorage.js';
 
 export interface AuthorizationState {
     loggedIn: boolean;

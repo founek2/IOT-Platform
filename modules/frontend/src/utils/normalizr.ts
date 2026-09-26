@@ -1,7 +1,7 @@
-import { IDevice } from 'common/src/models/interface/device';
+import { IDevice } from 'common/models/interface/device';
 import { normalize, schema } from 'normalizr';
-import { Device } from '../store/slices/application/devicesSlice';
-import { Thing } from '../store/slices/application/thingsSlice';
+import { Device } from '../store/slices/application/devicesSlice.js';
+import { Thing } from '../store/slices/application/thingsSlice.js';
 
 const thingEntity = new schema.Entity(
     'things',

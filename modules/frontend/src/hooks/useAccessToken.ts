@@ -1,6 +1,6 @@
-import parseJwt from "common/lib/utils/parseJwtToken";
+import parseJwt from "common/utils/parseJwtToken";
 import { useEffect, useState } from 'react';
-import internalStorage, { AccessTokenData } from '../services/internalStorage';
+import internalStorage, { AccessTokenData } from '../services/internalStorage.js';
 
 export function useAccessToken() {
     const [accessToken, setAccessToken] = useState<AccessTokenData>()

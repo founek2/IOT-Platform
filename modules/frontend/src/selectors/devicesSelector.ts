@@ -1,9 +1,9 @@
 import { EntityId } from '@reduxjs/toolkit';
-import { logger } from 'common/src/logger';
+import { logger } from 'common/logger';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
-import { RootState } from '../store/index';
-import { Device } from '../store/slices/application/devicesSlice';
-import { findOrPush } from '../utils/findOrPush';
+import { RootState } from '../store/index.js';
+import { Device } from '../store/slices/application/devicesSlice.js';
+import { findOrPush } from '../utils/findOrPush.js';
 
 export type Buildings = {
     id: string;

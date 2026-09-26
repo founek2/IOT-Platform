@@ -1,8 +1,7 @@
 {
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
-        "baseUrl": ".",
-        "rootDir": "./",
+        "rootDir": "../",
         "outDir": "dist",
         "lib": [
             "dom",
@@ -10,22 +9,20 @@
             "esnext"
         ],
         "sourceMap": true,
-        "moduleResolution": "node",
-        "allowJs": true,
+        "moduleResolution": "bundler",
+        "allowJs": false,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
-        "module": "ESNext",
-        "jsx": "react"
+        "module": "esnext",
+        "jsx": "react",
+        "types": [
+            "@types/webpack-env"
+        ]
         // "allowSyntheticDefaultImports": true,
         // "noFallthroughCasesInSwitch": true,
         // "strict": true
     },
-    "references": [
-        {
-            "path": "../common"
-        }
-    ],
     "include": [
         "src",
         "custom.d.ts"

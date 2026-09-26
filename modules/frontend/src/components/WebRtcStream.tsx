@@ -1,6 +1,6 @@
 import { Paper } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
-import { VideoStream } from './videoStream/video-stream';
+import { VideoStream } from './videoStream/video-stream.js';
 
 if (!customElements.get('video-stream')) customElements.define('video-stream', VideoStream);
 

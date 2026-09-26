@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import FieldConnector from '../../components/FieldConnector';
+import FieldConnector from '../../components/FieldConnector.js';
 
 export function EditDeviceFields({
     formName,

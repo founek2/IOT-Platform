@@ -1,4 +1,4 @@
-import { DeviceStatus } from 'common/src/models/interface/device';
+import { DeviceStatus } from 'common/models/interface/device';
 
 export enum CircleColors {
     Grey = 'grey',

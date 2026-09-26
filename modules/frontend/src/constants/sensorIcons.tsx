@@ -1,4 +1,4 @@
-import { PropertyClass } from 'common/src/models/interface/thing';
+import { PropertyClass } from 'common/models/interface/thing';
 import ThermometrIcon from './sensorIcons/thermometr.svg';
 import HumidityIcon from './sensorIcons/humidity.svg';
 import VoltageIcon from './sensorIcons/voltage.svg';

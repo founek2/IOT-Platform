@@ -1,16 +1,22 @@
 const isEnvProduction = process.env.NODE_ENV === 'production';
 const sourceMapEnv = process.env.SOURCE_MAP;
 
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const ReactRefreshTypeScript = require('react-refresh-typescript');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import WorkboxPlugin from 'workbox-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import ReactRefreshTypeScript from 'react-refresh-typescript';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import PnpWebpackPlugin from 'pnp-webpack-plugin';
+
+const require = createRequire(import.meta.url);
+const configFile = fileURLToPath(import.meta.url);
+const configDirectory = path.dirname(configFile);
 
 const proxyTarget =
     process.env.PROXY === 'dev'
@@ -24,7 +30,7 @@ const config = {
     mode: isEnvProduction ? 'production' : 'development',
     entry: ['./src/index.tsx'],
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(configDirectory, 'build'),
         filename: isEnvProduction ? 'assets/js/[name].[contenthash:8].js' : 'static/js/[name].js',
         chunkFilename: isEnvProduction ? 'assets/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
         assetModuleFilename: 'assets/media/[name].[hash][ext]',
@@ -33,6 +39,9 @@ const config = {
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        extensionAlias: {
+            '.js': ['.ts', '.tsx', '.js'],
+        },
         plugins: [
             PnpWebpackPlugin,
         ],
@@ -49,14 +58,16 @@ const config = {
     },
     resolveLoader: {
         plugins: [
-            PnpWebpackPlugin.moduleLoader(module),
+            PnpWebpackPlugin.moduleLoader(configFile),
         ],
     },
     module: {
         rules: [
             {
-                test: /\.(ts|tsx|jsx|js)$/,
-                exclude: /node_modules/,
+                test: /\.(ts|tsx)$/,
+                exclude: [
+                    /node_modules/,
+                ],
                 resolve: {
                     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
                 },
@@ -94,7 +105,7 @@ const config = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: path.join(__dirname, 'public/assets'), to: 'assets' },
+                { from: path.join(configDirectory, 'public/assets'), to: 'assets' },
                 {
                     from: 'public/*.js',
                     to() {
@@ -112,7 +123,7 @@ const config = {
             ],
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'public/index.html'),
+            template: path.join(configDirectory, 'public/index.html'),
         }),
         new MiniCssExtractPlugin({
             filename: 'assets/css/[name].[contenthash:8].css',
@@ -209,4 +220,4 @@ const config = {
     },
 };
 
-module.exports = config;
+export default config;

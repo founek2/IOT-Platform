@@ -2,10 +2,10 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import CloudIcon from '@mui/icons-material/Cloud';
 import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
 import PeopleIcon from '@mui/icons-material/People';
-import { AllowedRoutes, PrivilegesContainer, Route, RouteMenu } from 'common/src/privileges';
+import { AllowedRoutes, PrivilegesContainer, Route, RouteMenu } from 'common/privileges';
 import { lazy } from 'react';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import { allowedGroups } from 'common/src/constants/privileges';
+import { allowedGroups } from 'common/constants/privileges';
 import { LocationsLoader } from '../Pages/Locations.loader';
 import { RoomLoader } from '../Pages/Room.loader';
 

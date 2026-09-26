@@ -1,4 +1,4 @@
-import { api } from './api';
+import { api } from './api.js';
 
 export type BrokerConnectionItem = {
     name: string //"10.10.5.7:47002 -> 10.10.5.5:15675"

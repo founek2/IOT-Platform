@@ -1,9 +1,9 @@
 import { DialogContentText, Typography } from '@mui/material';
 import React from 'react';
-import { Dialog as MyDialog } from '../../components/Dialog';
-import { useAppSelector } from '../../hooks';
-import { getThingsById } from '../../selectors/getters';
-import { Device } from '../../store/slices/application/devicesSlice';
+import { Dialog as MyDialog } from '../../components/Dialog.js';
+import { useAppSelector } from '../../hooks/index.js';
+import { getThingsById } from '../../selectors/getters.js';
+import { Device } from '../../store/slices/application/devicesSlice.js';
 
 type JSONValue = string | number | boolean | JSONObject | JSONArray;
 

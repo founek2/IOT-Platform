@@ -1,13 +1,13 @@
-import ErrorMessages from "common/src/localization/error";
-import { logger } from "common/src/logger";
+import ErrorMessages from "common/localization/error";
+import { logger } from "common/logger";
 import { useCallback, useState } from "react";
 import { useAppDispatch, useAppSelector } from ".";
-import { useVapidKeyQuery } from "../endpoints/config";
-import { useSubscribeToNotificationMutation } from "../endpoints/subscription";
-import { getCurrentUserId } from "../selectors/getters";
-import { notificationActions } from "../store/slices/notificationSlice";
-import { urlBase64ToUint8Array } from "../utils/urlBase64ToUint8Array";
-import { useAsyncEffect } from "./useAsyncEffect";
+import { useVapidKeyQuery } from "../endpoints/config.js";
+import { useSubscribeToNotificationMutation } from "../endpoints/subscription.js";
+import { getCurrentUserId } from "../selectors/getters.js";
+import { notificationActions } from "../store/slices/notificationSlice.js";
+import { urlBase64ToUint8Array } from "../utils/urlBase64ToUint8Array.js";
+import { useAsyncEffect } from "./useAsyncEffect.js";
 
 async function subscribeNotificationWorker(vapidKey: string, register: ServiceWorkerRegistration) {
     return register.pushManager.subscribe({

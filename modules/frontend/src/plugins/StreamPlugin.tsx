@@ -1,11 +1,11 @@
 import { Box, Button, Checkbox, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Dialog } from '../components/Dialog';
+import { Dialog } from '../components/Dialog.js';
 //import { Platform } from 'integration';
-import { generateDeviceId } from '../utils/generateDeviceId';
-import { getCurrentUser } from '../selectors/getters';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { pluginsReducerActions } from '../store/slices/pluginsSlice';
+import { generateDeviceId } from '../utils/generateDeviceId.js';
+import { getCurrentUser } from '../selectors/getters.js';
+import { useAppDispatch, useAppSelector } from '../hooks/index.js';
+import { pluginsReducerActions } from '../store/slices/pluginsSlice.js';
 
 export function Setting() {
     const enabled = useAppSelector((state) => state.plugins.stream.enabled);

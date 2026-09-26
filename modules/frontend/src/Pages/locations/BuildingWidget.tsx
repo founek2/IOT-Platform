@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import clsx from 'clsx';
 import React from 'react';
-import { Draggable } from '../../components/Draggable';
-import { useAppSelector } from '../../hooks';
-import { byPreferences } from '../../utils/sort';
-import { LocationTypography } from '../../components/LocationTypography';
-import RoomWidget from './buildingWidget/RoomWidget';
-import { GridLocations } from '../../components/GridLocations';
+import { Draggable } from '../../components/Draggable.js';
+import { useAppSelector } from '../../hooks/index.js';
+import { byPreferences } from '../../utils/sort.js';
+import { LocationTypography } from '../../components/LocationTypography.js';
+import RoomWidget from './buildingWidget/RoomWidget.js';
+import { GridLocations } from '../../components/GridLocations.js';
 
 interface BuildingWidgetProps {
     isDragable?: boolean;

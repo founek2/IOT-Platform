@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
-import { logger } from 'common/src/logger';
+import { logger } from 'common/logger';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSignInOauthMutation } from '../endpoints/signIn';
-import { buildRedirectUri } from '../utils/redirectUri';
+import { useSignInOauthMutation } from '../endpoints/signIn.js';
+import { buildRedirectUri } from '../utils/redirectUri.js';
 
 export function Authorization() {
     const [searchParams] = useSearchParams();

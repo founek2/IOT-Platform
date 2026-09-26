@@ -1,14 +1,14 @@
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
-import { NotfyTypeForDataType, NotifyType, NotifyTypeText } from 'common/src/models/interface/notifyInterface';
-import { IThing, IThingProperty, IThingPropertyEnum, PropertyDataType } from 'common/src/models/interface/thing';
-import { getFieldVal } from 'common/src/utils/getters';
-import { isNumericDataType } from 'common/src/utils/isNumericDataType';
+import { NotfyTypeForDataType, NotifyType, NotifyTypeText } from 'common/models/interface/notifyInterface';
+import { IThing, IThingProperty, IThingPropertyEnum, PropertyDataType } from 'common/models/interface/thing';
+import { getFieldVal } from 'common/utils/getters';
+import { isNumericDataType } from 'common/utils/isNumericDataType';
 import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../../../hooks';
-import FieldConnector from '../../../components/FieldConnector';
-import { formsDataActions } from '../../../store/slices/formDataActions';
+import { useAppSelector } from '../../../hooks/index.js';
+import FieldConnector from '../../../components/FieldConnector.js';
+import { formsDataActions } from '../../../store/slices/formDataActions.js';
 
 interface PropertyPartProps {
     id: number;

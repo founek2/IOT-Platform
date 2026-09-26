@@ -6,17 +6,17 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
-import { logger } from 'common/lib/logger';
-import { AuthType } from 'common/src/constants';
-import { getFieldVal } from 'common/src/utils/getters';
+import { logger } from 'common/logger';
+import { AuthType } from 'common/constants';
+import { getFieldVal } from 'common/utils/getters';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetAuthProvidersQuery, useLazyGetAuthTypesQuery, useSignInMutation } from '../endpoints/signIn';
-import { useAppSelector } from '../hooks';
-import { useForm } from '../hooks/useForm';
-import { head } from '../utils/ramda';
-import FieldConnector from './FieldConnector';
-import AuthProviderButtons from './loginDialog/AuthProviderButtons';
+import { useGetAuthProvidersQuery, useLazyGetAuthTypesQuery, useSignInMutation } from '../endpoints/signIn.js';
+import { useAppSelector } from '../hooks/index.js';
+import { useForm } from '../hooks/useForm.js';
+import { head } from '../utils/ramda.js';
+import FieldConnector from './FieldConnector.js';
+import AuthProviderButtons from './loginDialog/AuthProviderButtons.js';
 
 interface LoginForm {
     userName: string;

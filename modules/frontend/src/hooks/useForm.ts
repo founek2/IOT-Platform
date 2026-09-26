@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from 'react-redux';
 import { useAppDispatch, useAppStore } from '.';
-import { formsDataActions } from '../store/slices/formDataActions';
+import { formsDataActions } from '../store/slices/formDataActions.js';
 import { Paths } from '../types';
 
 export function useForm<T = FormData>(formName: string, options?: { resetOnUnmount: boolean }) {

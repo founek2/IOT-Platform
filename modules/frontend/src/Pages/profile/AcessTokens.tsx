@@ -15,20 +15,20 @@ import {
     TableRow,
     Typography,
 } from '@mui/material';
-import { logger } from 'common/src/logger';
+import { logger } from 'common/logger';
 import React, { useState } from 'react';
-import { Dialog } from '../../components/Dialog';
+import { Dialog } from '../../components/Dialog.js';
 import {
     NewAccessTokenData,
     useAccessTokensQuery,
     useCreateAccessTokenMutation,
     useDeleteAccessTokenMutation,
     useUpdateAccessTokenMutation,
-} from '../../endpoints/accessTokens';
-import { useAppSelector } from '../../hooks';
-import { useForm } from '../../hooks/useForm';
-import { getCurrentUser } from '../../selectors/getters';
-import EditAccessToken from './accessTokens/EditAccessToken';
+} from '../../endpoints/accessTokens.js';
+import { useAppSelector } from '../../hooks/index.js';
+import { useForm } from '../../hooks/useForm.js';
+import { getCurrentUser } from '../../selectors/getters.js';
+import EditAccessToken from './accessTokens/EditAccessToken.js';
 import { SecurityLoader } from './Security.loader';
 
 enum OpenDialog {

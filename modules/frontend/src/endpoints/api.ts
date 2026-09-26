@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../store';
-import { logger } from "common/src/logger"
-import internalStorage from '../services/internalStorage';
-import parseJwt from 'common/src/utils/parseJwtToken';
+import { RootState } from '../store/index.js';
+import { logger } from "common/logger"
+import internalStorage from '../services/internalStorage.js';
+import parseJwt from 'common/utils/parseJwtToken';
 
 const SECONDS_60 = 60;
 

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { logger } from 'common/src/logger';
+import { logger } from 'common/logger';
 import { useEffect } from 'react';
-import { Dialog } from '../components/Dialog';
-import EditUserForm from '../components/EditUserForm';
-import { User } from '../endpoints/signIn';
-import { EditUserFormData, useUpdateUserMutation, useUsersQuery } from '../endpoints/users';
-import { useForm } from '../hooks/useForm';
+import { Dialog } from '../components/Dialog.js';
+import EditUserForm from '../components/EditUserForm.js';
+import { User } from '../endpoints/signIn.js';
+import { EditUserFormData, useUpdateUserMutation, useUsersQuery } from '../endpoints/users.js';
+import { useForm } from '../hooks/useForm.js';
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { useAppSelector } from "../hooks";
-import { getCurrentUser, getUsers } from "../selectors/getters";
-import { usersSelectors } from "../store/slices/application/usersSlice";
+import { useAppSelector } from "../hooks/index.js";
+import { getCurrentUser, getUsers } from "../selectors/getters.js";
+import { usersSelectors } from "../store/slices/application/usersSlice.js";
 
 export default function EditUserDialog() {
     const [selectedUser, setSelectedUser] = useState<User>()

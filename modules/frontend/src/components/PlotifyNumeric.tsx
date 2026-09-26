@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import React, { Suspense, lazy } from 'react';
-import { useAppSelector } from '../hooks';
-import { getColorMode } from '../selectors/getters';
+import { useAppSelector } from '../hooks/index.js';
+import { getColorMode } from '../selectors/getters.js';
 
 const PlotlyChart = lazy(() => import(/* webpackChunkName: 'PlotifyChart' */ './PlotifyChart'));
 // rgba(255, 255, 255, 0.7);

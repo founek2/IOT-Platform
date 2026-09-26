@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { PropertyState, Thing, thingsReducerActions } from '../store/slices/application/thingsSlice';
-import { useLazyDevicesQuery } from '../endpoints/devices';
-import { Device, devicesReducerActions } from '../store/slices/application/devicesSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/index.js';
+import { PropertyState, Thing, thingsReducerActions } from '../store/slices/application/thingsSlice.js';
+import { useLazyDevicesQuery } from '../endpoints/devices.js';
+import { Device, devicesReducerActions } from '../store/slices/application/devicesSlice.js';
 import { io, Socket } from 'socket.io-client';
-import { discoveryReducerActions } from '../store/slices/application/discoverySlice';
-import { Discovery } from '../endpoints/discovery';
-import internalStorage from '../services/internalStorage';
-import { isLoggedIn } from "../selectors/getters"
-import NetworkStatus from './NetworkStatus';
+import { discoveryReducerActions } from '../store/slices/application/discoverySlice.js';
+import { Discovery } from '../endpoints/discovery.js';
+import internalStorage from '../services/internalStorage.js';
+import { isLoggedIn } from "../selectors/getters.js"
+import NetworkStatus from './NetworkStatus.js';
 
 export type SocketUpdateThingState = {
     _id: Device['_id'];

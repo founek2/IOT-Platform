@@ -1,9 +1,9 @@
 import Grid from '@mui/material/Grid';
 import React from 'react';
-import { useAppSelector } from '../hooks';
-import { getCurrentGroups } from '../selectors/getters';
-import FieldConnector from './FieldConnector';
-import { privileges } from '../services/privileges';
+import { useAppSelector } from '../hooks/index.js';
+import { getCurrentGroups } from '../selectors/getters.js';
+import FieldConnector from './FieldConnector.js';
+import { privileges } from '../services/privileges.js';
 
 interface UserFormProps {
     formName: 'REGISTRATION' | 'EDIT_USER';

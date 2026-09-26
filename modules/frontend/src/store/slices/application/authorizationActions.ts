@@ -1,7 +1,7 @@
-import { api } from '../../../endpoints/api';
-import internalStorage from '../../../services/internalStorage';
+import { api } from '../../../endpoints/api.js';
+import internalStorage from '../../../services/internalStorage.js';
 import { AppThunk } from '../../../types';
-import { authorizationReducerActions } from './authorizationSlice';
+import { authorizationReducerActions } from './authorizationSlice.js';
 
 const ACTION_RESET_STORE = 'store/reset';
 

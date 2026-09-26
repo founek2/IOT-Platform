@@ -1,8 +1,8 @@
 import React from "react"
 import CircularProgress from '@mui/material/CircularProgress';
-import { useDevicesQuery } from '../endpoints/devices';
-import Room from './room/Room';
-import { ThingDialog } from './room/ThingDialog';
+import { useDevicesQuery } from '../endpoints/devices.js';
+import Room from './room/Room.js';
+import { ThingDialog } from './room/ThingDialog.js';
 import { RoomLoader } from "./Room.loader";
 
 export interface RoomProps {

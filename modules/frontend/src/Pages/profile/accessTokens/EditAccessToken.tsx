@@ -1,13 +1,13 @@
 import { Grid, List, ListItem, ListItemButton, MenuItem } from '@mui/material';
-import { IAccessToken, Permission } from 'common/src/models/interface/userInterface';
+import { IAccessToken, Permission } from 'common/models/interface/userInterface';
 import { pick } from 'ramda';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { compose } from '@reduxjs/toolkit';
-import FieldConnector from '../../../components/FieldConnector';
-import { TokenPermissions } from '../../../constants';
-import { AccessToken } from '../../../endpoints/accessTokens';
-import { formsDataActions } from '../../../store/slices/formDataActions';
+import FieldConnector from '../../../components/FieldConnector.js';
+import { TokenPermissions } from '../../../constants/index.js';
+import { AccessToken } from '../../../endpoints/accessTokens.js';
+import { formsDataActions } from '../../../store/slices/formDataActions.js';
 
 interface DiscoverySectionProps {
     formName: 'EDIT_ACCESS_TOKEN' | 'ADD_ACCESS_TOKEN';

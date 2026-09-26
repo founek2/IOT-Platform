@@ -1,7 +1,7 @@
 import { Box, Grid, Skeleton } from "@mui/material"
 import React from "react"
-import { GridLocations } from "../components/GridLocations"
-import { GridRoom } from "../components/GridRoom"
+import { GridLocations } from "../components/GridLocations.js"
+import { GridRoom } from "../components/GridRoom.js"
 
 export function RoomLoader() {
 

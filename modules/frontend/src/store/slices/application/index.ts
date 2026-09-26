@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import authorization from './authorizationSlice';
-import devices from './devicesSlice';
-import things from './thingsSlice';
-import discovery from './discoverySlice';
-import users from './usersSlice';
+import authorization from './authorizationSlice.js';
+import devices from './devicesSlice.js';
+import things from './thingsSlice.js';
+import discovery from './discoverySlice.js';
+import users from './usersSlice.js';
 
 export default combineReducers({
     authorization,

@@ -3,15 +3,15 @@ import Paper from '@mui/material/Paper';
 import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { ComponentType, IThingProperty, IThingPropertyBase } from 'common/src/models/interface/thing';
+import { ComponentType, IThingProperty, IThingPropertyBase } from 'common/models/interface/thing';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks';
-import { getDevicesById, getThingsById } from '../../../selectors/getters';
-import { Device } from '../../../store/slices/application/devicesSlice';
-import { Thing } from '../../../store/slices/application/thingsSlice';
+import { useAppSelector } from '../../../hooks/index.js';
+import { getDevicesById, getThingsById } from '../../../selectors/getters.js';
+import { Device } from '../../../store/slices/application/devicesSlice.js';
+import { Thing } from '../../../store/slices/application/thingsSlice.js';
 import { WithRequired } from '../../../types';
-import { SimpleSensor } from '../roomWidget/SimpleSensor';
+import { SimpleSensor } from '../roomWidget/SimpleSensor.js';
 
 interface SensorBadgesProps {
     thingId: Thing['_id'];

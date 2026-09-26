@@ -4,16 +4,16 @@ import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Background } from './components/Background';
-import EditUserDialog from './components/EditUserDialog';
-import { MenuAppBar } from './components/MenuAppBar';
-import { NotificationReduxConnect } from './containers/NotificationReduxConnect';
-import { RegisterServiceWorker } from './containers/RegisterServiceWorker';
-import MyRoutes from './containers/Routes';
-import { MyThemeProvider } from './containers/ThemeProvider';
-import WebSocket from './containers/WebSocket';
-import { AppBarContext, AppBarContextType, defaultAppBarCtx } from './hooks/useAppBarContext';
-import { persistor, store } from './store';
+import { Background } from './components/Background.js';
+import EditUserDialog from './components/EditUserDialog.js';
+import { MenuAppBar } from './components/MenuAppBar.js';
+import { NotificationReduxConnect } from './containers/NotificationReduxConnect.js';
+import { RegisterServiceWorker } from './containers/RegisterServiceWorker.js';
+import MyRoutes from './containers/Routes.js';
+import { MyThemeProvider } from './containers/ThemeProvider.js';
+import WebSocket from './containers/WebSocket.js';
+import { AppBarContext, AppBarContextType, defaultAppBarCtx } from './hooks/useAppBarContext.js';
+import { persistor, store } from './store/index.js';
 
 function App() {
     const [appBarData, setAppBarData] = useState<AppBarContextType['data']>(defaultAppBarCtx.data);

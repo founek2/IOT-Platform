@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/index';
-import { getDevice } from '../../selectors/getters';
+import { useAppSelector } from '../../hooks/index.js';
+import { getDevice } from '../../selectors/getters.js';
 
 interface ThingWidgetProps {
     id: string;

@@ -2,11 +2,11 @@ import type { SxProps, Theme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { ComponentType, PropertyDataType } from 'common/src/models/interface/thing';
-import { Thing } from '../../../store/slices/application/thingsSlice';
-import Circle from '../../../components/OnlineCircle';
-import { DeviceStatus } from 'common/src/models/interface/device';
-import { Discovery } from '../../../endpoints/discovery';
+import { ComponentType, PropertyDataType } from 'common/models/interface/thing';
+import { Thing } from '../../../store/slices/application/thingsSlice.js';
+import Circle from '../../../components/OnlineCircle.js';
+import { DeviceStatus } from 'common/models/interface/device';
+import { Discovery } from '../../../endpoints/discovery.js';
 
 function getApropriateProperty(config: Thing['config']) {
     if (config.componentType === ComponentType.activator) {

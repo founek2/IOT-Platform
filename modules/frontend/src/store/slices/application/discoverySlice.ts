@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { Discovery, discoveryApi } from '../../../endpoints/discovery';
+import { Discovery, discoveryApi } from '../../../endpoints/discovery.js';
 
 // Define a type for the slice state
 

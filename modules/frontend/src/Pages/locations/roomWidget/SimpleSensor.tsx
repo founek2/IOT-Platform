@@ -1,9 +1,9 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { IThingProperty } from 'common/src/models/interface/thing';
+import { IThingProperty } from 'common/models/interface/thing';
 import React from 'react';
-import { SensorIcons } from '../../../constants/sensorIcons';
-import { Thing } from '../../../store/slices/application/thingsSlice';
+import { SensorIcons } from '../../../constants/sensorIcons.js';
+import { Thing } from '../../../store/slices/application/thingsSlice.js';
 
 type IThingPropertyWithDeviceClass = IThingProperty & { propertyClass: NonNullable<IThingProperty['propertyClass']> };
 interface SimpleSensorProps {

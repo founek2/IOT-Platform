@@ -1,6 +1,6 @@
 import React from "react"
-import { useDevicesQuery } from '../endpoints/devices';
-import Locations from './locations/Locations';
+import { useDevicesQuery } from '../endpoints/devices.js';
+import Locations from './locations/Locations.js';
 import { LocationsLoader } from "./Locations.loader";
 
 export interface RoomProps {

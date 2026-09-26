@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import type { Identifier, XYCoord } from 'dnd-core';
 import React, { useCallback, useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { DraggableProvider } from '../components/Draggable';
+import { DraggableProvider } from '../components/Draggable.js';
 
 type Item = { id: number; text: string };
 const defaultCards = [

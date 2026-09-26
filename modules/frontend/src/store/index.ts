@@ -1,10 +1,10 @@
 import { configureStore, isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
-import errorMessages from 'common/src/localization/error';
+import errorMessages from 'common/localization/error';
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
-import { api } from '../endpoints/api';
-import rootReducer from './slices';
-import { authorizationActions } from './slices/application/authorizationActions';
-import { notificationActions } from './slices/notificationSlice';
+import { api } from '../endpoints/api.js';
+import rootReducer from './slices/index.js';
+import { authorizationActions } from './slices/application/authorizationActions.js';
+import { notificationActions } from './slices/notificationSlice.js';
 
 export const rtkQueryErrorLogger: Middleware =
     ({ dispatch }) =>

@@ -5,7 +5,7 @@ import { styled, withStyles } from '@mui/material/styles';
 import clsx from 'clsx';
 import { append, equals, filter, ifElse, includes, not, o, __, curry } from 'ramda';
 import React from 'react';
-import { notEqual } from 'common/src/utils/notEqual';
+import { notEqual } from 'common/utils/notEqual';
 
 export const daysInWeek = [
     { value: 1, label: 'Po' },

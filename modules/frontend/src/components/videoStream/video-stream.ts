@@ -10,12 +10,12 @@ const micOffIcon = `<svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox=
 export class VideoStream extends VideoRTC {
     internalMic = false;
 
-    set divMode(value) {
-        this.querySelector('.mode').innerText = value;
-        this.querySelector('.status').innerText = '';
+    set divMode(value: string) {
+        this.querySelector<HTMLElement>('.mode')!.innerText = value;
+        this.querySelector<HTMLElement>('.status')!.innerText = '';
     }
 
-    set mic(value) {
+    set mic(value: boolean) {
         this.internalMic = value;
         const button = this.querySelector('.mic button');
         if (!button) return;
@@ -30,17 +30,17 @@ export class VideoStream extends VideoRTC {
         }
     }
 
-    set divError(value) {
-        const state = this.querySelector('.mode').innerText;
+    set divError(value: string) {
+        const state = this.querySelector<HTMLElement>('.mode')!.innerText;
         if (state !== 'loading') return;
-        this.querySelector('.mode').innerText = 'error';
-        this.querySelector('.status').innerText = value;
+        this.querySelector<HTMLElement>('.mode')!.innerText = 'error';
+        this.querySelector<HTMLElement>('.status')!.innerText = value;
     }
 
     /**
      * Custom GUI
      */
-    oninit() {
+    oninit(): void {
         console.debug('stream.oninit');
         super.oninit();
 
@@ -85,17 +85,17 @@ export class VideoStream extends VideoRTC {
         ${this.isMicrophoneEnabled() ? `<div class="mic"><button>${micOffIcon}</button></div>` : ''}
         `;
 
-        const info = this.querySelector('.info');
-        this.insertBefore(this.video, info);
+        const info = this.querySelector<HTMLElement>('.info')!;
+        this.insertBefore(this.video!, info);
 
         if (this.isMicrophoneEnabled())
-            this.querySelector('.mic button').addEventListener('click', e => {
+            this.querySelector<HTMLButtonElement>('.mic button')?.addEventListener('click', () => {
                 console.log("hey hou")
                 this.mic = !this.internalMic;
             })
     }
 
-    onconnect() {
+    onconnect(): boolean {
         console.debug('stream.onconnect');
         const result = super.onconnect();
         if (result) this.divMode = 'loading';
@@ -103,12 +103,12 @@ export class VideoStream extends VideoRTC {
         return result;
     }
 
-    ondisconnect() {
+    ondisconnect(): void {
         console.debug('stream.ondisconnect');
         super.ondisconnect();
     }
 
-    onopen() {
+    onopen(): string[] {
         console.debug('stream.onopen');
         const result = super.onopen();
 
@@ -130,12 +130,12 @@ export class VideoStream extends VideoRTC {
         return result;
     }
 
-    onclose() {
+    onSocketClose(): boolean {
         console.debug('stream.onclose');
-        return super.onclose();
+        return super.onSocketClose();
     }
 
-    onpcvideo(ev) {
+    onpcvideo(ev: HTMLVideoElement): void {
         console.debug('stream.onpcvideo');
         super.onpcvideo(ev);
 

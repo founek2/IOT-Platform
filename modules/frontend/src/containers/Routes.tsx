@@ -1,13 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
 import { createBrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../hooks';
-import { Authorization } from '../Pages/Authorization';
-import { HomePage } from '../Pages/Home';
-import { privileges } from '../services/privileges';
-import { getCurrentGroups } from '../selectors/getters';
-import uiMessages from 'common/src/localization/uiMessages';
-import Registration from '../Pages/Registration';
-import { preserveLocation } from '../utils/preserveLocation';
+import { useAppSelector } from '../hooks/index.js';
+import { Authorization } from '../Pages/Authorization.js';
+import { HomePage } from '../Pages/Home.js';
+import { privileges } from '../services/privileges.js';
+import { getCurrentGroups } from '../selectors/getters.js';
+import uiMessages from 'common/localization/uiMessages';
+import Registration from '../Pages/Registration.js';
+import { preserveLocation } from '../utils/preserveLocation.js';
 
 preserveLocation();
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
-import ErrorMessages from "common/src/localization/error";
+import ErrorMessages from "common/localization/error";
 import { SnackbarKey, useSnackbar } from "notistack";
 import { Socket } from "socket.io-client"
-import { useAppSelector } from "../hooks";
-import { isLoggedIn } from "../selectors/getters";
+import { useAppSelector } from "../hooks/index.js";
+import { isLoggedIn } from "../selectors/getters.js";
 
 interface NetworkStatusProps {
     socket?: Socket

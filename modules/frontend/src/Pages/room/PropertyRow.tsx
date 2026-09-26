@@ -11,29 +11,29 @@ import {
     IThingPropertyEnum,
     IThingPropertyNumeric,
     PropertyDataType,
-} from 'common/src/models/interface/thing';
-import { isNumericDataType } from 'common/src/utils/isNumericDataType';
-import { numericFormatDiff } from 'common/src/utils/numericFormatDiff';
+} from 'common/models/interface/thing';
+import { isNumericDataType } from 'common/utils/isNumericDataType';
+import { numericFormatDiff } from 'common/utils/numericFormatDiff';
 import { format } from 'date-fns';
-import UpdatedBefore from '../../components/UpdatedBefore';
-import PlotifyBoolean from '../../components/PlotifyBoolean';
-import PlotifyNumeric from '../../components/PlotifyNumeric';
-import { convertBoolHistoryToGraphData, convertNumericHistoryToGraphData } from '../../utils/convertHistoryToGraphData';
+import UpdatedBefore from '../../components/UpdatedBefore.js';
+import PlotifyBoolean from '../../components/PlotifyBoolean.js';
+import PlotifyNumeric from '../../components/PlotifyNumeric.js';
+import { convertBoolHistoryToGraphData, convertNumericHistoryToGraphData } from '../../utils/convertHistoryToGraphData.js';
 import React, { forwardRef, useCallback, useState } from 'react';
-import { ActivatorButton } from '../../components/ActivatorButton';
-import { CopyUrlContext } from './helpers/CopyUrl';
-import { toogleSwitchVal } from './helpers/toogleSwitchVal';
-import { SensorIcons } from '../../constants/sensorIcons';
-import { Measurement } from 'common/src/types';
+import { ActivatorButton } from '../../components/ActivatorButton.js';
+import { CopyUrlContext } from './helpers/CopyUrl.js';
+import { toogleSwitchVal } from './helpers/toogleSwitchVal.js';
+import { SensorIcons } from '../../constants/sensorIcons.js';
+import { Measurement } from 'common/types';
 import type { Theme } from '@mui/material';
-import ColorPicker from '../../components/ColorPicker';
-import { PropertyState } from '../../store/slices/application/thingsSlice';
-import { CircleComponent } from '../../components/OnlineCircle';
-import { CircleColors } from '../../utils/getCircleColor';
-import { VideoStream } from '../../components/VideoStream';
-import { isUrl } from 'common/src/utils/isUrl';
-import { WebRtcStream } from '../../components/WebRtcStream';
-import { onEnterRun } from 'common/src/utils/onEnter';
+import ColorPicker from '../../components/ColorPicker.js';
+import { PropertyState } from '../../store/slices/application/thingsSlice.js';
+import { CircleComponent } from '../../components/OnlineCircle.js';
+import { CircleColors } from '../../utils/getCircleColor.js';
+import { VideoStream } from '../../components/VideoStream.js';
+import { isUrl } from 'common/utils/isUrl';
+import { WebRtcStream } from '../../components/WebRtcStream.js';
+import { onEnterRun } from 'common/utils/onEnter';
 
 const ConfirmationCircle = styled(CircleComponent)({
     position: 'absolute',

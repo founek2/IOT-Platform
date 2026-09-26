@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { IDevice } from 'common/src/models/interface/device';
-import { devicesApi } from '../../../endpoints/devices';
-import { normalizeDevices } from '../../../utils/normalizr';
+import { IDevice } from 'common/models/interface/device';
+import { devicesApi } from '../../../endpoints/devices.js';
+import { normalizeDevices } from '../../../utils/normalizr.js';
 
 export type Device = Omit<IDevice, 'things' | '_id'> & { _id: string; things: string[] };
 // Define a type for the slice state

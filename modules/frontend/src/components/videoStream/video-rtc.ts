@@ -14,7 +14,34 @@
  * - Customized built-in elements (extends HTMLVideoElement) because Safari
  * - Autoplay for WebRTC in Safari
  */
+type VideoMessage = { type: string; value: string };
+type VideoDataHandler = (data: ArrayBuffer) => void;
+type VideoMessageHandler = (message: VideoMessage) => void;
+
 export class VideoRTC extends HTMLElement {
+    DISCONNECT_TIMEOUT!: number;
+    RECONNECT_TIMEOUT!: number;
+    CODECS!: string[];
+    mode!: string;
+    media!: string;
+    background!: boolean;
+    visibilityThreshold!: number;
+    visibilityCheck!: boolean;
+    pcConfig!: RTCConfiguration & { sdpSemantics?: string };
+    wsState!: number;
+    pcState!: number;
+    video: HTMLVideoElement | null = null;
+    ws: WebSocket | null = null;
+    wsURL!: string;
+    pc: RTCPeerConnection | null = null;
+    connectTS!: number;
+    mseCodecs!: string;
+    disconnectTID!: ReturnType<typeof setTimeout> | 0;
+    reconnectTID!: ReturnType<typeof setTimeout> | 0;
+    ondata: VideoDataHandler | null = null;
+    onmessage: Record<string, VideoMessageHandler> = {};
+    mediaTracks!: MediaStreamTrack[];
+
     constructor() {
         super();
 
@@ -34,19 +61,16 @@ export class VideoRTC extends HTMLElement {
 
         /**
          * [config] Supported modes (webrtc, webrtc/tcp, mse, hls, mp4, mjpeg).
-         * @type {string}
          */
         this.mode = 'webrtc,mse,hls,mjpeg';
 
         /**
          * [Config] Requested medias (video, audio, microphone).
-         * @type {string}
          */
         this.media = 'video,audio';
 
         /**
          * [config] Run stream when not displayed on the screen. Default `false`.
-         * @type {boolean}
          */
         this.background = false;
 
@@ -54,20 +78,17 @@ export class VideoRTC extends HTMLElement {
          * [config] Run stream only when player in the viewport. Stop when user scroll out player.
          * Value is percentage of visibility from `0` (not visible) to `1` (full visible).
          * Default `0` - disable;
-         * @type {number}
          */
         this.visibilityThreshold = 0;
 
         /**
          * [config] Run stream only when browser page on the screen. Stop when user change browser
          * tab or minimise browser windows.
-         * @type {boolean}
          */
         this.visibilityCheck = true;
 
         /**
          * [config] WebRTC configuration
-         * @type {RTCConfiguration}
          */
         this.pcConfig = {
             iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
@@ -76,73 +97,51 @@ export class VideoRTC extends HTMLElement {
 
         /**
          * [info] WebSocket connection state. Values: CONNECTING, OPEN, CLOSED
-         * @type {number}
          */
         this.wsState = WebSocket.CLOSED;
 
         /**
          * [info] WebRTC connection state.
-         * @type {number}
          */
         this.pcState = WebSocket.CLOSED;
 
-        /**
-         * @type {HTMLVideoElement}
-         */
         this.video = null;
 
-        /**
-         * @type {WebSocket}
-         */
         this.ws = null;
 
-        /**
-         * @type {string|URL}
-         */
         this.wsURL = '';
 
-        /**
-         * @type {RTCPeerConnection}
-         */
         this.pc = null;
 
         /**
-         * @type {number}
          */
         this.connectTS = 0;
 
         /**
-         * @type {string}
          */
         this.mseCodecs = '';
 
         /**
          * [internal] Disconnect TimeoutID.
-         * @type {number}
          */
         this.disconnectTID = 0;
 
         /**
          * [internal] Reconnect TimeoutID.
-         * @type {number}
          */
         this.reconnectTID = 0;
 
         /**
          * [internal] Handler for receiving Binary from WebSocket.
-         * @type {Function}
          */
         this.ondata = null;
 
         /**
          * [internal] Handlers list for receiving JSON from WebSocket.
-         * @type {Object.<string,Function>}
          */
-        this.onmessage = null;
 
         /**
          * [internal] Remembers micrphone tracks
-         * @type {MediaStreamTrack[]}
          */
         this.mediaTracks = [];
     }
@@ -151,7 +150,7 @@ export class VideoRTC extends HTMLElement {
      * Set video source (WebSocket URL). Support relative path.
      * @param {string|URL} value
      */
-    set src(value) {
+    set src(value: string | URL) {
         if (typeof value !== 'string') value = value.toString();
         if (value.startsWith('http')) {
             value = 'ws' + value.substring(4);
@@ -168,11 +167,11 @@ export class VideoRTC extends HTMLElement {
      * Play video. Support automute when autoplay blocked.
      * https://developer.chrome.com/blog/autoplay/
      */
-    play() {
-        this.video.play().catch(() => {
-            if (!this.video.muted) {
-                this.video.muted = true;
-                this.video.play().catch(er => {
+    play(): void {
+        this.video!.play().catch(() => {
+            if (!this.video!.muted) {
+                this.video!.muted = true;
+                this.video!.play().catch(er => {
                     console.warn(er);
                 });
             }
@@ -183,12 +182,12 @@ export class VideoRTC extends HTMLElement {
      * Send message to server via WebSocket
      * @param {Object} value
      */
-    send(value) {
+    send(value: unknown): void {
         if (this.ws) this.ws.send(JSON.stringify(value));
     }
 
     /** @param {Function} isSupported */
-    codecs(isSupported) {
+    codecs(isSupported: (codec: string) => boolean): string {
         return this.CODECS
             .filter(codec => this.media.indexOf(codec.indexOf('vc1') > 0 ? 'video' : 'audio') >= 0)
             .filter(codec => isSupported(`video/mp4; codecs="${codec}"`)).join();
@@ -198,7 +197,7 @@ export class VideoRTC extends HTMLElement {
      * `CustomElement`. Invoked each time the custom element is appended into a
      * document-connected element.
      */
-    connectedCallback() {
+    connectedCallback(): void {
         if (this.disconnectTID) {
             clearTimeout(this.disconnectTID);
             this.disconnectTID = 0;
@@ -222,7 +221,7 @@ export class VideoRTC extends HTMLElement {
      * `CustomElement`. Invoked each time the custom element is disconnected from the
      * document's DOM.
      */
-    disconnectedCallback() {
+    disconnectedCallback(): void {
         if (this.background || this.disconnectTID) return;
         if (this.wsState === WebSocket.CLOSED && this.pcState === WebSocket.CLOSED) return;
 
@@ -241,7 +240,7 @@ export class VideoRTC extends HTMLElement {
     /**
      * Creates child DOM elements. Called automatically once on `connectedCallback`.
      */
-    oninit() {
+    oninit(): void {
         this.video = document.createElement('video');
         this.video.controls = true;
         this.video.playsInline = true;
@@ -291,7 +290,7 @@ export class VideoRTC extends HTMLElement {
      * Connect to WebSocket. Called automatically on `connectedCallback`.
      * @return {boolean} true if the connection has started.
      */
-    onconnect() {
+    onconnect(): boolean {
         if (!this.isConnected || !this.wsURL || this.ws || this.pc) return false;
 
         // CLOSED or CONNECTING => CONNECTING
@@ -302,12 +301,12 @@ export class VideoRTC extends HTMLElement {
         this.ws = new WebSocket(this.wsURL);
         this.ws.binaryType = 'arraybuffer';
         this.ws.addEventListener('open', () => this.onopen());
-        this.ws.addEventListener('close', () => this.onclose());
+        this.ws.addEventListener('close', () => this.onSocketClose());
 
         return true;
     }
 
-    ondisconnect() {
+    ondisconnect(): void {
         this.wsState = WebSocket.CLOSED;
         if (this.ws) {
             this.ws.close();
@@ -323,51 +322,51 @@ export class VideoRTC extends HTMLElement {
             this.pc = null;
         }
 
-        this.video.src = '';
-        this.video.srcObject = null;
+        this.video!.src = '';
+        this.video!.srcObject = null;
 
         this.muteMicrophone()
     }
 
-    muteMicrophone() {
+    muteMicrophone(): void {
         this.mediaTracks.forEach(track => track.enabled = false);
     }
 
-    unmuteMicrophone() {
+    unmuteMicrophone(): void {
         this.mediaTracks.forEach(track => track.enabled = true);
     }
 
-    isMicrophoneEnabled() {
+    isMicrophoneEnabled(): boolean {
         return this.media.indexOf('microphone') >= 0
     }
 
     /**
      * @returns {Array.<string>} of modes (mse, webrtc, etc.)
      */
-    onopen() {
+    onopen(): string[] {
         // CONNECTING => OPEN
         this.wsState = WebSocket.OPEN;
 
-        this.ws.addEventListener('message', ev => {
+        this.ws!.addEventListener('message', ev => {
             if (typeof ev.data === 'string') {
-                const msg = JSON.parse(ev.data);
+                const msg = JSON.parse(ev.data) as VideoMessage;
                 for (const mode in this.onmessage) {
                     this.onmessage[mode](msg);
                 }
             } else {
-                this.ondata(ev.data);
+                this.ondata?.(ev.data as ArrayBuffer);
             }
         });
 
         this.ondata = null;
         this.onmessage = {};
 
-        const modes = [];
+        const modes: string[] = [];
 
         if (this.mode.indexOf('mse') >= 0 && ('MediaSource' in window || 'ManagedMediaSource' in window)) {
             modes.push('mse');
             this.onmse();
-        } else if (this.mode.indexOf('hls') >= 0 && this.video.canPlayType('application/vnd.apple.mpegurl')) {
+        } else if (this.mode.indexOf('hls') >= 0 && this.video!.canPlayType('application/vnd.apple.mpegurl')) {
             modes.push('hls');
             this.onhls();
         } else if (this.mode.indexOf('mp4') >= 0) {
@@ -398,7 +397,7 @@ export class VideoRTC extends HTMLElement {
     /**
      * @return {boolean} true if reconnection has started.
      */
-    onclose() {
+    onSocketClose(): boolean {
         if (this.wsState === WebSocket.CLOSED) return false;
 
         // CONNECTING, OPEN => CONNECTING
@@ -416,29 +415,29 @@ export class VideoRTC extends HTMLElement {
         return true;
     }
 
-    onmse() {
-        /** @type {MediaSource} */
+    onmse(): void {
         let ms;
 
-        if ('ManagedMediaSource' in window) {
-            const MediaSource = window.ManagedMediaSource;
+        const managedMediaSource = (window as Window & { ManagedMediaSource?: typeof MediaSource }).ManagedMediaSource;
+        if (managedMediaSource) {
+            const MediaSource = managedMediaSource;
 
             ms = new MediaSource();
             ms.addEventListener('sourceopen', () => {
                 this.send({ type: 'mse', value: this.codecs(MediaSource.isTypeSupported) });
             }, { once: true });
 
-            this.video.disableRemotePlayback = true;
-            this.video.srcObject = ms;
+            this.video!.disableRemotePlayback = true;
+            this.video!.srcObject = ms;
         } else {
             ms = new MediaSource();
             ms.addEventListener('sourceopen', () => {
-                URL.revokeObjectURL(this.video.src);
+                URL.revokeObjectURL(this.video!.src);
                 this.send({ type: 'mse', value: this.codecs(MediaSource.isTypeSupported) });
             }, { once: true });
 
-            this.video.src = URL.createObjectURL(ms);
-            this.video.srcObject = null;
+            this.video!.src = URL.createObjectURL(ms);
+            this.video!.srcObject = null;
         }
 
         this.play();
@@ -494,7 +493,7 @@ export class VideoRTC extends HTMLElement {
         };
     }
 
-    onwebrtc() {
+    onwebrtc(): void {
         const pc = new RTCPeerConnection(this.pcConfig);
 
         pc.addEventListener('icecandidate', ev => {
@@ -507,7 +506,6 @@ export class VideoRTC extends HTMLElement {
         pc.addEventListener('connectionstatechange', () => {
             if (pc.connectionState === 'connected') {
                 const tracks = pc.getReceivers().map(receiver => receiver.track);
-                /** @type {HTMLVideoElement} */
                 const video2 = document.createElement('video');
                 video2.addEventListener('loadeddata', () => this.onpcvideo(video2), { once: true });
                 video2.srcObject = new MediaStream(tracks);
@@ -553,7 +551,7 @@ export class VideoRTC extends HTMLElement {
      * @param pc {RTCPeerConnection}
      * @return {Promise<RTCSessionDescriptionInit>}
      */
-    async createOffer(pc) {
+    async createOffer(pc: RTCPeerConnection): Promise<RTCSessionDescriptionInit> {
         try {
             if (this.isMicrophoneEnabled()) {
                 const media = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -582,13 +580,12 @@ export class VideoRTC extends HTMLElement {
     /**
      * @param video2 {HTMLVideoElement}
      */
-    onpcvideo(video2) {
+    onpcvideo(video2: HTMLVideoElement): void {
         if (this.pc) {
             // Video+Audio > Video, H265 > H264, Video > Audio, WebRTC > MSE
             let rtcPriority = 0, msePriority = 0;
 
-            /** @type {MediaStream} */
-            const stream = video2.srcObject;
+            const stream = video2.srcObject as MediaStream;
             if (stream.getVideoTracks().length > 0) rtcPriority += 0x220;
             if (stream.getAudioTracks().length > 0) rtcPriority += 0x102;
 
@@ -597,7 +594,7 @@ export class VideoRTC extends HTMLElement {
             if (this.mseCodecs.indexOf('mp4a.') >= 0) msePriority += 0x101;
 
             if (rtcPriority >= msePriority) {
-                this.video.srcObject = stream;
+                this.video!.srcObject = stream;
                 this.play();
 
                 this.pcState = WebSocket.OPEN;
@@ -619,35 +616,32 @@ export class VideoRTC extends HTMLElement {
         video2.srcObject = null;
     }
 
-    onmjpeg() {
+    onmjpeg(): void {
         this.ondata = data => {
-            this.video.controls = false;
-            this.video.poster = 'data:image/jpeg;base64,' + VideoRTC.btoa(data);
+            this.video!.controls = false;
+            this.video!.poster = 'data:image/jpeg;base64,' + VideoRTC.btoa(data);
         };
 
         this.send({ type: 'mjpeg' });
     }
 
-    onhls() {
+    onhls(): void {
         this.onmessage['hls'] = msg => {
             if (msg.type !== 'hls') return;
 
             const url = 'http' + this.wsURL.substring(2, this.wsURL.indexOf('/ws')) + '/hls/';
             const playlist = msg.value.replace('hls/', url);
-            this.video.src = 'data:application/vnd.apple.mpegurl;base64,' + btoa(playlist);
+            this.video!.src = 'data:application/vnd.apple.mpegurl;base64,' + btoa(playlist);
             this.play();
         };
 
-        this.send({ type: 'hls', value: this.codecs(type => this.video.canPlayType(type)) });
+        this.send({ type: 'hls', value: this.codecs(type => Boolean(this.video!.canPlayType(type))) });
     }
 
-    onmp4() {
-        /** @type {HTMLCanvasElement} **/
+    onmp4(): void {
         const canvas = document.createElement('canvas');
-        /** @type {CanvasRenderingContext2D} */
-        let context;
+        let context: CanvasRenderingContext2D | null = null;
 
-        /** @type {HTMLVideoElement} */
         const video2 = document.createElement('video');
         video2.autoplay = true;
         video2.playsInline = true;
@@ -660,20 +654,20 @@ export class VideoRTC extends HTMLElement {
                 context = canvas.getContext('2d');
             }
 
-            context.drawImage(video2, 0, 0, canvas.width, canvas.height);
+            context?.drawImage(video2, 0, 0, canvas.width, canvas.height);
 
-            this.video.controls = false;
-            this.video.poster = canvas.toDataURL('image/jpeg');
+            this.video!.controls = false;
+            this.video!.poster = canvas.toDataURL('image/jpeg');
         });
 
         this.ondata = data => {
             video2.src = 'data:video/mp4;base64,' + VideoRTC.btoa(data);
         };
 
-        this.send({ type: 'mp4', value: this.codecs(this.video.canPlayType) });
+        this.send({ type: 'mp4', value: this.codecs(type => Boolean(this.video!.canPlayType(type))) });
     }
 
-    static btoa(buffer) {
+    static btoa(buffer: ArrayBuffer): string {
         const bytes = new Uint8Array(buffer);
         const len = bytes.byteLength;
         let binary = '';

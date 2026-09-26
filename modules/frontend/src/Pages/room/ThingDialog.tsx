@@ -3,16 +3,16 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Dialog } from '../../components/Dialog';
-import { Draggable, DraggableProvider } from '../../components/Draggable';
-import { useLazyThingHistoryQuery, useUpdateThingMutation } from '../../endpoints/thing';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { ThingContext } from '../../hooks/useThing';
-import { useUpdateThingStateSmart } from '../../hooks/useUpdateThingStateSmart';
-import { getThing } from '../../selectors/getters';
-import { thingsReducerActions } from '../../store/slices/application/thingsSlice';
-import { notificationActions } from '../../store/slices/notificationSlice';
-import PropertyRow from '.././room/PropertyRow';
+import { Dialog } from '../../components/Dialog.js';
+import { Draggable, DraggableProvider } from '../../components/Draggable.js';
+import { useLazyThingHistoryQuery, useUpdateThingMutation } from '../../endpoints/thing.js';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.js';
+import { ThingContext } from '../../hooks/useThing.js';
+import { useUpdateThingStateSmart } from '../../hooks/useUpdateThingStateSmart.js';
+import { getThing } from '../../selectors/getters.js';
+import { thingsReducerActions } from '../../store/slices/application/thingsSlice.js';
+import { notificationActions } from '../../store/slices/notificationSlice.js';
+import PropertyRow from '.././room/PropertyRow.js';
 
 const REFRESH_HISTORY_INTERVAL = 3 * 60 * 100;
 
