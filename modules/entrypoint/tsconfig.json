@@ -1,10 +1,10 @@
 {
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
-        "baseUrl": ".",
         "rootDir": "./src",
         "outDir": "./dist",
-        "moduleResolution": "node"
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext"
     },
     "references": [
         {
@@ -22,6 +22,7 @@
     ],
     "include": [
         "./src",
+        "./koa-mongo-sanitize.d.cts"
     ],
     "exclude": [
         "./dist"

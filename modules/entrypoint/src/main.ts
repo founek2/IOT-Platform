@@ -3,13 +3,14 @@ import * as authModule from 'backend-auth'
 import * as mqttModule from 'backend-mqtt'
 import Koa, { DefaultState } from "koa"
 import { logger } from "common"
-import http from 'http';
-import { AddressInfo } from 'net'
-import morgan from './morgan';
+import http from 'node:http';
+import { AddressInfo } from 'node:net'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import morgan from './morgan.js';
 import mongoSanitize from 'koa-mongo-sanitize';
-import path from "path"
 import bodyParser from 'koa-bodyparser';
-import { BusEmitter } from "common/lib/interfaces/asyncEmitter"
+import { BusEmitter } from "common/interfaces/asyncEmitter"
 import koaStatic from "koa-static";
 import Router from "@koa/router"
 import send from 'koa-send'
@@ -44,7 +45,8 @@ export async function createServer() {
     app.use(mongoSanitize());
 
     // server static frontend files
-    const frontend_path = path.join(__dirname, '../../frontend/build');
+    const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
+    const frontend_path = path.join(moduleDirectory, '../../frontend/build');
     app.use(koaStatic(frontend_path));
 
     // const modules: Module<any>[] = [backendModule, authModule, mqttModule];

@@ -1,3 +1,3 @@
-import { createServer } from "./main"
+import { createServer } from "./main.js"
 
 createServer()
