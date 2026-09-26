@@ -1,4 +1,4 @@
-import { IThing, IThingProperty } from "common/lib/models/interface/thing";
+import { IThing, IThingProperty } from "common/models/interface/thing";
 
 export function renderTemplate(templateText: string, options: { value: string | boolean | number, property: IThingProperty, deviceThing: IThing }) {
     options.deviceThing.config.name;

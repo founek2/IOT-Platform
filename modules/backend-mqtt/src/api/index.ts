@@ -1,13 +1,13 @@
-import actions from './actions';
-import webSocket from './socket';
+import actions from './actions.js';
+import webSocket from './socket.js';
 import { Server as serverIO } from 'socket.io';
-import history from './history';
-import { Context } from '../types';
-import { BusEmitterType } from 'common/lib/interfaces/asyncEmitter';
+import history from './history.js';
+import { Context } from '../types/index.js';
+import { BusEmitterType } from 'common/interfaces/asyncEmitter';
 import Router from "@koa/router"
 import type Koa from "koa";
 import { JwtService } from 'common';
-import { applyRouter } from "common/lib/utils/applyRouter"
+import { applyRouter } from "common/utils/applyRouter"
 
 export default ({ io, jwtService, bus }: { io: serverIO, jwtService: JwtService, bus: BusEmitterType }): Router<Koa.DefaultState, Context> => {
     let api = new Router<Koa.DefaultState, Context>();

@@ -1,5 +1,5 @@
 import { JwtService, InfluxService, UserService } from "common";
-import { MqttService } from "../services/mqtt";
+import { MqttService } from "../services/mqtt.js";
 
 export interface UpdateThingState {
     _id: string;

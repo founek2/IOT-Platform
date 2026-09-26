@@ -1,9 +1,9 @@
-import { IThingProperty, IThing } from 'common/lib/models/interface/thing';
-import { IUser } from 'common/lib/models/interface/userInterface';
-import { INotify, INotifyThing, INotifyThingProperty } from 'common/lib/models/interface/notifyInterface';
+import { IThingProperty, IThing } from 'common/models/interface/thing';
+import { IUser } from 'common/models/interface/userInterface';
+import { INotify, INotifyThing, INotifyThingProperty } from 'common/models/interface/notifyInterface';
 import { groupBy, values, map } from 'ramda';
-import { NotifyModel } from 'common/lib/models/notifyModel';
-import { ObjectId } from '../utils/objectId';
+import { NotifyModel } from 'common/models/notifyModel';
+import { ObjectId } from '../utils/objectId.js';
 
 const prepareQuery =
     (updateQuery: any, nodeId: INotifyThing['nodeId']) =>

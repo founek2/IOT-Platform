@@ -1,8 +1,8 @@
 import { EventEmitter } from 'events';
-import * as types from '../types';
-import type { IDevice, DeviceCommand } from 'common/lib/models/interface/device';
-import { IThing, IThingProperty } from 'common/lib/models/interface/thing';
-import { IUser } from 'common/lib/models/interface/userInterface';
+import * as types from '../types/index.js';
+import type { IDevice, DeviceCommand } from 'common/models/interface/device';
+import { IThing, IThingProperty } from 'common/models/interface/thing';
+import { IUser } from 'common/models/interface/userInterface';
 
 type EventMap = Record<string, any>;
 

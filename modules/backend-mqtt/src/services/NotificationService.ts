@@ -1,17 +1,17 @@
-import { logger } from "common/lib/logger";
-import { IDevice } from "common/lib/models/interface/device";
-import { INotify, INotifyThingProperty } from "common/lib/models/interface/notifyInterface";
-import { IThing, IThingProperty } from "common/lib/models/interface/thing";
-import { PushSubscription, IUser } from "common/lib/models/interface/userInterface"
-import { NotifyModel } from "common/lib/models/notifyModel";
-import { UserModel } from "common/lib/models/userModel";
-import { getProperty } from "common/lib/utils/getProperty";
-import { getThing } from "common/lib/utils/getThing";
+import { logger } from "common/logger";
+import { IDevice } from "common/models/interface/device";
+import { INotify, INotifyThingProperty } from "common/models/interface/notifyInterface";
+import { IThing, IThingProperty } from "common/models/interface/thing";
+import { PushSubscription, IUser } from "common/models/interface/userInterface"
+import { NotifyModel } from "common/models/notifyModel";
+import { UserModel } from "common/models/userModel";
+import { getProperty } from "common/utils/getProperty";
+import { getThing } from "common/utils/getThing";
 import { uniq } from "ramda";
 import webpush from "web-push"
-import functions from "./notification/functions";
-import { renderTemplate } from "./notification/templateEngine";
-import { NotifyService } from "./notifyService";
+import functions from "./notification/functions.js";
+import { renderTemplate } from "./notification/templateEngine.js";
+import { NotifyService } from "./notifyService.js";
 
 type VibratePattern = number | number[];
 type NotificationDirection = "auto" | "ltr" | "rtl";

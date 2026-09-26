@@ -1,8 +1,8 @@
-import { logger } from 'common/lib/logger';
-import { getProperty } from 'common/lib/utils/getProperty';
-import { getThing } from 'common/lib/utils/getThing';
-import { Emitter, EmitterEvents } from '../services/eventEmitter';
-import { MqttService } from '../services/mqtt';
+import { logger } from 'common/logger';
+import { getProperty } from 'common/utils/getProperty';
+import { getThing } from 'common/utils/getThing';
+import { Emitter, EmitterEvents } from '../services/eventEmitter.js';
+import { MqttService } from '../services/mqtt.js';
 
 export default function (eventEmitter: Emitter<EmitterEvents>, mqttService: MqttService) {
     eventEmitter.on('device_pairing_init', async ({ apiKey, deviceId }) => {

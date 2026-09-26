@@ -1,5 +1,5 @@
-import { HistoricalModel } from 'common/lib/models/historyModel';
-import { Config } from '../config';
+import { HistoricalModel } from 'common/models/historyModel';
+import { Config } from '../config.js';
 
 export async function up(config: Config) {
     await HistoricalModel.deleteMany({}).exec();

@@ -1,10 +1,10 @@
 import * as mqtt from 'mqtt';
 import { Server as serverIO } from 'socket.io';
-import handlePrefix from './mqtt/prefix';
-import handleV2 from './mqtt/v2';
+import handlePrefix from './mqtt/prefix.js';
+import handleV2 from './mqtt/v2.js';
 import { Maybe } from 'purify-ts/Maybe';
 import type { IClientPublishOptions, MqttClient, IClientOptions } from 'mqtt';
-import { NotificationService } from './NotificationService';
+import { NotificationService } from './NotificationService.js';
 import { InfluxService, logger } from 'common';
 
 

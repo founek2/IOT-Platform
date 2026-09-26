@@ -1,5 +1,5 @@
-import eventEmitter from '../services/eventEmitter';
-import { BusEmitterType } from "common/lib/interfaces/asyncEmitter"
+import eventEmitter from '../services/eventEmitter.js';
+import { BusEmitterType } from "common/interfaces/asyncEmitter"
 
 // const router = express.Router();
 

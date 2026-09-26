@@ -1,5 +1,5 @@
-import { logger } from 'common/lib/logger';
-import { JwtService } from 'common/lib/services/jwtService';
+import { logger } from 'common/logger';
+import { JwtService } from 'common/services/jwtService';
 import { Server as serverIO, Socket } from 'socket.io';
 
 type socketWithUser = {

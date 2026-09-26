@@ -1,15 +1,17 @@
-import { MigrateModel, IMigrateDocument } from 'common/lib/models/migrateModel';
-import { logger } from 'common/lib/logger';
+import { MigrateModel, IMigrateDocument } from 'common/models/migrateModel';
+import { logger } from 'common/logger';
 import fs from 'fs/promises';
 import path from 'path';
-import { Config } from '../config';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { Config } from '../config.js';
 
-const migrationFolder = path.join(__dirname, '../migrations');
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
+const migrationFolder = path.join(moduleDirectory, '../migrations');
 
 async function loadMigration(
     fileName: string
 ): Promise<{ up: (config: Config) => Promise<void>; down: (config: Config) => Promise<void> }> {
-    return import(path.join(migrationFolder, fileName));
+    return import(pathToFileURL(path.join(migrationFolder, fileName)).href);
 }
 
 export async function migrate(config: Config) {

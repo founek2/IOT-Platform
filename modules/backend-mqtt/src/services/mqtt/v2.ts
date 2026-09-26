@@ -1,16 +1,16 @@
 import { Server as serverIO } from 'socket.io';
-import { DeviceStatus, IDevice } from 'common/lib/models/interface/device';
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { logger } from 'common/lib/logger';
-import { getThing } from 'common/lib/utils/getThing';
-import { getProperty } from 'common/lib/utils/getProperty';
-import { validateValue } from 'common/lib/utils/validateValue';
-import { SocketUpdateThingState } from 'common/lib/types';
+import { DeviceStatus, IDevice } from 'common/models/interface/device';
+import { DeviceModel } from 'common/models/deviceModel';
+import { logger } from 'common/logger';
+import { getThing } from 'common/utils/getThing';
+import { getProperty } from 'common/utils/getProperty';
+import { validateValue } from 'common/utils/validateValue';
+import { SocketUpdateThingState } from 'common/types';
 import { uniq } from 'ramda';
-import { InfluxService } from 'common/lib/services/influxService';
-import { NotificationService } from '../NotificationService';
-import { PropertyDataType } from 'common/lib/models/interface/thing';
-import { INTERNAL_PROPERTY_STATE_ID, INTERNAL_THING_ID } from 'common/lib/constants';
+import { InfluxService } from 'common/services/influxService';
+import { NotificationService } from '../NotificationService.js';
+import { PropertyDataType } from 'common/models/interface/thing';
+import { INTERNAL_PROPERTY_STATE_ID, INTERNAL_THING_ID } from 'common/constants';
 
 type cbFn = (topic: string, message: Buffer, groups: string[]) => void;
 export default function (handle: (stringTemplate: string, fn: cbFn) => void, io: serverIO, notificationService: NotificationService, influxService: InfluxService) {

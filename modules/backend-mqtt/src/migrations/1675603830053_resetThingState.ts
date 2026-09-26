@@ -1,5 +1,5 @@
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { Config } from '../config';
+import { DeviceModel } from 'common/models/deviceModel';
+import { Config } from '../config.js';
 
 export async function up(config: Config) {
     await DeviceModel.updateMany(

@@ -1,8 +1,8 @@
 import Router from '@koa/router';
-import { readDevicePermissionMiddleware } from 'common/lib/middlewares/device/readDevicePermissionMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
+import { readDevicePermissionMiddleware } from 'common/middlewares/device/readDevicePermissionMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 import type Koa from "koa";
-import { Context } from '../types';
+import { Context } from '../types/index.js';
 
 /**
  * URL prefix /device/:deviceId/thing/:thingId/history
