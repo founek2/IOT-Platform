@@ -1,7 +1,7 @@
 import { formDataMiddlewareIsPresent, tokenMiddlewareIsPresent } from "common/__test__/helpers/middlewareChecker"
 import { } from "common/__test__/helpers/accessToken"
-import { getAccessToken, getToken } from "./helpers/accessToken";
-import { credentials } from "./resources/credentials";
+import { getAccessToken, getToken } from "./helpers/accessToken.js";
+import { credentials } from "./resources/credentials.js";
 import { DeviceModel } from "common";
 
 test('accessToken middleware', async function () {

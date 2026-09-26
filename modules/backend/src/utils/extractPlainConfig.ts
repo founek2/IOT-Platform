@@ -1,4 +1,4 @@
-import { IThing } from 'common/lib/models/interface/thing';
+import { IThing } from 'common/models/interface/thing';
 import { clone, omit } from 'ramda';
 
 export type ThingPlainConfig = IThing['config'] & { properties: Omit<IThing['config']['properties'], '_id'>[] };

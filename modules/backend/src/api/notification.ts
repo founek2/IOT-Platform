@@ -1,11 +1,11 @@
-import fieldDescriptors from 'common/lib/fieldDescriptors';
-import { UserModel } from 'common/lib/models/userModel';
+import fieldDescriptors from 'common/fieldDescriptors';
+import { UserModel } from 'common/models/userModel';
 import Router from '@koa/router';
 import type Koa from "koa"
-import checkWritePermissionMiddleware from 'common/lib/middlewares/user/checkWritePermissionMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { Context } from '../types/index';
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
+import checkWritePermissionMiddleware from 'common/middlewares/user/checkWritePermissionMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { Context } from '../types/index.js';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
 
 /**
  * URL prefix /user

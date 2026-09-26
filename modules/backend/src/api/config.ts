@@ -1,10 +1,10 @@
 import { compose, lensProp, over, pick } from 'ramda';
-import { Config } from '../config';
+import { Config } from '../config.js';
 import Router from '@koa/router';
-import { Context } from '../types/index';
+import { Context } from '../types/index.js';
 import Koa from "koa"
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { checkIsRootMiddleware } from 'common/lib/middlewares/user/checkIsRootMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { checkIsRootMiddleware } from 'common/middlewares/user/checkIsRootMiddleware';
 
 /**
  * URL prefix /config

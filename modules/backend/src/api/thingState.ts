@@ -1,10 +1,10 @@
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { getThing } from 'common/lib/utils/getThing';
+import { DeviceModel } from 'common/models/deviceModel';
+import { getThing } from 'common/utils/getThing';
 import Router from '@koa/router';
 import Koa from "koa"
-import { Context } from '../types/index';
-import { readDevicePermissionMiddleware } from "common/lib/middlewares/device/readDevicePermissionMiddleware"
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
+import { Context } from '../types/index.js';
+import { readDevicePermissionMiddleware } from "common/middlewares/device/readDevicePermissionMiddleware"
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 
 /**
  * URL prefix /device/:deviceId/thing/:nodeId/state

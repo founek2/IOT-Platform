@@ -1,13 +1,13 @@
-import { loadConfig } from './config';
-import { logger } from 'common/lib/logger';
+import { loadConfig } from './config.js';
+import { logger } from 'common/logger';
 import mongoose from 'mongoose';
-import { bindServer } from './main';
-import { BusEmitter } from 'common/lib/interfaces/asyncEmitter';
+import { bindServer } from './main.js';
+import { BusEmitter } from 'common/interfaces/asyncEmitter';
 import Koa from "koa"
 import http from "http"
 import { AddressInfo } from 'net';
 import Router from '@koa/router';
-import { Context } from './types/index';
+import { Context } from './types/index.js';
 
 const config = loadConfig();
 const app = new Koa();

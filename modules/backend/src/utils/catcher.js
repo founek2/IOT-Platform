@@ -1,4 +1,4 @@
-import ErrorModel from 'common/lib/models/error';
+import ErrorModel from 'common/models/error';
 
 export default function (prefix) {
     return function (e) {

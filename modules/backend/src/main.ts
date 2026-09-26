@@ -1,19 +1,19 @@
 import { JwtService, UserService } from 'common';
-import loadersInit from './loaders';
-import { MailerService } from './services/mailerService';
-import { Config } from './config';
-import { Actions } from './services/actionsService';
-import { BrokerService } from './services/brokerService';
-import { BusEmitterType } from "common/lib/interfaces/asyncEmitter"
-import { PassKeeper } from "common/lib/services/passKeeperService";
+import loadersInit from './loaders/index.js';
+import { MailerService } from './services/mailerService.js';
+import { Config } from './config.js';
+import { Actions } from './services/actionsService.js';
+import { BrokerService } from './services/brokerService.js';
+import { BusEmitterType } from "common/interfaces/asyncEmitter"
+import { PassKeeper } from "common/services/passKeeperService";
 import Router from '@koa/router';
 import Koa from "koa"
-import { Context } from './types/index';
-import api from './api';
-import api2 from './api/v2';
-import { applyRouter } from 'common/lib/utils/applyRouter';
+import { Context } from './types/index.js';
+import api from './api/index.js';
+import api2 from './api/v2/index.js';
+import { applyRouter } from 'common/utils/applyRouter';
 
-export * from "./config"
+export * from "./config.js"
 export async function bindServer(router: Router<Koa.DefaultState, Context>, config: Config, bus: BusEmitterType) {
     /* INITIALIZE */
     const jwtService = new JwtService(config.jwt); // used in WebSocket middleware

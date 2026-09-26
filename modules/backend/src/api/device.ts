@@ -1,15 +1,15 @@
 import Router from '@koa/router';
-import fieldDescriptors from 'common/lib/fieldDescriptors';
-import { readDevicePermissionMiddleware } from 'common/lib/middlewares/device/readDevicePermissionMiddleware';
-import { writeDevicePermissionMiddleware } from 'common/lib/middlewares/device/writeDevicePermissionMiddleware';
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { IDevice } from 'common/lib/models/interface/device';
+import fieldDescriptors from 'common/fieldDescriptors';
+import { readDevicePermissionMiddleware } from 'common/middlewares/device/readDevicePermissionMiddleware';
+import { writeDevicePermissionMiddleware } from 'common/middlewares/device/writeDevicePermissionMiddleware';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { DeviceModel } from 'common/models/deviceModel';
+import { IDevice } from 'common/models/interface/device';
 import Koa from "koa";
-import { DeviceService } from '../services/deviceService';
-import eventEmitter from '../services/eventEmitter';
-import { Context } from '../types';
+import { DeviceService } from '../services/deviceService.js';
+import eventEmitter from '../services/eventEmitter.js';
+import { Context } from '../types/index.js';
 
 /**
  * URL prefix /device

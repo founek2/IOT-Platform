@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { IDevice } from 'common/lib/models/interface/device';
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { NotifyModel } from 'common/lib/models/notifyModel';
+import { IDevice } from 'common/models/interface/device';
+import { DeviceModel } from 'common/models/deviceModel';
+import { NotifyModel } from 'common/models/notifyModel';
 
 /**
  * Service for managing device

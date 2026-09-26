@@ -1,16 +1,16 @@
 import Router from '@koa/router';
-import { getAllowedGroups } from 'common/lib/constants/privileges';
-import fieldDescriptors from 'common/lib/fieldDescriptors';
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { rateLimiterMiddleware } from 'common/lib/middlewares/rateLimiterMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import checkWritePermissionMiddleware from 'common/lib/middlewares/user/checkWritePermissionMiddleware';
-import { IUser } from 'common/lib/models/interface/userInterface';
-import { TokenModel } from 'common/lib/models/tokenModel';
-import { UserModel } from 'common/lib/models/userModel';
+import { getAllowedGroups } from 'common/constants/privileges';
+import fieldDescriptors from 'common/fieldDescriptors';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { rateLimiterMiddleware } from 'common/middlewares/rateLimiterMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import checkWritePermissionMiddleware from 'common/middlewares/user/checkWritePermissionMiddleware';
+import { IUser } from 'common/models/interface/userInterface';
+import { TokenModel } from 'common/models/tokenModel';
+import { UserModel } from 'common/models/userModel';
 import type Koa from "koa";
-import eventEmitter from '../services/eventEmitter';
-import { Context } from '../types';
+import eventEmitter from '../services/eventEmitter.js';
+import { Context } from '../types/index.js';
 
 function removeUserItself(id: IUser['_id']) {
     return function (doc: IUser) {

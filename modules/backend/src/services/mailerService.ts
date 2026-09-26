@@ -1,10 +1,12 @@
-import { logger } from 'common/lib/logger';
+import { logger } from 'common/logger';
 import Email from 'email-templates';
 import { createTransport } from 'nodemailer';
-import path from 'path';
-import { Config } from '../config';
-import { IToken } from 'common/lib/models/tokenModel';
+import path from 'node:path';
+import { Config } from '../config.js';
+import { IToken } from 'common/models/tokenModel';
+import { fileURLToPath } from 'node:url';
 
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Service for sending emails
@@ -46,7 +48,7 @@ export class MailerService {
         if (!this.defaultEmail) return false;
 
         const result = await this.defaultEmail.send({
-            template: path.join(__dirname, '../templates/emails/registration'),
+            template: path.join(moduleDirectory, '../templates/emails/registration'),
             message: {
                 to: user.info.email,
             },
@@ -62,7 +64,7 @@ export class MailerService {
         if (!this.defaultEmail) return false;
 
         await this.defaultEmail.send({
-            template: path.join(__dirname, '../templates/emails/login'),
+            template: path.join(moduleDirectory, '../templates/emails/login'),
             message: {
                 to: email,
             },
@@ -77,13 +79,13 @@ export class MailerService {
 
         await this.defaultEmail
             .send({
-                template: path.join(__dirname, '../templates/emails/password_reset'),
+                template: path.join(moduleDirectory, '../templates/emails/password_reset'),
                 message: {
                     to: user.info.email,
                     // attachments: [
                     //     {
                     //         filename: 'email_banner.png',
-                    //         path: path.join(__dirname, '../templates/emails/password_reset/email_banner.png'),
+                    //         path: path.join(moduleDirectory, '../templates/emails/password_reset/email_banner.png'),
                     //         cid: 'banner',
                     //     },
                     // ],

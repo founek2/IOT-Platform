@@ -1,18 +1,18 @@
 import Router from '@koa/router';
 import { fieldDescriptors, logger } from 'common';
-import { controlDevicePermissionMiddleware } from 'common/lib/middlewares/device/controlDevicePermissionMiddleware';
-import { writeDevicePermissionMiddleware } from 'common/lib/middlewares/device/writeDevicePermissionMiddleware';
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { IDevice } from 'common/lib/models/interface/device';
-import { getProperty } from 'common/lib/utils/getProperty';
-import { getThing } from 'common/lib/utils/getThing';
-import { sendError } from 'common/lib/utils/sendError';
-import { validateValue } from 'common/lib/utils/validateValue';
+import { controlDevicePermissionMiddleware } from 'common/middlewares/device/controlDevicePermissionMiddleware';
+import { writeDevicePermissionMiddleware } from 'common/middlewares/device/writeDevicePermissionMiddleware';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { DeviceModel } from 'common/models/deviceModel';
+import { IDevice } from 'common/models/interface/device';
+import { getProperty } from 'common/utils/getProperty';
+import { getThing } from 'common/utils/getThing';
+import { sendError } from 'common/utils/sendError';
+import { validateValue } from 'common/utils/validateValue';
 import Koa from "koa";
-import { Context } from '../types';
-import { ObjectId } from '../utils/objectId';
+import { Context } from '../types/index.js';
+import { ObjectId } from '../utils/objectId.js';
 
 /**
  * URL prefix /device/:deviceId/thing/:nodeId

@@ -1,11 +1,11 @@
 import Router from '@koa/router';
-import { checkRealmReadPermissionMiddleware } from "common/lib/middlewares/device/checkRealmReadPermissionMiddleware";
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { getThing } from 'common/lib/utils/getThing';
-import { sendError } from 'common/lib/utils/sendError';
+import { checkRealmReadPermissionMiddleware } from "common/middlewares/device/checkRealmReadPermissionMiddleware";
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { DeviceModel } from 'common/models/deviceModel';
+import { getThing } from 'common/utils/getThing';
+import { sendError } from 'common/utils/sendError';
 import Koa from "koa";
-import { Context } from '../../types';
+import { Context } from '../../types/index.js';
 
 /**
  * URL prefix /device/:deviceId/thing/:nodeId/state

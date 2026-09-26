@@ -1,5 +1,5 @@
-import { ComponentType, PropertyDataType } from "common/lib/models/interface/thing";
-import { IUser } from "common/lib/models/interface/userInterface";
+import { ComponentType, PropertyDataType } from "common/models/interface/thing";
+import { IUser } from "common/models/interface/userInterface";
 
 export const credentials = {
     user: {

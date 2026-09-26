@@ -1,4 +1,4 @@
-import { extractPlainConfig } from './extractPlainConfig';
+import { extractPlainConfig } from './extractPlainConfig.js';
 
 const existingThings = [
     {

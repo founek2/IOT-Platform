@@ -1,12 +1,12 @@
 import should from 'should';
-import forms from './resources/forms/deviceForm';
+import forms from './resources/forms/deviceForm.js';
 import authChecker from './lib/authMiddlewareCheck';
 import formDataChecker from './lib/formDataMiddlewareCheck';
-import dbConnect from './helpers/prepareDb';
+import dbConnect from './helpers/prepareDb.js';
 import mongoose from 'mongoose';
 import { getAdminToken, getUserToken } from './lib/tokens.js';
 import { server } from './lib/superTest';
-import { DeviceModel } from 'common/lib/models/deviceModel';
+import { DeviceModel } from 'common/models/deviceModel';
 // import permMiddlewareChecker from './lib/authMiddlewareCheck'
 
 const ObjectId = mongoose.Types.ObjectId;

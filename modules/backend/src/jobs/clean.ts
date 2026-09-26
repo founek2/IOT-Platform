@@ -1,7 +1,7 @@
 import Agenda from 'agenda';
-import { AGENDA_JOB_TYPE } from 'common/lib/constants/agenda';
+import { AGENDA_JOB_TYPE } from 'common/constants/agenda';
 import subDays from 'date-fns/subDays';
-import { logger } from 'common/lib/logger';
+import { logger } from 'common/logger';
 
 export default function (agenda: Agenda) {
     agenda.define(AGENDA_JOB_TYPE.REMOVE_OLD_JOBS, async (job) => {

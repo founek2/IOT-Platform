@@ -1,5 +1,5 @@
-import { FormFieldDescriptors } from 'common/lib/validations';
-import validationFactory from 'common/lib/validations/validationFactory';
+import { FormFieldDescriptors } from 'common/validations';
+import validationFactory from 'common/validations/validationFactory';
 
 const REGISTRATION: FormFieldDescriptors = {
     info: {

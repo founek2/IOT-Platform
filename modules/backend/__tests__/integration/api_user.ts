@@ -1,14 +1,14 @@
 import should from 'should';
-import forms from '../resources/forms/userForms';
+import forms from '../resources/forms/userForms.js';
 import { server } from '../lib/superTest';
 
-import { UserModel } from 'common/lib/models/userModel';
+import { UserModel } from 'common/models/userModel';
 import permMiddlewareChecker from '../lib/authMiddlewareCheck';
 import { getAdminToken, getUserToken } from '../lib/tokens';
 import mongoose from 'mongoose';
-import { credentials } from '../resources/credentials';
+import { credentials } from '../resources/credentials.js';
 import { toPairs, assocPath } from 'ramda';
-import { IUser } from 'common/lib/models/interface/userInterface';
+import { IUser } from 'common/models/interface/userInterface';
 
 async function createUser10(): Promise<{ token: string; user: IUser }> {
     const res = await server // create user: test10

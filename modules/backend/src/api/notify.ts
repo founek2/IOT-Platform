@@ -1,12 +1,12 @@
-import fieldDescriptors from 'common/lib/fieldDescriptors';
-import { NotifyModel } from 'common/lib/models/notifyModel';
-import { transformNotifyForBE } from 'common/lib/utils/transform';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
+import fieldDescriptors from 'common/fieldDescriptors';
+import { NotifyModel } from 'common/models/notifyModel';
+import { transformNotifyForBE } from 'common/utils/transform';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 import Router from '@koa/router';
 import Koa from "koa"
-import { Context } from '../types/index';
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { readDevicePermissionMiddleware } from 'common/lib/middlewares/device/readDevicePermissionMiddleware';
+import { Context } from '../types/index.js';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { readDevicePermissionMiddleware } from 'common/middlewares/device/readDevicePermissionMiddleware';
 
 /**
  * URL prefix /device/:deviceId/thing/:nodeId/notify

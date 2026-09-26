@@ -1,9 +1,9 @@
-import { bindServer } from '../../src/main';
-import config from "../resources/config";
+import { bindServer } from '../../src/main.js';
+import config from "../resources/config.js";
 import express from "express"
 import { spawnDatabase } from "common/__test__/helpers/setup"
 import { setGlobalApp } from 'common/__test__/helpers/superTest';
-import { BusEmitter } from 'common/lib/interfaces/asyncEmitter';
+import { BusEmitter } from 'common/interfaces/asyncEmitter';
 
 export default async function () {
     if (process.env.SPAWN_DATABASE) {

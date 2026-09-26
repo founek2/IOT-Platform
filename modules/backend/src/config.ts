@@ -1,5 +1,9 @@
 import { logger } from 'common';
-import path from 'path';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import dotenv from 'dotenv';
+
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 function mustGetString(key: string, defaultValue?: string): string {
     const value = process.env[key];
@@ -13,10 +17,10 @@ function mustGetString(key: string, defaultValue?: string): string {
 
 export const loadConfig = (pathToDotEnvFile?: string) => {
     if (!pathToDotEnvFile) {
-        pathToDotEnvFile = path.join(__dirname, '../../../.env');
+        pathToDotEnvFile = path.join(moduleDirectory, '../../../.env');
     }
     const finalPath = process.env.ENV_CONFIG_PATH ? process.env.ENV_CONFIG_PATH : path.resolve(pathToDotEnvFile);
-    require('dotenv').config({
+    dotenv.config({
         path: finalPath,
     });
     logger.info(`loading .env from ${finalPath}, env=${process.env.NODE_ENV}`);

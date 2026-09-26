@@ -1,10 +1,10 @@
-import { Connections, OverView } from '../types/rabbitmq';
-import { Actions } from './actionsService';
+import { Connections, OverView } from '../types/rabbitmq.js';
+import { Actions } from './actionsService.js';
 import { addMinutes, isBefore } from 'date-fns';
 import { Maybe, Just, Nothing } from 'purify-ts/Maybe';
 import fetch from 'node-fetch';
-import { Config } from '../config';
-import { PassKeeper } from 'common/lib/services/passKeeperService';
+import { Config } from '../config.js';
+import { PassKeeper } from 'common/services/passKeeperService';
 import { logger } from 'common';
 
 const CACHE_MINUTES = 3;

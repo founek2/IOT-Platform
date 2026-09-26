@@ -1,7 +1,7 @@
-import { logger } from 'common/lib/logger';
+import { logger } from 'common/logger';
 import mongoose from 'mongoose';
-import { connectMongoose } from 'common/lib/utils/connectMongoose';
-import { Config } from '../config';
+import { connectMongoose } from 'common/utils/connectMongoose';
+import { Config } from '../config.js';
 
 /* Initialize connection to mongoDB */
 export default async (config: Config): Promise<mongoose.Connection | null> => {

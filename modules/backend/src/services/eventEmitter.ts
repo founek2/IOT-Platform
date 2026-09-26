@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
-import * as types from '../types';
-import { TypedEmitter } from "common/lib/emitter/typedEmitter";
+import * as types from '../types/index.js';
+import { TypedEmitter } from "common/emitter/typedEmitter";
 
 class MyClass extends TypedEmitter<types.EmitterEvents> { }
 

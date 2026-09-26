@@ -1,10 +1,10 @@
-import thing from './thing';
-import propertyState from './propertyState';
-import thingState from './thingState';
+import thing from './thing.js';
+import propertyState from './propertyState.js';
+import thingState from './thingState.js';
 import Router from '@koa/router';
 import Koa from "koa"
-import { Context } from '../../types/index';
-import { applyRouter } from 'common/lib/utils/applyRouter';
+import { Context } from '../../types/index.js';
+import { applyRouter } from 'common/utils/applyRouter';
 
 export default () => {
     let api = new Router<Koa.DefaultState, Context>();

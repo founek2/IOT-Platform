@@ -1,7 +1,7 @@
-import { IDevice, DeviceCommand } from 'common/lib/models/interface/device';
-import { IDiscovery } from 'common/lib/models/interface/discovery';
-import { IThing, IThingProperty } from 'common/lib/models/interface/thing';
-import { BusEmitterType } from 'common/lib/interfaces/asyncEmitter';
+import { IDevice, DeviceCommand } from 'common/models/interface/device';
+import { IDiscovery } from 'common/models/interface/discovery';
+import { IThing, IThingProperty } from 'common/models/interface/thing';
+import { BusEmitterType } from 'common/interfaces/asyncEmitter';
 import fetch from 'node-fetch';
 
 /**

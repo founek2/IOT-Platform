@@ -1,4 +1,4 @@
-import emitter from './eventEmitter';
+import emitter from './eventEmitter.js';
 
 const user = {
     id: 1,

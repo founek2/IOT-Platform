@@ -1,9 +1,9 @@
-import fieldDescriptors from 'common/lib/fieldDescriptors';
-import { UserModel } from 'common/lib/models/userModel';
+import fieldDescriptors from 'common/fieldDescriptors';
+import { UserModel } from 'common/models/userModel';
 import Router from '@koa/router';
 import Koa from "koa"
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { Context } from '../types/index';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { Context } from '../types/index.js';
 
 /**
  * URL prefix /subscriptionChange

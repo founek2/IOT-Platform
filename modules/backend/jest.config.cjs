@@ -87,6 +87,8 @@ module.exports = {
 
     extensionsToTreatAsEsm: ['.ts'],
     moduleNameMapper: {
+        '^common/__test__/(.*)$': '<rootDir>/../common/__test__/$1',
+        '^common/lib/(.*)$': '<rootDir>/../common/lib/$1',
         '^(\\.{1,2}/.*)\\.js$': '$1'
     },
 

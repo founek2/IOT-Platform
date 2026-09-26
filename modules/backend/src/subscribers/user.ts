@@ -1,8 +1,8 @@
-import { BackendEmitter } from '../services/eventEmitter';
-import * as types from '../types';
-import { AGENDA_JOB_TYPE } from 'common/lib/constants/agenda';
-import { UserService } from 'common/lib/services/userService';
-import { logger } from 'common/lib/logger';
+import { BackendEmitter } from '../services/eventEmitter.js';
+import * as types from '../types/index.js';
+import { AGENDA_JOB_TYPE } from 'common/constants/agenda';
+import { UserService } from 'common/services/userService';
+import { logger } from 'common/logger';
 import Agenda from 'agenda';
 
 export default function (eventEmitter: BackendEmitter, agenda: Agenda, userService: UserService) {

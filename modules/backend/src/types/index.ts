@@ -1,10 +1,10 @@
-import { ControlRecipe } from 'common/lib/types';
-import { IUser } from 'common/lib/models/interface/userInterface';
-import { JwtService } from 'common/lib/services/jwtService';
-import { UserService } from 'common/lib/services/userService';
-import { MailerService } from '../services/mailerService';
-import { Actions } from '../services/actionsService';
-import { BrokerService } from '../services/brokerService';
+import { ControlRecipe } from 'common/types';
+import { IUser } from 'common/models/interface/userInterface';
+import { JwtService } from 'common/services/jwtService';
+import { UserService } from 'common/services/userService';
+import { MailerService } from '../services/mailerService.js';
+import { Actions } from '../services/actionsService.js';
+import { BrokerService } from '../services/brokerService.js';
 
 export interface EmitterEvents {
     user_login: IUser;

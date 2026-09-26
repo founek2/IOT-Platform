@@ -1,8 +1,8 @@
 import Router from '@koa/router';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { checkIsRootMiddleware } from 'common/lib/middlewares/user/checkIsRootMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { checkIsRootMiddleware } from 'common/middlewares/user/checkIsRootMiddleware';
 import Koa from "koa";
-import { Context } from '../types';
+import { Context } from '../types/index.js';
 
 /**
  * URL prefix /broker

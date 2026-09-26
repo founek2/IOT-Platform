@@ -1,4 +1,4 @@
-import config from "../resources/config";
+import config from "../resources/config.js";
 import { getTokenFactory } from "common/__test__/helpers/accessToken"
 import { DeviceModel } from "common";
 

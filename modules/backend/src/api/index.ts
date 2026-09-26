@@ -1,19 +1,19 @@
-import user from './user';
-import device from './device';
-import notify from './notify';
-import discovery from './discovery';
-import thing from './thing';
-import thingState from './thingState';
-import accessToken from './accessToken';
-import subscriptionChange from './subscriptionChange';
-import broker from './broker';
-import configApi from './config';
-import { Config } from '../config';
-import notification from './notification';
+import user from './user.js';
+import device from './device.js';
+import notify from './notify.js';
+import discovery from './discovery.js';
+import thing from './thing.js';
+import thingState from './thingState.js';
+import accessToken from './accessToken.js';
+import subscriptionChange from './subscriptionChange.js';
+import broker from './broker.js';
+import configApi from './config.js';
+import { Config } from '../config.js';
+import notification from './notification.js';
 import Router from "@koa/router"
 import type Koa from "koa";
-import { Context } from '../types/index';
-import { applyRouter } from "common/lib/utils/applyRouter"
+import { Context } from '../types/index.js';
+import { applyRouter } from "common/utils/applyRouter"
 
 export default ({ config }: { config: Config }) => {
     let api = new Router<Koa.DefaultState, Context>();

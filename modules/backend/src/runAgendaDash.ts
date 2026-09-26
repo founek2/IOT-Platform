@@ -1,9 +1,11 @@
-import { loadConfig } from './config';
-import { spawn } from 'child_process';
-import path from 'path';
+import { loadConfig } from './config.js';
+import { spawn } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const config = loadConfig()
-const pathToBin = path.resolve(__dirname, '../node_modules/.bin/agendash');
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
+const packageDirectory = path.resolve(moduleDirectory, '..');
 
 let child: any;
 const argv = [`--db=${config.dbUri}`, '--collection=agendaJobs', '--port=8089'];
@@ -12,9 +14,9 @@ const argv = [`--db=${config.dbUri}`, '--collection=agendaJobs', '--port=8089'];
  * StartUp AgendaDash server - webUI dashboard for agenda jobs
  */
 function startChild() {
-    console.log('STARTING', process.execPath, 'child.js', argv);
-    child = spawn(pathToBin, argv, {
-        cwd: process.cwd(),
+    console.log('STARTING', 'yarn exec agendash', argv);
+    child = spawn('yarn', ['exec', 'agendash', ...argv], {
+        cwd: packageDirectory,
         env: process.env,
         detached: true,
     });

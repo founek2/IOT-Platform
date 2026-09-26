@@ -1,6 +1,6 @@
 import DatabaseHelper from 'common/__test__/helpers/database';
-import prepareDb from '../helpers/prepareDb';
-import config from "../resources/config";
+import prepareDb from '../helpers/prepareDb.js';
+import config from "../resources/config.js";
 
 beforeAll(async () => {
     await DatabaseHelper.connect(config.dbUri);

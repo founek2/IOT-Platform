@@ -1,7 +1,7 @@
 import { server } from '../lib/superTest';
 import { getAdminToken, getUserToken } from '../lib';
-import { credentials } from '../resources/credentials';
-import forms from '../resources/forms/userForms';
+import { credentials } from '../resources/credentials.js';
+import forms from '../resources/forms/userForms.js';
 
 describe('Authorization API login', function () {
     test('shoud return unknownUser', async function () {

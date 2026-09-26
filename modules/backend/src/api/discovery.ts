@@ -1,20 +1,20 @@
 import Router from '@koa/router';
 import { UserModel } from 'common';
-import fieldDescriptors from 'common/lib/fieldDescriptors';
-import { checkDiscoveryMiddleware } from "common/lib/middlewares/discovery/checkDiscoveryMiddleware";
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { DiscoveryModel, IDiscoveryDocument } from 'common/lib/models/deviceDiscoveryModel';
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { DeviceStatus } from 'common/lib/models/interface/device';
-import { IThing } from 'common/lib/models/interface/thing';
-import { sendError } from "common/lib/utils/sendError";
+import fieldDescriptors from 'common/fieldDescriptors';
+import { checkDiscoveryMiddleware } from "common/middlewares/discovery/checkDiscoveryMiddleware";
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { DiscoveryModel, IDiscoveryDocument } from 'common/models/deviceDiscoveryModel';
+import { DeviceModel } from 'common/models/deviceModel';
+import { DeviceStatus } from 'common/models/interface/device';
+import { IThing } from 'common/models/interface/thing';
+import { sendError } from "common/utils/sendError";
 import Koa from "koa";
 import mongoose from 'mongoose';
 import { assocPath, map } from 'ramda';
-import eventEmitter from '../services/eventEmitter';
-import { Context } from '../types';
-import { convertDiscoveryThing } from '../utils/convertDiscoveryThing';
+import eventEmitter from '../services/eventEmitter.js';
+import { Context } from '../types/index.js';
+import { convertDiscoveryThing } from '../utils/convertDiscoveryThing.js';
 
 const ObjectId = mongoose.Types.ObjectId;
 
