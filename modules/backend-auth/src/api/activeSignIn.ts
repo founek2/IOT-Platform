@@ -1,7 +1,7 @@
 import { UserModel } from 'common';
-import { Context } from '../types';
+import { Context } from '../types/index.js';
 import { UAParser } from 'ua-parser-js';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 import Router from '@koa/router';
 import type Koa from "koa"
 

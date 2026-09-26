@@ -1,8 +1,8 @@
-import { DeviceModel } from 'common/lib/models/deviceModel';
-import { AuthType } from 'common/lib/constants';
-import { UserModel } from 'common/lib/models/userModel';
-import { logger } from 'common/lib/logger';
-import { Context, KoaContext } from '../types';
+import { DeviceModel } from 'common/models/deviceModel';
+import { AuthType } from 'common/constants';
+import { UserModel } from 'common/models/userModel';
+import { logger } from 'common/logger';
+import { Context, KoaContext } from '../types/index.js';
 import Router from "@koa/router"
 import type Koa from "koa"
 

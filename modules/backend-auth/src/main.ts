@@ -1,18 +1,18 @@
 import type Router from "@koa/router";
 import { JwtService, UserService } from 'common';
-import { BusEmitterType } from 'common/lib/interfaces/asyncEmitter';
-import { connectMongoose } from 'common/lib/utils/connectMongoose';
-import { applyRouter } from 'common/lib/utils/applyRouter';
+import { BusEmitterType } from 'common/interfaces/asyncEmitter';
+import { connectMongoose } from 'common/utils/connectMongoose';
+import { applyRouter } from 'common/utils/applyRouter';
 import type Koa from "koa";
-import api from './api';
-import { Config } from './config';
-import eventEmitter from './services/eventEmitter';
-import { OAuthService } from './services/oauthService';
-import { TemporaryPass } from './services/TemporaryPass';
-import initSubscribers from './subscribers';
-import { Context } from './types';
+import api from './api/index.js';
+import { Config } from './config.js';
+import eventEmitter from './services/eventEmitter.js';
+import { OAuthService } from './services/oauthService.js';
+import { TemporaryPass } from './services/TemporaryPass.js';
+import initSubscribers from './subscribers/index.js';
+import { Context } from './types/index.js';
 
-export * from "./config";
+export * from "./config.js";
 export async function bindServer(router: Router<Koa.DefaultState, Context>, config: Config, bus: BusEmitterType) {
     /* INITIALIZE */
     const jwtService = new JwtService(config.jwt); // used in WebSocket middleware

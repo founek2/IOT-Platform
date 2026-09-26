@@ -1,7 +1,7 @@
-import { logger } from 'common/lib/logger';
-import { Context } from '../types';
+import { logger } from 'common/logger';
+import { Context } from '../types/index.js';
 import { UserModel } from 'common';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 import Router from '@koa/router';
 import type Koa from "koa"
 

@@ -1,9 +1,9 @@
 import Router from '@koa/router';
 import { fieldDescriptors } from 'common';
-import { formDataMiddleware } from "common/lib/middlewares/formDataMiddleware";
-import { rateLimiterMiddleware } from 'common/lib/middlewares/rateLimiterMiddleware';
+import { formDataMiddleware } from "common/middlewares/formDataMiddleware";
+import { rateLimiterMiddleware } from 'common/middlewares/rateLimiterMiddleware';
 import Koa from "koa";
-import { Context } from '../types';
+import { Context } from '../types/index.js';
 
 /**
  * URL prefix /authorization

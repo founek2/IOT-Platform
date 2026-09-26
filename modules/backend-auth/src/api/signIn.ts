@@ -1,13 +1,13 @@
 import Router from '@koa/router';
 import { fieldDescriptors, logger, UserModel } from 'common';
-import { formDataMiddleware } from 'common/lib/middlewares/formDataMiddleware';
-import { rateLimiterMiddleware } from 'common/lib/middlewares/rateLimiterMiddleware';
-import { tokenAuthMiddleware } from 'common/lib/middlewares/tokenAuthMiddleware';
-import { OAuthProvider } from 'common/lib/models/interface/userInterface';
+import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
+import { rateLimiterMiddleware } from 'common/middlewares/rateLimiterMiddleware';
+import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
+import { OAuthProvider } from 'common/models/interface/userInterface';
 import Koa from "koa";
 import { EitherAsync } from 'purify-ts';
-import eventEmitter from '../services/eventEmitter';
-import { Context, KoaResponseContext } from '../types';
+import eventEmitter from '../services/eventEmitter.js';
+import { Context, KoaResponseContext } from '../types/index.js';
 
 export default function (): Router<Koa.DefaultState, Context> {
     const router = new Router<Koa.DefaultState, Context>();

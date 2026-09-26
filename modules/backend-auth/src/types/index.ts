@@ -1,8 +1,8 @@
 import { JwtService, UserService } from "common";
-import { OAuthService } from "../services/oauthService";
-import { TemporaryPass } from "../services/TemporaryPass";
+import { OAuthService } from "../services/oauthService.js";
+import { TemporaryPass } from "../services/TemporaryPass.js";
 import Koa from "koa"
-import { FormData } from "common/lib/validations";
+import { FormData } from "common/validations";
 export interface UpdateThingState {
     _id: string;
     state: any;

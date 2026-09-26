@@ -1,12 +1,12 @@
-import auth from './auth';
-import signIn from './signIn';
-import signOut from './signOut';
-import activeSignIn from './activeSignIn';
-import refresh from './refreshToken';
-import { Context } from '../types';
+import auth from './auth.js';
+import signIn from './signIn.js';
+import signOut from './signOut.js';
+import activeSignIn from './activeSignIn.js';
+import refresh from './refreshToken.js';
+import { Context } from '../types/index.js';
 import Router from "@koa/router"
 import type Koa from "koa";
-import { applyRouter } from "common/lib/utils/applyRouter"
+import { applyRouter } from "common/utils/applyRouter"
 
 export default (): Router<Koa.DefaultState, Context> => {
     let api = new Router<Koa.DefaultState, Context>();

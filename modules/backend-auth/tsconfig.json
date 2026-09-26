@@ -1,12 +1,20 @@
 {
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
-        "baseUrl": ".",
         "rootDir": "./src",
         "outDir": "./dist",
-        "moduleResolution": "node"
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext"
     },
-    "references": [{ "path": "../common" }],
-    "include": ["./src"],
-    "exclude": ["./dist"]
+    "references": [
+        {
+            "path": "../common"
+        }
+    ],
+    "include": [
+        "./src"
+    ],
+    "exclude": [
+        "./dist"
+    ]
 }

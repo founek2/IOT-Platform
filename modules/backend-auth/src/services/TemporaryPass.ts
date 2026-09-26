@@ -1,11 +1,11 @@
-import { Security } from 'common/lib/services/SecurityService';
-import addMinutes from 'date-fns/addMinutes';
-import isBefore from 'date-fns/isBefore';
-import { UserModel } from 'common/lib/models/userModel';
+import { Security } from 'common/services/SecurityService';
+import { addMinutes } from 'date-fns/addMinutes';
+import { isBefore } from 'date-fns/isBefore';
+import { UserModel } from 'common/models/userModel';
 import { Maybe, Just, Nothing } from 'purify-ts/Maybe';
-import { logger } from 'common/lib/logger';
-import { BusEmitterType, Pass } from "common/lib/interfaces/asyncEmitter"
-import { Config } from '../config';
+import { logger } from 'common/logger';
+import { BusEmitterType, Pass } from "common/interfaces/asyncEmitter"
+import { Config } from '../config.js';
 
 async function generatePass(): Promise<Maybe<Pass>> {
     logger.debug('Generating new pass');

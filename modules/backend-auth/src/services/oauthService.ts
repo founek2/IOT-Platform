@@ -1,7 +1,7 @@
-import { Config } from '../config';
-import { OAuthProvider } from 'common/lib/models/interface/userInterface';
+import { Config } from '../config.js';
+import { OAuthProvider } from 'common/models/interface/userInterface';
 import { Maybe, Just, Nothing } from 'purify-ts/Maybe';
-import { logger } from 'common/lib/logger';
+import { logger } from 'common/logger';
 import fetch from 'node-fetch';
 
 export interface AuthorizationSeznam {
