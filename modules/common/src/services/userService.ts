@@ -83,10 +83,10 @@ export class UserService {
         userName,
         authType,
         password,
-    }: CredentialData, userAgent: string): Promise<Either<string, IUser>> {
+    }: CredentialData, userAgent: string): Promise<Either<string, IUserDocument>> {
         if (authType !== AuthType.passwd) return Left('notImplemented');
 
-        const doc = await UserModel.findOne({ 'info.userName': userName, 'auth.types': authType }).lean();
+        const doc = await UserModel.findOne({ 'info.userName': userName, 'auth.types': authType });
         if (!doc) return Left('unknownUser');
 
         const matched = await comparePasswd(password, doc.auth.password as string);
@@ -99,7 +99,7 @@ export class UserService {
         userName,
         authType,
         password,
-    }: CredentialData, userAgent: string): Promise<Either<string, { doc: IUser; accessToken: string, refreshToken: string }>> {
+    }: CredentialData, userAgent: string): Promise<Either<string, { doc: IUserDocument; accessToken: string, refreshToken: string }>> {
         const checked = await this.checkCreditals({ userName, authType, password }, userAgent)
         if (checked.isLeft())
             // return checked.leftOrDefault("failed")

@@ -33,7 +33,11 @@ export default () => {
         readDevicePermissionMiddleware(),
         async (ctx) => {
             const device = await DeviceModel.findById(ctx.params.id);
-            ctx.body = device;
+            if (!device) {
+                ctx.status = 404;
+                return;
+            }
+            ctx.body = device.toObject();
         })
 
     api.patch("/:id",
@@ -67,7 +71,10 @@ export default () => {
         writeDevicePermissionMiddleware(),
         async (ctx) => {
             const result = await DeviceService.deleteById(ctx.params.id);
-            if (!result) ctx.status = 404;
+            if (!result) {
+                ctx.status = 404;
+                return;
+            }
 
             ctx.status = 204;
             eventEmitter.emit('device_delete', ctx.params.id);

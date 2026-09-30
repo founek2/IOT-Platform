@@ -40,7 +40,7 @@ export default function (): Router<Koa.DefaultState, Context> {
                     })
                     .ifRight(({ doc, accessToken, refreshToken }) => {
                         ctx.body = {
-                            user: doc,
+                            user: doc.toObject(),
                             accessToken,
                             refreshToken,
                         };

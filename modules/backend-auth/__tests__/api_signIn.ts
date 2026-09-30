@@ -15,6 +15,10 @@ async function sendSignIn(userName: string, password: string): Promise<{ accessT
     expect(res.body.accessToken).toBeTruthy();
     expect(res.body.refreshToken).toBeTruthy();
     expect(res.body.user.info.userName).toBe(userName);
+    expect(res.body.user._id).toBeTruthy();
+    expect(res.body.user).not.toHaveProperty('auth');
+    expect(res.body.user).not.toHaveProperty('accessTokens');
+    expect(res.body.user).not.toHaveProperty('refreshTokens');
 
     return res.body;
 }

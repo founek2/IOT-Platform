@@ -6,7 +6,7 @@ import { sendError } from '../../utils/sendError.js';
 import checkDeviceMiddleware from './checkDeviceMiddleware.js';
 
 /**
- * Middleware to check if device exists and user has permission to read it
+ * Middleware to check if device exists and user has permission to write it
  * @param options - params[paramKey] -> IDevice["_id"]
  */
 export function writeDevicePermissionMiddleware<C extends KoaContext & HasState>(options: { paramKey: string } = { paramKey: 'id' }) {
@@ -19,7 +19,7 @@ export function writeDevicePermissionMiddleware<C extends KoaContext & HasState>
             if (ctx.state.user.admin) return next();
 
             if (
-                ctx.state.user.accessPermissions?.includes(Permission.read) &&
+                ctx.state.user.accessPermissions?.includes(Permission.write) &&
                 (await DeviceModel.checkWritePerm(deviceId, ctx.state.user._id))
             )
                 return next();
