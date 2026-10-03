@@ -417,6 +417,40 @@ const AUTHORIZATION: FormFieldDescriptors = {
     },
 };
 
+const USER_DASHBOARD: FormFieldDescriptors = {
+    preferences: {
+        deepPath: 'USER_DASHBOARD.preferences',
+        required: false,
+        label: 'Preference',
+        name: 'preferences',
+        validations: [validationFactory('isArray', {
+            descriptor: {
+                propertyId: {
+                    deepPath: 'USER_DASHBOARD.preferences.propertyId',
+                    required: true,
+                    label: 'ID vlastnosti',
+                    name: 'propertyId',
+                    validations: [validationFactory('isString', { min: 1, max: 40 })],
+                },
+                thingId: {
+                    deepPath: 'USER_DASHBOARD.preferences.thingId',
+                    required: true,
+                    label: 'ID věci',
+                    name: 'thingId',
+                    validations: [validationFactory('isString', { min: 1, max: 40 })],
+                },
+                group: {
+                    deepPath: 'USER_DASHBOARD.preferences.group',
+                    required: false,
+                    label: 'Skupina',
+                    name: 'group',
+                    validations: [validationFactory('isString', { min: 1, max: 40 })],
+                }
+            }
+        })],
+    },
+};
+
 const descriptors: FieldDescriptors = {
     LOGIN,
     REGISTRATION,
@@ -437,6 +471,7 @@ const descriptors: FieldDescriptors = {
     EDIT_THING,
     REFRESH_TOKEN,
     MODIFY_PUSH_SUBSCRIPTION,
+    USER_DASHBOARD,
 };
 
 export default descriptors;

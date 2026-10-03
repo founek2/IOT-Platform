@@ -1,5 +1,5 @@
 import mongoose, { Model } from 'mongoose';
-import { IUser, PushSubscription, IRefreshToken } from './interface/userInterface.js';
+import { IUser, PushSubscription, IRefreshToken, IUserDashboard } from './interface/userInterface.js';
 import { IUserDocument, userSchemaPlain } from './schema/userSchema.js';
 import { NotifyModel } from './notifyModel.js';
 import { DeviceModel } from './deviceModel.js';
@@ -35,6 +35,7 @@ export interface IUserModel extends Model<IUserDocument> {
     removeSubscription(userId: IUser['_id'], subscription: PushSubscription): Promise<void>;
     checkExists(userId?: string): Promise<boolean>;
     invalidateRefreshToken(userID: IUser['_id'], refreshTokenId: IRefreshToken["_id"]): Promise<mongoose.UpdateWriteOpResult>
+    setUserDashboard(userId: IUser['_id'], dashboard: IUserDashboard): Promise<void>;
 }
 
 userSchema.statics.findByUserName = function (userName: string) {
@@ -132,6 +133,10 @@ userSchema.statics.invalidateRefreshToken = async function (userID: IUser['_id']
     }, {
         "refreshTokens.$.validTo": new Date()
     }).exec();
-}
+};
+
+userSchema.statics.setUserDashboard = async function (userId: IUser['_id'], dashboard: IUserDashboard) {
+    return this.updateOne({ _id: ObjectId(userId) }, { $set: { dashboard } }).exec();
+};
 
 export const UserModel = mongoose.model<IUserDocument, IUserModel>('User', userSchema);

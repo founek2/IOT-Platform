@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { notEmpty } from 'common/utils/notEmpty';
 import { byPreferences } from '../../../utils/sort.js';
+import { userDashboardApi } from '../../../endpoints/userDashboard.js';
 
 export type PropertyPreferences = { _id: string; thingId: string, order: number };
 // Define a type for the slice state
@@ -36,6 +37,14 @@ export const propertyPreferencesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase('store/reset', (state) => propertyPreferencesAdapter.getInitialState());
+        builder.addMatcher(userDashboardApi.endpoints.userDashboard.matchFulfilled, (state, { payload }) => {
+            const preferences = (payload.preferences ?? []).map(({ propertyId, thingId }, order) => ({
+                _id: propertyId,
+                thingId,
+                order,
+            }));
+            propertyPreferencesAdapter.setAll(state, preferences);
+        });
         // builder.addMatcher(devicesApi.endpoints.devices.matchFulfilled, (state, { payload }) => {
         //     const normalized = normalizeDevices(payload.docs);
 

@@ -14,6 +14,7 @@ import Router from "@koa/router"
 import type Koa from "koa";
 import { Context } from '../types/index.js';
 import { applyRouter } from "common/utils/applyRouter"
+import userDashboard from './userDashboard.js';
 
 export default ({ config }: { config: Config }) => {
     let api = new Router<Koa.DefaultState, Context>();
@@ -25,6 +26,7 @@ export default ({ config }: { config: Config }) => {
 
     applyRouter(api, '/user/:userId/accessToken', accessToken())
     applyRouter(api, '/user/:userId/notification', notification())
+    applyRouter(api, '/user/:userId/preferences', userDashboard())
     applyRouter(api, '/user', user())
 
     applyRouter(api, '/device/:deviceId/thing/:nodeId/state', thingState())

@@ -3,6 +3,7 @@ import TrashIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import { CircularProgress, Grid, GridProps, IconButton, Paper, styled } from '@mui/material';
 import clsx from 'clsx';
+import ErrorMessages from 'common/localization/error';
 import { notEmpty } from 'common/utils/notEmpty';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,9 +13,12 @@ import { Draggable, DraggableProvider, DragItem, Droppable } from '../components
 import PropertySelect, { PropertySelectEvent } from '../components/PropertySelect.js';
 import { useDevicesAllQuery } from '../endpoints/devices.js';
 import { useUpdateThingStateMutation } from '../endpoints/thing.js';
-import { useAppDispatch, useAppSelector } from '../hooks/index.js';
+import { useUpdateUserDashboardMutation, useUserDashboardQuery } from '../endpoints/userDashboard.js';
+import { useAppDispatch, useAppSelector, useAppStore } from '../hooks/index.js';
 import { useAppBarContext } from '../hooks/useAppBarContext.js';
 import { ThingContext } from '../hooks/useThing.js';
+import { getCurrentUserId } from '../selectors/getters.js';
+import { notificationActions } from '../store/slices/notificationSlice.js';
 import { PropertyPreferences, propertyPreferencesReducerActions } from '../store/slices/preferences/dashboardSlice.js';
 import { byPreferences } from '../utils/sort.js';
 import PropertyRow from './room/PropertyRow.js';
@@ -105,6 +109,10 @@ export default function UserDashboard() {
     const [openAddDialog, setOpenDialogOpen] = useState(false);
     const { isLoading } = useDevicesAllQuery();
     const dispatch = useAppDispatch();
+    const store = useAppStore();
+    const userId = useAppSelector(getCurrentUserId);
+    useUserDashboardQuery(userId!, { skip: !userId });
+    const [updateUserDashboard] = useUpdateUserDashboardMutation();
     const { setAppHeader, resetAppHeader } = useAppBarContext();
     const navigate = useNavigate();
     const [isHover, setIsHover] = useState(false);
@@ -128,6 +136,25 @@ export default function UserDashboard() {
         dispatch(propertyPreferencesReducerActions.resetOrder());
     }, [dispatch, setIsHover]);
 
+    const saveDashboard = useCallback(async () => {
+        if (!userId) return;
+
+        const entities = Object.values(store.getState().preferences.dashboard.entities);
+        const preferences = entities
+            .sort((a, b) => a.order - b.order)
+            .map(({ _id, thingId }) => ({ propertyId: _id, thingId }));
+
+        const result = await updateUserDashboard({ userId, data: { preferences } });
+        if ('error' in result) {
+            dispatch(
+                notificationActions.add({
+                    message: ErrorMessages.getMessage('unexpectedError'),
+                    options: { variant: 'error' },
+                })
+            );
+        }
+    }, [store, userId, updateUserDashboard, dispatch]);
+
     useEffect(() => {
         return () => resetAppHeader();
     }, []);
@@ -138,6 +165,7 @@ export default function UserDashboard() {
                 'Editace',
                 <IconButton
                     onClick={() => {
+                        saveDashboard();
                         navigate({ search: '' }, { replace: true });
                     }}
                 >
@@ -148,7 +176,7 @@ export default function UserDashboard() {
         } else {
             resetAppHeader();
         }
-    }, [editMode, navigate, prepareEditMode]);
+    }, [editMode, navigate, prepareEditMode, saveDashboard]);
 
     if (isLoading) return <CircularProgress />;
 
@@ -160,6 +188,7 @@ export default function UserDashboard() {
                 order: Number.MAX_SAFE_INTEGER,
             })
         );
+        saveDashboard();
         setOpenDialogOpen(false);
     }
 

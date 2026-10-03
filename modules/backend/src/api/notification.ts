@@ -19,10 +19,11 @@ export default () => {
         checkWritePermissionMiddleware({ paramKey: 'userId' }),
         formDataMiddleware(fieldDescriptors, { allowedForms: ["ADD_PUSH_SUBSCRIPTION"] }),
         async (ctx) => {
+            const { userId } = ctx.params;
             const { formData } = ctx.request.body;
 
             if (formData.ADD_PUSH_SUBSCRIPTION) {
-                await UserModel.addNotifyToken(ctx.state.user._id, formData.ADD_PUSH_SUBSCRIPTION);
+                await UserModel.addNotifyToken(userId, formData.ADD_PUSH_SUBSCRIPTION);
                 ctx.status = 204
             } else {
                 ctx.status = 400

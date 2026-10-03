@@ -83,7 +83,8 @@ export const api = createApi({
         'AccessTokens',
         'NotificationConfig',
         'ThingNotifications',
-        'Broker'
+        'Broker',
+        'UserDashboard'
     ],
     /**
      * This api has endpoints injected in adjacent files,

@@ -42,4 +42,12 @@ export const userSchemaPlain = {
         userAgent: String,
     }],
     realm: String,
+    dashboard: {
+        preferences: [{
+            _id: false,
+            propertyId: String,
+            thingId: String,
+            group: String,
+        }],
+    },
 };

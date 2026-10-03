@@ -42,6 +42,15 @@ export interface IRefreshToken {
     userAgent: string
 }
 
+export interface IUserPreference {
+    propertyId: string;
+    thingId: string
+    group?: string;
+}
+export interface IUserDashboard {
+    preferences?: IUserPreference[];
+}
+
 export interface IUser {
     _id?: any;
     info: {
@@ -63,4 +72,5 @@ export interface IUser {
     refreshTokens?: IRefreshToken[]
     createdAt: Date;
     updatedAt: Date;
+    dashboard?: IUserDashboard
 }
