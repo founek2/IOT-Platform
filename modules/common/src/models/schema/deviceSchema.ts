@@ -7,7 +7,7 @@ import { thingSchema } from './thingSchema.js';
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-export interface IDeviceDocument extends IDevice, Document {
+export interface IDeviceDocument extends Omit<IDevice, '_id'>, Document {
     createdBy: IUser['_id'];
 }
 
@@ -21,7 +21,7 @@ export const deviceSchemaPlain = {
             room: String,
         },
     },
-    apiKey: { type: String, default: hat as any, index: { unique: true } },
+    apiKey: { type: String, default: () => hat(), index: { unique: true } },
     permissions: {
         read: [{ type: ObjectId, ref: 'User' }],
         write: [{ type: ObjectId, ref: 'User' }],

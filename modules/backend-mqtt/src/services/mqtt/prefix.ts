@@ -126,7 +126,7 @@ export default function (handle: (stringTemplate: string, fn: cbFn) => void, io:
             {
                 upsert: status !== DeviceStatus.disconnected,
                 setDefaultsOnInsert: true,
-                new: true,
+                returnDocument: 'after',
             }
         )
             .lean()

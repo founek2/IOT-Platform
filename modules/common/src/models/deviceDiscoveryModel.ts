@@ -5,7 +5,7 @@ import { IUser } from "./interface/userInterface.js";
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-export interface IDiscoveryDocument extends IDiscovery, Document { }
+export interface IDiscoveryDocument extends Omit<IDiscovery, '_id'>, Document { }
 
 const deviceDiscoverySchema = new Schema<IDiscoveryDocument, IDiscoveryModel>(
     {

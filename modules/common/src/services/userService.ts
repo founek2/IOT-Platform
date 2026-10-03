@@ -136,7 +136,7 @@ export class UserService {
                 return Left('disabledToken');
             }
 
-            const accessToken = await this.jwtService.sign({ sub: doc._id, iss: refreshTokenDoc._id, groups: doc.groups, realm: doc.realm });
+            const accessToken = await this.jwtService.sign({ sub: doc._id.toString(), iss: refreshTokenDoc._id, groups: doc.groups, realm: doc.realm });
             return Right({
                 accessToken,
                 doc: doc.toObject(),
@@ -369,7 +369,7 @@ export class UserService {
             userId: userId,
         }).exec();
 
-        DeviceModel.updateMany({
+        DeviceModel.updateMany({}, {
             $pull: {
                 'permissions.read': userId,
                 'permissions.control': userId,

@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 
 export const userSchema = new Schema<IUserDocument, IUserModel>(userSchemaPlain, {
     toObject: {
-        transform: function (doc, ret) {
+        transform: function (doc, ret: Record<string, any>) {
             ret.id = ret._id.toString();
             delete ret.__v;
             // delete ret._id;

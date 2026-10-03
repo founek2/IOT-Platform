@@ -11,7 +11,7 @@ import { pushOrNewArray } from "../utils/pushOrNewArray.js";
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-export interface INotifyDocument extends INotify, Document { }
+export interface INotifyDocument extends Omit<INotify, '_id'>, Document { }
 
 export interface INotifyModel extends Model<INotifyDocument> {
     getForThing(

@@ -28,7 +28,7 @@ export default function (handle: (stringTemplate: string, fn: cbFn) => void, io:
                 'state.status.value': status,
                 'state.status.timestamp': timestamp,
             },
-            { new: true }
+            { returnDocument: 'after' }
         )
             .lean()
             .exec();

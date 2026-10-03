@@ -4,7 +4,7 @@ import { HistoricalSensor } from '../interface/history.js';
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-export interface IHistorical extends HistoricalSensor, Document { }
+export interface IHistorical extends Omit<HistoricalSensor, '_id'>, Document { }
 
 export const historicalSchemaPlain = {
     deviceId: ObjectId,

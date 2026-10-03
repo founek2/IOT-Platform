@@ -88,7 +88,7 @@ export default () => {
                 const alreadyExist = await DeviceModel.findOneAndUpdate(
                     { metadata },
                     { info: form.info, things },
-                    { new: true }
+                    { returnDocument: 'after' }
                 ).lean();
                 if (alreadyExist) return alreadyExist;
 

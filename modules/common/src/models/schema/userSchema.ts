@@ -1,7 +1,7 @@
 import mongoose, { Document } from 'mongoose';
 import { IUser } from '../interface/userInterface.js';
 
-export interface IUserDocument extends IUser, Document { }
+export interface IUserDocument extends Omit<IUser, '_id'>, Document { }
 
 export const userSchemaPlain = {
     info: {

@@ -19,7 +19,7 @@ interface RealmMetadata {
 
 export const deviceSchema = new Schema<IDeviceDocument, IDeviceModel>(deviceSchemaPlain, {
     toObject: {
-        transform: function (doc, ret) {
+        transform: function (doc, ret: Record<string, any>) {
             delete ret.apiKey;
         },
     },
@@ -54,14 +54,12 @@ deviceSchema.statics.checkIdTaken = async function (metadata) {
     })) !== null;
 };
 deviceSchema.statics.createNew = async function ({ info, things, metadata }, userID) {
-    const objID = new ObjectId(userID);
-
     const newDevice = await this.create({
         info,
         things,
-        permissions: { read: [objID], write: [objID], control: [objID] },
+        permissions: { read: [userID], write: [userID], control: [userID] },
         metadata,
-        createdBy: objID,
+        createdBy: userID,
     });
     // if (imgExtension) newDevice.info.imgPath = `/${IMAGES_DEVICES_FOLDER}/${newDevice.id}.${imgExtension}`;
     logger.debug('Creating device', newDevice);
@@ -143,26 +141,23 @@ deviceSchema.statics.checkExistsByMetadata = async function (deviceId: IDevice['
 };
 
 deviceSchema.statics.checkWritePerm = async function (id: IDevice['_id'], userId: IUser['_id']) {
-    const userID = new ObjectId(userId);
     return (await this.exists({
         _id: new ObjectId(id),
-        'permissions.write': userID,
+        'permissions.write': userId,
     })) !== null;
 };
 
 deviceSchema.statics.checkReadPerm = async function (id: IDevice['_id'], userId: IUser['_id']) {
-    const userID = new ObjectId(userId);
     return (await this.exists({
         _id: new ObjectId(id),
-        'permissions.read': userID,
+        'permissions.read': userId,
     })) !== null;
 };
 
 deviceSchema.statics.checkControlPerm = async function (id: IDevice['_id'], userId: IUser['_id']) {
-    const userID = new ObjectId(userId);
     return (await this.exists({
         _id: new ObjectId(id),
-        'permissions.control': userID,
+        'permissions.control': userId,
     })) !== null;
 };
 
@@ -170,22 +165,20 @@ deviceSchema.statics.checkRealmControlPerm = async function (
     metadata: RealmMetadata,
     userId: IUser['_id']
 ): Promise<boolean> {
-    const userID = new ObjectId(userId);
     return (await this.exists({
         'metadata.realm': metadata.realm,
         'metadata.deviceId': metadata.deviceId,
-        'permissions.control': userID,
+        'permissions.control': userId,
     })) !== null;
 };
 deviceSchema.statics.checkRealmReadPerm = async function (
     metadata: RealmMetadata,
     userId: IUser['_id']
 ): Promise<boolean> {
-    const userID = new ObjectId(userId);
     return (await this.exists({
         'metadata.realm': metadata.realm,
         'metadata.deviceId': metadata.deviceId,
-        'permissions.read': userID,
+        'permissions.read': userId,
     })) !== null;
 };
 
