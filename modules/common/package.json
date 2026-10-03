@@ -57,7 +57,7 @@
   "dependencies": {
     "@influxdata/influxdb-client": "^1.33.2",
     "@influxdata/influxdb-client-apis": "^1.33.2",
-    "argon2": "^0.28.7",
+    "argon2": "^0.45.1",
     "buffer": "^6.0.3",
     "date-fns": "^4.4.0",
     "dotenv": "^18.0.4",

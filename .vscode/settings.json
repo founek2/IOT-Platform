@@ -1,10 +1,10 @@
 {
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
+    "**/.yarn": true
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "jest.jestCommandLine": "jest",
-  "jest.rootPath": "modules/backend"
+  "jest.rootPath": "modules/backend",
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

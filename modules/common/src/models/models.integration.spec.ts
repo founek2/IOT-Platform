@@ -1,6 +1,8 @@
+import argon2 from 'argon2';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { AuthType } from '../constants/index.js';
+import { Permission } from './interface/userInterface.js';
 import { connectMongoose } from '../utils/connectMongoose.js';
 import { DeviceModel } from './deviceModel.js';
 import { DiscoveryModel } from './deviceDiscoveryModel.js';
@@ -202,5 +204,45 @@ describe('UserService.deleteById', () => {
         await new Promise((resolve) => setTimeout(resolve, 200));
         const stored = await DeviceModel.findById(device._id).lean();
         expect(stored!.permissions).toEqual({ read: [], write: [], control: [] });
+    });
+});
+
+describe('UserService argon2 hashing', () => {
+    const userService = new UserService({} as JwtService);
+
+    it('created access token validates and uses pinned hash parameters', async () => {
+        const user = await createUser();
+        const created = await userService.createAccessToken({ name: 'token', permissions: [Permission.read] }, user._id.toString());
+        const { token } = created.unsafeCoerce();
+
+        const validated = await userService.validateAccessToken(token);
+        expect(validated.isRight()).toBe(true);
+
+        const stored = await UserModel.findById(user._id).lean();
+        expect(stored!.accessTokens![0].token).toContain('$m=4096,t=3,p=1$');
+    });
+
+    it('verifies passwords hashed with legacy parameters', async () => {
+        const user = await createUser();
+        const legacyHash = await argon2.hash('secret', { memoryCost: 1 << 12, timeCost: 3, parallelism: 1 });
+        await UserModel.updateOne({ _id: user._id }, { 'auth.password': legacyHash });
+
+        const valid = await userService.checkCreditals({ userName: 'test', password: 'secret', authType: AuthType.passwd }, 'jest');
+        const invalid = await userService.checkCreditals({ userName: 'test', password: 'wrong', authType: AuthType.passwd }, 'jest');
+
+        expect(valid.isRight()).toBe(true);
+        expect(invalid.isLeft()).toBe(true);
+    });
+
+    it('hashes new passwords with current defaults', async () => {
+        const { doc } = await userService.create({
+            info: { userName: 'fresh', email: 'fresh@example.com' },
+            auth: { types: [AuthType.passwd], password: 'secret' },
+        });
+        const stored = await UserModel.findById(doc._id).lean();
+
+        expect(stored!.auth.password).toContain('$m=65536,p=4,t=3$');
+        const valid = await userService.checkCreditals({ userName: 'fresh', password: 'secret', authType: AuthType.passwd }, 'jest');
+        expect(valid.isRight()).toBe(true);
     });
 });

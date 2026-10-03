@@ -30,6 +30,22 @@ function saltFromUserName(userName: string): Buffer {
     return Buffer.from(userName.repeat(2))
 }
 
+// Access tokens are looked up by exact hash string, so it must match what argon2 0.28 produced:
+// same parameters and its m,t,p serialization order (newer argon2 writes m,p,t)
+async function hashAccessToken(rawToken: string, userName: string) {
+    const salt = saltFromUserName(userName);
+    const hash = await argon2.hash(rawToken, {
+        salt,
+        memoryCost: 1 << 12,
+        timeCost: 3,
+        parallelism: 1,
+        raw: true,
+    });
+    const b64 = (buf: Buffer) => buf.toString('base64').replace(/=+$/, '');
+
+    return `$argon2id$v=19$m=4096,t=3,p=1$${b64(salt)}$${b64(hash)}`;
+}
+
 export type UserWithToken = { doc: IUser; token: string };
 export type CredentialData = {
     userName: IUser['info']['userName'];
@@ -277,9 +293,7 @@ export class UserService {
         const doc = await UserModel.findById(userID).lean();
         if (!doc) return Left('unableToCreate');
 
-        const hashedToken = await argon2.hash(newRawToken.token, {
-            salt: saltFromUserName(doc.info.userName)
-        })
+        const hashedToken = await hashAccessToken(newRawToken.token, doc.info.userName)
         await UserModel.updateOne(
             {
                 _id: new ObjectId(userID),
@@ -304,9 +318,7 @@ export class UserService {
             const [userName, rawToken] = rawAccessToken.split(":")
             if (!userName || !rawToken) throw new Error("invalid")
 
-            const hashedToken = await argon2.hash(rawToken, {
-                salt: saltFromUserName(userName),
-            })
+            const hashedToken = await hashAccessToken(rawToken, userName)
 
             const user = await UserModel.findOne(
                 {

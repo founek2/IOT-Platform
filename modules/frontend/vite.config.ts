@@ -67,8 +67,6 @@ export default defineConfig(({ mode }) => {
         },
         resolve: {
             alias: [
-                { find: /^@plotly\/point-cluster$/, replacement: require.resolve('@plotly/point-cluster') },
-                { find: /^array-bounds$/, replacement: require.resolve('array-bounds') },
                 { find: /^assert$/, replacement: require.resolve('assert/') },
                 { find: /^buffer\/?$/, replacement: require.resolve('buffer/') },
                 { find: /^events\/?$/, replacement: require.resolve('events/') },
