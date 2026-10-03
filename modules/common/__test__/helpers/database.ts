@@ -2,12 +2,7 @@ import mongoose from 'mongoose';
 
 const connect = async (url: string) => {
     if (mongoose.connection.readyState === 0) {
-        await mongoose.connect(url, {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            useFindAndModify: false,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(url);
     }
 };
 

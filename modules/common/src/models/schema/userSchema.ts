@@ -22,7 +22,7 @@ export const userSchemaPlain = {
             userId: Number,
         },
     },
-    groups: { type: [String], default: ['user'] },
+    groups: { type: [String], default: ['user'] as IUser['groups'] },
     devices: Object, // {sensors: {order: [id, id, id]}, }
     // preferences: {colorMode: light, devices: [{_id: xxx, order: 10, {things: [{_id: xxx, order: 11}]}}]}
     notifyTokens: [],

@@ -95,7 +95,7 @@ export default function (): Router<Koa.DefaultState, Context> {
             const refreshTokenId = ctx.params.id;
 
             const result = await UserModel.invalidateRefreshToken(ctx.state.user._id, refreshTokenId)
-            if (result.nModified !== 1) {
+            if (result.modifiedCount !== 1) {
                 ctx.status = 404;
             } else {
                 ctx.status = 204

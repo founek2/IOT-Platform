@@ -63,7 +63,7 @@
     "dotenv": "^18.0.4",
     "hat": "^0.0.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.22",
+    "mongoose": "^7.8.12",
     "node-dotify": "^1.1.0",
     "node-fetch": "^2.7.0",
     "purify-ts": "^2.1.4",

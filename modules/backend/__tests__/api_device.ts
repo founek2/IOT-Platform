@@ -43,7 +43,7 @@ describe('Device API test', async function () {
                 })
                 .finally(async () => {
                     const result = await DeviceModel.deleteOne({ createdBy: new ObjectId(user.id) }).exec();
-                    result.n.should.equal(1);
+                    result.deletedCount.should.equal(1);
                 });
         });
     });
@@ -112,7 +112,7 @@ describe('Device API test', async function () {
                 })
                 .finally(async () => {
                     const result = await DeviceModel.deleteOne({ createdBy: userID });
-                    result.n.should.equal(1);
+                    result.deletedCount.should.equal(1);
                     done();
                 });
         });
@@ -142,7 +142,7 @@ describe('Device API test', async function () {
                 })
                 .finally(async () => {
                     const result = await DeviceModel.deleteOne({ createdBy: new ObjectId(user.id) });
-                    result.n.should.equal(1);
+                    result.deletedCount.should.equal(1);
                 });
         });
     });
@@ -181,7 +181,7 @@ describe('Device API test', async function () {
                 })
                 .finally(async () => {
                     const result = await DeviceModel.deleteOne({ createdBy: new ObjectId(user.id) });
-                    result.n.should.equal(1);
+                    result.deletedCount.should.equal(1);
                 });
         });
     });
@@ -219,7 +219,7 @@ describe('Device API test', async function () {
                 })
                 .finally(async () => {
                     const result = await DeviceModel.deleteOne({ createdBy: new ObjectId(user.id) });
-                    result.n.should.equal(1);
+                    result.deletedCount.should.equal(1);
                 });
         });
     });
@@ -242,7 +242,7 @@ describe('Device API test', async function () {
             })
             .finally(async () => {
                 const result = await DeviceModel.deleteOne({ createdBy: new ObjectId(user.id) }).exec();
-                result.n.should.equal(1);
+                result.deletedCount.should.equal(1);
             });
     });
 

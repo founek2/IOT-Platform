@@ -31,24 +31,24 @@ export interface IDiscoveryModel extends Model<IDiscoveryDocument> {
     checkPermissions(id: IDiscovery["_id"], realm: IUser["realm"]): Promise<boolean>;
 }
 
-deviceDiscoverySchema.statics.checkExists = function (id: IDiscovery["_id"]) {
-    return this.exists({
-        _id: ObjectId(id),
-    });
+deviceDiscoverySchema.statics.checkExists = async function (id: IDiscovery["_id"]) {
+    return (await this.exists({
+        _id: new ObjectId(id),
+    })) !== null;
 };
 
-deviceDiscoverySchema.statics.checkExistsNotPairing = function (id: IDiscovery["_id"]) {
-    return this.exists({
-        _id: ObjectId(id),
+deviceDiscoverySchema.statics.checkExistsNotPairing = async function (id: IDiscovery["_id"]) {
+    return (await this.exists({
+        _id: new ObjectId(id),
         pairing: { $ne: true },
-    });
+    })) !== null;
 };
 
-deviceDiscoverySchema.statics.checkPermissions = function (id: IDiscovery["_id"], realm: IUser["realm"]) {
-    return this.exists({
-        _id: ObjectId(id),
+deviceDiscoverySchema.statics.checkPermissions = async function (id: IDiscovery["_id"], realm: IUser["realm"]) {
+    return (await this.exists({
+        _id: new ObjectId(id),
         realm,
-    });
+    })) !== null;
 };
 
 export const DiscoveryModel = mongoose.model<IDiscoveryDocument, IDiscoveryModel>("Discovery", deviceDiscoverySchema);

@@ -188,11 +188,11 @@ export class UserService {
     }
 
     removeAuthorization(id: IUser['_id']) {
-        UserModel.updateOne({ _id: ObjectId(id) }, { 'auth.oauth': undefined });
+        UserModel.updateOne({ _id: new ObjectId(id) }, { 'auth.oauth': undefined });
     }
 
     async getAuthorization(id: IUser['_id']): Promise<Maybe<IOauth>> {
-        let doc = await UserModel.findOne({ _id: ObjectId(id) }, { 'auth.oauth': 1 }).lean();
+        let doc = await UserModel.findOne({ _id: new ObjectId(id) }, { 'auth.oauth': 1 }).lean();
         return doc?.auth.oauth ? Just(doc.auth.oauth) : (Nothing as Maybe<IOauth>);
     }
 
@@ -207,7 +207,7 @@ export class UserService {
         } else delete data.auth;
 
         const doc = await UserModel.findOneAndUpdate(
-            { _id: ObjectId(userID) },
+            { _id: new ObjectId(userID) },
             { $set: dotify(data), $addToSet: { 'auth.types': AuthType.passwd } }
         );
         if (!doc) return Left('unknownUser');
@@ -217,7 +217,7 @@ export class UserService {
 
     async changePassword(userID: IUser['_id'], password: string) {
         const hash = await createHash(password);
-        const doc = await UserModel.findOneAndUpdate({ _id: ObjectId(userID) }, { 'auth.password': hash });
+        const doc = await UserModel.findOneAndUpdate({ _id: new ObjectId(userID) }, { 'auth.password': hash });
         if (!doc) return Left('unknownUser');
 
         return Right(doc);
@@ -232,7 +232,7 @@ export class UserService {
         accessToken: { name: string; permissions: Permission[]; validTo?: Date }
     ) {
         UserModel.updateOne(
-            { _id: ObjectId(userID), 'accessTokens._id': ObjectId(tokenId) },
+            { _id: new ObjectId(userID), 'accessTokens._id': new ObjectId(tokenId) },
             {
                 $set: {
                     'accessTokens.$.name': accessToken.name,
@@ -255,7 +255,7 @@ export class UserService {
 
         await UserModel.updateOne(
             {
-                _id: ObjectId(userID),
+                _id: new ObjectId(userID),
             },
             {
                 $push: {
@@ -282,7 +282,7 @@ export class UserService {
         })
         await UserModel.updateOne(
             {
-                _id: ObjectId(userID),
+                _id: new ObjectId(userID),
             },
             {
                 $push: {
@@ -298,7 +298,7 @@ export class UserService {
         return Right({ ...newRawToken, token: encodedToken });
     }
 
-    async validateAccessToken(accessToken: string): Promise<Either<"invalid", [mongoose.LeanDocument<IUserDocument>, IAccessToken]>> {
+    async validateAccessToken(accessToken: string): Promise<Either<"invalid", [IUser, IAccessToken]>> {
         try {
             const rawAccessToken = Buffer.from(accessToken, "base64").toString()
             const [userName, rawToken] = rawAccessToken.split(":")
@@ -345,10 +345,10 @@ export class UserService {
 
     async deleteAccessToken(tokenId: IAccessToken['_id'], userID: IUser['_id']) {
         UserModel.updateOne(
-            { _id: ObjectId(userID) },
+            { _id: new ObjectId(userID) },
             {
                 $pull: {
-                    accessTokens: { _id: ObjectId(tokenId) },
+                    accessTokens: { _id: new ObjectId(tokenId) },
                 },
             }
         ).exec();
@@ -358,7 +358,7 @@ export class UserService {
      * Delete user from DB and all his permissions from devices + his notification rules
      */
     async deleteById(id: IUser['_id']): Promise<boolean> {
-        const userId = ObjectId(id);
+        const userId = new ObjectId(id);
 
         const result = await UserModel.deleteOne({
             _id: userId,

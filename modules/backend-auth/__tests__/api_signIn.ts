@@ -24,12 +24,12 @@ async function sendSignIn(userName: string, password: string): Promise<{ accessT
 }
 
 export async function signOut(userName: string) {
-    const n = await UserModel.updateOne({
+    const result = await UserModel.updateOne({
         "info.userName": userName,
     }, {
         refreshTokens: []
     });
-    expect(n.nModified).toBe(1)
+    expect(result.modifiedCount).toBe(1)
 }
 
 describe('SignIn API', function () {

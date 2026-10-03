@@ -46,8 +46,8 @@ notifySchema.statics.getForThing = async function (
 ) {
     return this.findOne(
         {
-            deviceId: ObjectId(deviceId),
-            userId: ObjectId(userId),
+            deviceId: new ObjectId(deviceId),
+            userId: new ObjectId(userId),
             "things.nodeId": nodeId,
         },
         "things.$"
@@ -62,8 +62,8 @@ notifySchema.statics.setForThing = async function (
 ) {
     const result = await this.updateOne(
         {
-            deviceId: ObjectId(deviceId),
-            userId: ObjectId(userId),
+            deviceId: new ObjectId(deviceId),
+            userId: new ObjectId(userId),
             "things.nodeId": nodeId,
         },
         {
@@ -71,11 +71,11 @@ notifySchema.statics.setForThing = async function (
         }
     );
 
-    if (result.n === 0)
+    if (result.matchedCount === 0)
         return this.updateOne(
             {
-                deviceId: ObjectId(deviceId),
-                userId: ObjectId(userId),
+                deviceId: new ObjectId(deviceId),
+                userId: new ObjectId(userId),
             },
             {
                 $push: {
@@ -98,7 +98,7 @@ notifySchema.statics.getForProperty = async function (
 ) {
     const docs = await this.find(
         {
-            deviceId: ObjectId(deviceId),
+            deviceId: new ObjectId(deviceId),
             "things.nodeId": nodeId,
             "things.properties.propertyId": propertyId,
         },

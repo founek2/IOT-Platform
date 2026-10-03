@@ -51,7 +51,7 @@ userSchema.statics.findAllNotRoot = function () {
 };
 
 userSchema.statics.removeUsers = function (arrayOfIDs: Array<IUser['_id']>) {
-    const ids = arrayOfIDs.map((id) => mongoose.Types.ObjectId(id));
+    const ids = arrayOfIDs.map((id) => new mongoose.Types.ObjectId(id));
     NotifyModel.deleteMany({
         user: { $in: ids },
     }).exec();
@@ -74,7 +74,7 @@ userSchema.statics.findAllUserNames = function () {
 };
 
 userSchema.statics.addNotifyToken = function (userID: IUser['_id'], subscription: PushSubscription) {
-    return this.updateOne({ _id: ObjectId(userID) }, { $addToSet: { pushSubscriptions: subscription } });
+    return this.updateOne({ _id: new ObjectId(userID) }, { $addToSet: { pushSubscriptions: subscription } });
 };
 
 userSchema.statics.modifyNotifyToken = async function (subscriptionOld: PushSubscription, subscriptionNew: PushSubscription) {
@@ -98,17 +98,17 @@ userSchema.statics.removeNotifyTokens = function (tokens) {
 };
 
 userSchema.statics.getNotifyTokens = function (userID: IUser['_id']) {
-    return this.findOne({ _id: ObjectId(userID) })
+    return this.findOne({ _id: new ObjectId(userID) })
         .select('notifyTokens')
         .lean();
 };
 userSchema.statics.getSubscriptions = function (userID: IUser['_id']) {
-    return this.findOne({ _id: ObjectId(userID) })
+    return this.findOne({ _id: new ObjectId(userID) })
         .select('pushSubscriptions')
         .lean();
 };
 userSchema.statics.removeSubscription = function (userId: IUser['_id'], subscription: PushSubscription) {
-    return this.updateOne({ _id: ObjectId(userId) }, {
+    return this.updateOne({ _id: new ObjectId(userId) }, {
         $pull: {
             "pushSubscriptions": { endpoint: subscription.endpoint }
         }
@@ -116,9 +116,9 @@ userSchema.statics.removeSubscription = function (userId: IUser['_id'], subscrip
 };
 
 userSchema.statics.checkExists = async function (userID: IUser['_id']) {
-    return this.exists({
-        _id: mongoose.Types.ObjectId(userID),
-    });
+    return (await this.exists({
+        _id: new mongoose.Types.ObjectId(userID),
+    })) !== null;
 };
 
 userSchema.statics.invalidateRefreshToken = async function (userID: IUser['_id'], refreshTokenId: IRefreshToken["_id"]) {
@@ -128,7 +128,7 @@ userSchema.statics.invalidateRefreshToken = async function (userID: IUser['_id']
     //     userAgent
     // }
     return this.updateOne({
-        _id: mongoose.Types.ObjectId(userID),
+        _id: new mongoose.Types.ObjectId(userID),
         "refreshTokens._id": refreshTokenId,
     }, {
         "refreshTokens.$.validTo": new Date()
@@ -136,7 +136,7 @@ userSchema.statics.invalidateRefreshToken = async function (userID: IUser['_id']
 };
 
 userSchema.statics.setUserDashboard = async function (userId: IUser['_id'], dashboard: IUserDashboard) {
-    return this.updateOne({ _id: ObjectId(userId) }, { $set: { dashboard } }).exec();
+    return this.updateOne({ _id: new ObjectId(userId) }, { $set: { dashboard } }).exec();
 };
 
 export const UserModel = mongoose.model<IUserDocument, IUserModel>('User', userSchema);

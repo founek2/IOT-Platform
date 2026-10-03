@@ -13,7 +13,7 @@ export class DeviceService {
      */
     public static async deleteById(deviceId: IDevice['_id']): Promise<boolean> {
         const res = await DeviceModel.deleteOne({
-            _id: mongoose.Types.ObjectId(deviceId),
+            _id: new mongoose.Types.ObjectId(deviceId),
         });
 
         if (res.deletedCount !== 1) return false;
@@ -21,7 +21,7 @@ export class DeviceService {
         // TODO delete data from influx
 
         await NotifyModel.deleteMany({
-            deviceId: mongoose.Types.ObjectId(deviceId),
+            deviceId: new mongoose.Types.ObjectId(deviceId),
         });
 
         return true;

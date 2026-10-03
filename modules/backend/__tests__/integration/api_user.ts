@@ -146,7 +146,7 @@ describe('User API create', function () {
             const result = await UserModel.deleteOne({
                 'info.userName': forms.registration_form_test10.formData.REGISTRATION.info.userName,
             }).exec();
-            expect(result.n).toBe(1);
+            expect(result.deletedCount).toBe(1);
         });
     });
 });

@@ -44,7 +44,7 @@ export default () => {
         const { id } = ctx.params;
 
         const result = await DiscoveryModel.deleteMany({
-            _id: ObjectId(id),
+            _id: new ObjectId(id),
         });
 
         eventEmitter.emit('device_delete', id);
@@ -64,7 +64,7 @@ export default () => {
 
             const discoverdDevice = (await DiscoveryModel.findOne({
                 // check if discovered device is Ready and not already pairing
-                _id: ObjectId(_id),
+                _id: new ObjectId(_id),
                 pairing: { $ne: true },
                 'state.status.value': DeviceStatus.ready,
             })) as IDiscoveryDocument;

@@ -48,13 +48,13 @@ export interface IDeviceModel extends Model<IDeviceDocument> {
 }
 
 deviceSchema.statics.checkIdTaken = async function (metadata) {
-    return this.exists({
+    return (await this.exists({
         'metadata.deviceId': metadata.deviceId,
         'metadata.realm': metadata.realm,
-    });
+    })) !== null;
 };
 deviceSchema.statics.createNew = async function ({ info, things, metadata }, userID) {
-    const objID = ObjectId(userID);
+    const objID = new ObjectId(userID);
 
     const newDevice = await this.create({
         info,
@@ -79,7 +79,7 @@ const aggregationFields = {
 };
 
 deviceSchema.statics.findForUser = async function (userID) {
-    const userObjID = ObjectId(userID);
+    const userObjID = new ObjectId(userID);
     return this.aggregate([
         {
             $match: {
@@ -123,76 +123,76 @@ deviceSchema.statics.findForUser = async function (userID) {
 };
 
 deviceSchema.statics.login = async function (realm: string, deviceId: string, apiKey: string) {
-    return await this.exists({
+    return (await this.exists({
         'metadata.realm': realm,
         'metadata.deviceId': deviceId,
         apiKey: apiKey,
-    });
+    })) !== null;
 };
 
-deviceSchema.statics.checkExists = function (id: IDevice['_id']) {
-    return this.exists({
-        _id: ObjectId(id),
-    });
+deviceSchema.statics.checkExists = async function (id: IDevice['_id']) {
+    return (await this.exists({
+        _id: new ObjectId(id),
+    })) !== null;
 };
 
-deviceSchema.statics.checkExistsByMetadata = function (deviceId: IDevice['metadata']["deviceId"]) {
-    return this.exists({
+deviceSchema.statics.checkExistsByMetadata = async function (deviceId: IDevice['metadata']["deviceId"]) {
+    return (await this.exists({
         'metadata.deviceId': deviceId,
-    });
+    })) !== null;
 };
 
-deviceSchema.statics.checkWritePerm = function (id: IDevice['_id'], userId: IUser['_id']) {
-    const userID = ObjectId(userId);
-    return this.exists({
-        _id: ObjectId(id),
+deviceSchema.statics.checkWritePerm = async function (id: IDevice['_id'], userId: IUser['_id']) {
+    const userID = new ObjectId(userId);
+    return (await this.exists({
+        _id: new ObjectId(id),
         'permissions.write': userID,
-    });
+    })) !== null;
 };
 
-deviceSchema.statics.checkReadPerm = function (id: IDevice['_id'], userId: IUser['_id']) {
-    const userID = ObjectId(userId);
-    return this.exists({
-        _id: ObjectId(id),
+deviceSchema.statics.checkReadPerm = async function (id: IDevice['_id'], userId: IUser['_id']) {
+    const userID = new ObjectId(userId);
+    return (await this.exists({
+        _id: new ObjectId(id),
         'permissions.read': userID,
-    });
+    })) !== null;
 };
 
-deviceSchema.statics.checkControlPerm = function (id: IDevice['_id'], userId: IUser['_id']) {
-    const userID = ObjectId(userId);
-    return this.exists({
-        _id: ObjectId(id),
+deviceSchema.statics.checkControlPerm = async function (id: IDevice['_id'], userId: IUser['_id']) {
+    const userID = new ObjectId(userId);
+    return (await this.exists({
+        _id: new ObjectId(id),
         'permissions.control': userID,
-    });
+    })) !== null;
 };
 
-deviceSchema.statics.checkRealmControlPerm = function (
+deviceSchema.statics.checkRealmControlPerm = async function (
     metadata: RealmMetadata,
     userId: IUser['_id']
 ): Promise<boolean> {
-    const userID = ObjectId(userId);
-    return this.exists({
+    const userID = new ObjectId(userId);
+    return (await this.exists({
         'metadata.realm': metadata.realm,
         'metadata.deviceId': metadata.deviceId,
         'permissions.control': userID,
-    });
+    })) !== null;
 };
-deviceSchema.statics.checkRealmReadPerm = function (
+deviceSchema.statics.checkRealmReadPerm = async function (
     metadata: RealmMetadata,
     userId: IUser['_id']
 ): Promise<boolean> {
-    const userID = ObjectId(userId);
-    return this.exists({
+    const userID = new ObjectId(userId);
+    return (await this.exists({
         'metadata.realm': metadata.realm,
         'metadata.deviceId': metadata.deviceId,
         'permissions.read': userID,
-    });
+    })) !== null;
 };
 
 deviceSchema.statics.updateByFormData = function (id: IDevice['_id'], object: Partial<IDevice>) {
     return this.updateOne(
         {
-            _id: ObjectId(id),
+            _id: new ObjectId(id),
         },
         object
     );

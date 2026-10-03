@@ -5,7 +5,6 @@ import { writeDevicePermissionMiddleware } from 'common/middlewares/device/write
 import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
 import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 import { DeviceModel } from 'common/models/deviceModel';
-import { IDevice } from 'common/models/interface/device';
 import Koa from "koa";
 import { DeviceService } from '../services/deviceService.js';
 import eventEmitter from '../services/eventEmitter.js';
@@ -58,7 +57,8 @@ export default () => {
         formDataMiddleware(fieldDescriptors, { allowedForms: ['DEVICE_SEND'] }),
         async (ctx) => {
             const { formData } = ctx.request.body;
-            const doc: IDevice = await DeviceModel.findById(ctx.params.id).lean();
+            const doc = await DeviceModel.findById(ctx.params.id).lean();
+            if (!doc) return ctx.status = 404;
 
             if (formData.DEVICE_SEND && (await ctx.actionsService.deviceSendCommand(doc, formData.DEVICE_SEND.command)))
                 return ctx.status = 204;

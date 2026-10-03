@@ -5,7 +5,6 @@ import { writeDevicePermissionMiddleware } from 'common/middlewares/device/write
 import { formDataMiddleware } from 'common/middlewares/formDataMiddleware';
 import { tokenAuthMiddleware } from 'common/middlewares/tokenAuthMiddleware';
 import { DeviceModel } from 'common/models/deviceModel';
-import { IDevice } from 'common/models/interface/device';
 import { getProperty } from 'common/utils/getProperty';
 import { getThing } from 'common/utils/getThing';
 import { sendError } from 'common/utils/sendError';
@@ -27,7 +26,8 @@ export default () => {
             const { deviceId, nodeId } = ctx.params;
             logger.silly("Set property", ctx.params, ctx.query)
 
-            const doc: IDevice = await DeviceModel.findById(deviceId).lean();
+            const doc = await DeviceModel.findById(deviceId).lean();
+            if (!doc) return sendError(404, 'deviceNotFound', ctx);
             const thing = getThing(doc, nodeId);
 
             const propertyId = ctx.query.property as string;
@@ -56,8 +56,8 @@ export default () => {
             if (!device) return sendError(404, 'deviceNotFound', ctx);
 
             await DeviceModel.updateOne({
-                _id: ObjectId(ctx.params.deviceId),
-                "things._id": ObjectId(ctx.params.nodeId),
+                _id: new ObjectId(ctx.params.deviceId),
+                "things._id": new ObjectId(ctx.params.nodeId),
             }, {
                 "things.$.config": config,
             })

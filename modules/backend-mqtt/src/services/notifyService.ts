@@ -12,10 +12,10 @@ const prepareQuery =
             return {
                 updateOne: {
                     filter: {
-                        _id: ObjectId(_id),
+                        _id: new ObjectId(_id),
                     },
                     update: updateQuery,
-                    arrayFilters: [{ 'thing.nodeId': nodeId }, { 'property._id': ObjectId(prop_id) }],
+                    arrayFilters: [{ 'thing.nodeId': nodeId }, { 'property._id': new ObjectId(prop_id) }],
                 },
             };
         };

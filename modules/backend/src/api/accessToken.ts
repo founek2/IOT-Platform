@@ -20,7 +20,7 @@ export default () => {
         tokenAuthMiddleware(),
         checkWritePermissionMiddleware({ paramKey: 'userId' }),
         async (ctx) => {
-            const doc = await UserModel.findOne({ _id: ObjectId(ctx.state.user._id) })
+            const doc = await UserModel.findOne({ _id: new ObjectId(ctx.state.user._id) })
                 .select('accessTokens')
                 .lean();
             if (!doc) return ctx.status = 404;

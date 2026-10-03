@@ -14,7 +14,7 @@ export default (): Router<Koa.DefaultState, Context> => {
 
     api.post("/", tokenAuthMiddleware(), async (ctx) => {
         const result = await UserModel.invalidateRefreshToken(ctx.state.user._id, ctx.state.user.refreshTokenId);
-        if (result.nModified !== 1) return ctx.status = 404
+        if (result.modifiedCount !== 1) return ctx.status = 404
         else ctx.status = 204;
 
         (await ctx.userService.getAuthorization(ctx.state.user._id))
