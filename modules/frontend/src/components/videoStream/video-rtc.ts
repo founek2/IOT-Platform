@@ -322,8 +322,10 @@ export class VideoRTC extends HTMLElement {
             this.pc = null;
         }
 
-        this.video!.src = '';
+        this.video!.pause();
+        this.video!.removeAttribute('src');
         this.video!.srcObject = null;
+        this.video!.load();
 
         this.muteMicrophone()
     }

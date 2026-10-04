@@ -11,6 +11,10 @@ export function WebRtcStream({ src }: VideoStreamProps) {
     const ref = useRef<HTMLDivElement>();
 
     useEffect(() => {
+        const container = ref.current;
+        if (!container) return;
+
+        const viewers: VideoStream[] = [];
         const url = new URL(src);
         const params = url.searchParams;
 
@@ -43,14 +47,14 @@ export function WebRtcStream({ src }: VideoStreamProps) {
             console.log('calculated', video.media);
 
             video.src = new URL(`/live/webrtc/api/ws?src=${encodeURIComponent(streams[i])}`, url.href);
-            ref.current?.appendChild(video);
+            container.appendChild(video);
+            viewers.push(video);
         }
 
         return () => {
-            if (!ref.current) return;
-            if (ref.current.firstChild) ref.current.removeChild(ref.current.firstChild);
+            viewers.forEach((video) => video.remove());
         };
-    }, [ref]);
+    }, [src]);
 
     return <Paper sx={{ position: 'relative' }} ref={(v) => (ref.current = v || undefined)} />;
 }
