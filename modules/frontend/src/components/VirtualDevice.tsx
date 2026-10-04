@@ -10,6 +10,17 @@ export const VIRTUAL_DEVICE_PROPERTY_ID = 'thingId';
 export const VIRTUAL_DEVICE_CLOSE_PROPERTY_ID = 'close';
 const CLOSE_VALUE = 'close';
 
+function stopKioskScreensaver() {
+    const { fully } = window as Window & { fully?: { stopScreensaver?: () => void } };
+    if (typeof fully?.stopScreensaver !== 'function') return;
+
+    try {
+        fully.stopScreensaver();
+    } catch (error) {
+        logger.warning('[VirtualDevice] Unable to stop Fully Kiosk screensaver', error);
+    }
+}
+
 function searchWithThingId(thingId: string | null) {
     const params = new URLSearchParams(window.location.search);
     if (thingId) params.set('thingId', thingId);
@@ -53,6 +64,7 @@ export function VirtualDevice({ realm, name, mqttUrl }: VirtualDeviceProps) {
                 if (!thingId) return false;
 
                 logger.info(`[VirtualDevice] Opening thing with ID: ${thingId}`);
+                stopKioskScreensaver();
                 navigateRef.current({ search: searchWithThingId(thingId) }, { replace: true });
                 return true;
             },
