@@ -41,8 +41,9 @@ export const getDevices = (state: RootState) => state.application.devices;
 
 export const getDevice = (id: Device['_id']) => (state: RootState) => state.application.devices.entities[id];
 
-export const getAllDevices = (state: RootState) =>
-    state.application.devices.ids.map((id: EntityId) => state.application.devices.entities[id]!);
+export const getAllDevices = createSelector(getDevices, (devices) =>
+    devices.ids.map((id: EntityId) => devices.entities[id]!)
+);
 
 export const getDevicesById = (deviceIDs: String[]) => {
     return createSelector(getDevices, (state) => {

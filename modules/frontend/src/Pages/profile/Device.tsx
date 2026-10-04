@@ -1,6 +1,6 @@
 import { FormControlLabel, Grid, Switch, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { VIRTUAL_DEVICE_NODE_ID, VIRTUAL_DEVICE_PROPERTY_ID } from '../../components/VirtualDevice.js';
+import { VIRTUAL_DEVICE_CLOSE_PROPERTY_ID, VIRTUAL_DEVICE_NODE_ID, VIRTUAL_DEVICE_PROPERTY_ID } from '../../components/VirtualDevice.js';
 import { useWebMqttUrlQuery } from '../../endpoints/config.js';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.js';
 import { getCurrentUser, getVirtualDevice } from '../../selectors/getters.js';
@@ -55,9 +55,14 @@ function Device() {
             <Grid>
                 <Typography variant="body2">ID zařízení: {deviceId}</Typography>
                 {enabled && realm ? (
-                    <Typography variant="body2" sx={{ wordBreak: 'break-all' }}>
-                        Topic pro otevření věci: v2/{realm}/{deviceId}/{VIRTUAL_DEVICE_NODE_ID}/{VIRTUAL_DEVICE_PROPERTY_ID}/set
-                    </Typography>
+                    <>
+                        <Typography variant="body2" sx={{ wordBreak: 'break-all' }}>
+                            Topic pro otevření věci: v2/{realm}/{deviceId}/{VIRTUAL_DEVICE_NODE_ID}/{VIRTUAL_DEVICE_PROPERTY_ID}/set
+                        </Typography>
+                        <Typography variant="body2" sx={{ wordBreak: 'break-all' }}>
+                            Topic pro zavření věci (hodnota "close"): v2/{realm}/{deviceId}/{VIRTUAL_DEVICE_NODE_ID}/{VIRTUAL_DEVICE_CLOSE_PROPERTY_ID}/set
+                        </Typography>
+                    </>
                 ) : null}
             </Grid>
         </Grid>

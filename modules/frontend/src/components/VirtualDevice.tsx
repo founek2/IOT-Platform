@@ -3,9 +3,20 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDevicesQuery } from '../endpoints/devices.js';
 import { generateDeviceId } from '../utils/generateDeviceId.js';
+import { logger } from 'common/logger';
 
 export const VIRTUAL_DEVICE_NODE_ID = 'dialog';
 export const VIRTUAL_DEVICE_PROPERTY_ID = 'thingId';
+export const VIRTUAL_DEVICE_CLOSE_PROPERTY_ID = 'close';
+const CLOSE_VALUE = 'close';
+
+function searchWithThingId(thingId: string | null) {
+    const params = new URLSearchParams(window.location.search);
+    if (thingId) params.set('thingId', thingId);
+    else params.delete('thingId');
+
+    return params.toString();
+}
 
 function getPort(url: string) {
     const { port, protocol } = new URL(url);
@@ -39,11 +50,30 @@ export function VirtualDevice({ realm, name, mqttUrl }: VirtualDeviceProps) {
             dataType: PropertyDataType.string,
             settable: true,
             callback: (thingId) => {
-                navigateRef.current({ search: thingId ? `thingId=${thingId}` : '' }, { replace: true });
+                if (!thingId) return false;
+
+                logger.info(`[VirtualDevice] Opening thing with ID: ${thingId}`);
+                navigateRef.current({ search: searchWithThingId(thingId) }, { replace: true });
+                return true;
+            },
+        });
+        // Single-value enum is rendered and handled as a toggle
+        node.addProperty({
+            propertyId: VIRTUAL_DEVICE_CLOSE_PROPERTY_ID,
+            name: 'Zavřít věc',
+            dataType: PropertyDataType.enum,
+            format: CLOSE_VALUE,
+            settable: true,
+            callback: (value) => {
+                logger.info(`[VirtualDevice] Closing thing with value: ${value}`);
+                if (value !== CLOSE_VALUE) return false;
+
+                navigateRef.current({ search: searchWithThingId(null) }, { replace: true });
                 return true;
             },
         });
 
+        logger.info(`[VirtualDevice] Platform initialized with device ID: ${generateDeviceId()}`);
         platform.init();
 
         return () => {

@@ -23,7 +23,7 @@ export default function DiscoverySection() {
     const dispatch = useAppDispatch();
     const { validateForm, resetForm } = useForm<CreateDeviceForm>(formName);
     const [selectedDevice, setSelectedDevice] = useState<string>();
-    const _ = useDiscoveredDevicesQuery(undefined);
+    const _ = useDiscoveredDevicesQuery(undefined, { pollingInterval: 10_000 });
     const discoveredData = useAppSelector((state) => discoverySelectors.selectAll(state.application.discovery));
     const [createDeviceMutation, { isLoading }] = useCreateDeviceMutation();
     const [deleteDeviceMutation, { isLoading: isLoadingDelete }] = useDeleteDiscoveryDeviceMutation();

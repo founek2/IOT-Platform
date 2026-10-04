@@ -76,7 +76,11 @@ export default function Autocomplete({
                 // Regular option
                 return option.label;
             }}
-            renderOption={(props, option) => <li {...props}>{option.label}</li>}
+            renderOption={({ key, ...props }, option) => (
+                <li key={key} {...props}>
+                    {option.label}
+                </li>
+            )}
             freeSolo
             selectOnFocus
             clearOnBlur
