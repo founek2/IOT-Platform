@@ -11,8 +11,10 @@ import { NotificationReduxConnect } from './containers/NotificationReduxConnect.
 import { RegisterServiceWorker } from './containers/RegisterServiceWorker.js';
 import MyRoutes from './containers/Routes.js';
 import { MyThemeProvider } from './containers/ThemeProvider.js';
+import { VirtualDeviceConnect } from './containers/VirtualDeviceConnect.js';
 import WebSocket from './containers/WebSocket.js';
 import { AppBarContext, AppBarContextType, defaultAppBarCtx } from './hooks/useAppBarContext.js';
+import { ThingDialog } from './Pages/room/ThingDialog.js';
 import { persistor, store } from './store/index.js';
 
 function App() {
@@ -41,8 +43,10 @@ function App() {
                                     </Suspense>
                                 </Background>
                                 <EditUserDialog />
+                                <ThingDialog />
                             </AppBarContext.Provider>
                             <WebSocket />
+                            <VirtualDeviceConnect />
                         </BrowserRouter>
                     </SnackbarProvider>
                 </MyThemeProvider>

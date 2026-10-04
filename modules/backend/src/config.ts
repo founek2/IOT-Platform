@@ -51,6 +51,8 @@ export const loadConfig = (pathToDotEnvFile?: string) => {
             url: mustGetString('MQTT_URL'),
             managementPort: Number(process.env.MQTT_MANAGEMENT_PORT) || 15672,
         },
+        // Public MQTT over WebSocket URL used by browser devices
+        webMqttUrl: process.env.WEB_MQTT_URL,
         email: process.env.EMAIL_HOST ? {
             host: process.env.EMAIL_HOST as string,
             port: Number(process.env.EMAIL_PORT) || 465,

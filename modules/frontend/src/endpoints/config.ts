@@ -1,6 +1,3 @@
-import { IDevice } from 'common/models/interface/device';
-import { Measurement } from 'common/types';
-import { Device } from '../store/slices/application/devicesSlice.js';
 import { api } from './api.js';
 
 export const devicesApi = api.injectEndpoints({
@@ -10,7 +7,11 @@ export const devicesApi = api.injectEndpoints({
             providesTags: ['NotificationConfig'],
             transformResponse: (body: { vapidPublicKey: string }) => body.vapidPublicKey
         }),
+        webMqttUrl: build.query<string | null, void>({
+            query: () => `main/config/mqtt`,
+            transformResponse: (body: { webMqttUrl: string | null }) => body.webMqttUrl
+        }),
     }),
 });
 
-export const { useVapidKeyQuery } = devicesApi;
+export const { useVapidKeyQuery, useWebMqttUrlQuery } = devicesApi;

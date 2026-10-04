@@ -16,7 +16,7 @@ export default (config: Config) => {
         tokenAuthMiddleware(),
         checkIsRootMiddleware(),
         async (ctx) => {
-            const picked = pick(['port', 'portAuth', 'bodyLimit', 'homepage', 'jwt', 'agenda', 'email'], config);
+            const picked = pick(['port', 'portAuth', 'bodyLimit', 'homepage', 'jwt', 'agenda', 'email', 'webMqttUrl'], config);
 
             const data = compose(
                 // @ts-ignore
@@ -27,6 +27,13 @@ export default (config: Config) => {
             )(picked);
 
             ctx.body = { data };
+        }
+    )
+
+    api.get("/mqtt",
+        tokenAuthMiddleware(),
+        async (ctx) => {
+            ctx.body = { webMqttUrl: config.webMqttUrl ?? null };
         }
     )
 

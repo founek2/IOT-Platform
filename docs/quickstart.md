@@ -26,6 +26,7 @@ Pro funkčnost aplikace je potřeba nastavit enviroment promněné, buď pomocí
 - **OAUTH_SEZNAM_CLIENT_SECRET** - OAuth2 secret for `Seznam` provider
 - **AGENDA_JOB_TYPES** - which agenda jobs are enabled separeted with comma - email, clean
 - **LOG_LEVEL** - set logging level, 0 = error, 1 = warning, 2 = info [default], 3 = dev, 4 = debug, 5 = silly
+- **WEB_MQTT_URL** - public MQTT over WebSocket url (rabbitmq_web_mqtt) for browser devices - ex. <wss://iotplatforma.cloud:15676/ws>, required only for controllable device feature in profile
 
 - **EMAIL_HOST** - smtp email server
 - **EMAIL_PORT** - port on which smtp listen, ssl/tls is required [465]

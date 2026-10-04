@@ -9547,6 +9547,7 @@ __metadata:
     dnd-core: "npm:^16.0.1"
     events: "npm:^3.3.0"
     history: "npm:^5.3.0"
+    integration: "workspace:*"
     normalizr: "npm:^3.6.2"
     notistack: "npm:^2.0.8"
     plotly.js: "npm:^2.32.0"
@@ -10780,7 +10781,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"integration@workspace:modules/integration":
+"integration@workspace:*, integration@workspace:modules/integration":
   version: 0.0.0-use.local
   resolution: "integration@workspace:modules/integration"
   dependencies:

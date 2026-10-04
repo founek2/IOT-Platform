@@ -28,5 +28,10 @@
     ],
     "exclude": [
         "node_modules"
+    ],
+    "references": [
+        {
+            "path": "../integration/tsconfig.build.json"
+        }
     ]
 }

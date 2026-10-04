@@ -22,7 +22,6 @@ import { notificationActions } from '../store/slices/notificationSlice.js';
 import { PropertyPreferences, propertyPreferencesReducerActions } from '../store/slices/preferences/dashboardSlice.js';
 import { byPreferences } from '../utils/sort.js';
 import PropertyRow from './room/PropertyRow.js';
-import { ThingDialog } from './room/ThingDialog.js';
 
 const Widget = React.forwardRef<HTMLDivElement, { children: JSX.Element[] | JSX.Element }>(function ({ children }) {
     return (
@@ -239,7 +238,6 @@ export default function UserDashboard() {
             <Dialog open={openAddDialog} fullWidth onClose={() => setOpenDialogOpen(false)}>
                 <PropertySelect onChange={onChange} sx={{ maxHeight: 400 }} />
             </Dialog>
-            <ThingDialog />
         </>
     );
 }

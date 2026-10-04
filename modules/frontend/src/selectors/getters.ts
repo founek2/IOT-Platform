@@ -4,6 +4,7 @@ import { RootState } from '../store/index.js';
 import { Device } from '../store/slices/application/devicesSlice.js';
 import { Thing, thingSelectors } from '../store/slices/application/thingsSlice.js';
 import { usersSelectors } from '../store/slices/application/usersSlice.js';
+import { defaultVirtualDevice } from '../store/slices/pluginsSlice.js';
 import { devicePreferencesSelectors } from '../store/slices/preferences/deviceSlice.js';
 import { buildingsCachedSelector } from './devicesSelector.js';
 
@@ -30,6 +31,8 @@ export const getCurrentUserName = (state: RootState) => state.application.author
 export const getCurrentUser = (state: RootState) => state.application.authorization.currentUser || undefined;
 
 export const getCurrentUserId = (state: RootState) => state.application.authorization.currentUser?._id;
+
+export const getVirtualDevice = (state: RootState) => state.plugins.virtualDevice ?? defaultVirtualDevice;
 
 const emptyArray: string[] = [];
 export const getCurrentGroups = (state: RootState) => state.application.authorization.currentUser?.groups || emptyArray;

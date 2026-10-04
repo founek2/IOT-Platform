@@ -25,6 +25,7 @@
         "date-fns": "^2.30.0",
         "dnd-core": "^16.0.1",
         "history": "^5.3.0",
+        "integration": "workspace:*",
         "normalizr": "^3.6.2",
         "notistack": "^2.0.8",
         "plotly.js": "^2.32.0",

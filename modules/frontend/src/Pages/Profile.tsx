@@ -3,15 +3,18 @@ import { Box, Breadcrumbs, Grid, Typography } from '@mui/material';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import Account from './profile/Account.js';
 import AccessTokens from './profile/AcessTokens.js';
+import Device from './profile/Device.js';
 import Security from './profile/Security.js';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import SecurityIcon from '@mui/icons-material/Security';
+import TabletIcon from '@mui/icons-material/Tablet';
 
 const menu = [
     { icon: AccountCircleIcon, text: 'Účet', link: '/profile' },
     { icon: AccessibilityIcon, text: 'Přístupnost', link: '/profile/accessTokens' },
     { icon: SecurityIcon, text: 'Zabezpečení', link: '/profile/security' },
+    { icon: TabletIcon, text: 'Zařízení', link: '/profile/device' },
     // { icon: PersonAddIcon, text: "Vytvořit uživatele", link: "/profile/addUser", role: "ENTITY_MANAGER" }
 ];
 
@@ -41,6 +44,7 @@ function Profile() {
                 <Routes>
                     <Route element={<Security />} path="security" />
                     <Route element={<AccessTokens />} path="accessTokens" />
+                    <Route element={<Device />} path="device" />
                     <Route element={<Account />} path="/" />
                 </Routes>
             </Grid>
