@@ -77,7 +77,7 @@ export function ThingDialog() {
                                     value,
                                 });
                             }}
-                            historyQuery={{ deviceID: thing.deviceId, thingID: thing._id, propertyId: property.propertyId }}
+                            historyQuery={{ deviceID: thing.deviceId, thingID: thing.config.nodeId, propertyId: property.propertyId }}
                             defaultShowDetail={i === 0}
                         />
                     </ThingContext.Provider>
