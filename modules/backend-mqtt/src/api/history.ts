@@ -15,13 +15,17 @@ export default () => {
         readDevicePermissionMiddleware({ paramKey: 'deviceId' }),
         async (ctx) => {
             const { deviceId, thingId } = ctx.params;
-            const { from, to } = ctx.query;
+            const { from, to, propertyId } = ctx.query;
+            if (propertyId !== undefined && typeof propertyId !== 'string') {
+                return ctx.throw(400, 'propertyId must be a single string');
+            }
 
             const rows = await ctx.influxService.getMeasurements(
                 deviceId,
                 thingId,
                 new Date(Number(from)),
-                new Date(to ? Number(to) : new Date())
+                new Date(to ? Number(to) : new Date()),
+                propertyId
             );
 
             ctx.body = { docs: rows };

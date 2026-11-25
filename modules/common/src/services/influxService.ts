@@ -100,13 +100,25 @@ export class InfluxService {
         await this.bucketsApi.postBuckets({ body: { orgID: organization.id!, name, retentionRules: [] } });
     }
 
-    public async getMeasurements(deviceId: IDevice['_id'], thingId: IThing['_id'], from: Date, to: Date) {
-        const fluxQuery = flux`
-        from(bucket: ${fluxString(this.bucket)})
-        |> range(start: ${fluxDateTime(from.toISOString())}, stop: ${fluxDateTime(to.toISOString())})
-        |> filter(fn: (r) => r["deviceId"] == ${fluxString(deviceId)})
-        |> filter(fn: (r) => r["thingId"] == ${fluxString(thingId)})
-       `;
+    public async getMeasurements(
+        deviceId: IDevice['_id'],
+        thingId: IThing['_id'],
+        from: Date,
+        to: Date,
+        propertyId?: IThingProperty['propertyId']
+    ) {
+        const fluxQuery = propertyId
+            ? flux`
+                from(bucket: ${fluxString(this.bucket)})
+                |> range(start: ${fluxDateTime(from.toISOString())}, stop: ${fluxDateTime(to.toISOString())})
+                |> filter(fn: (r) => r["deviceId"] == ${fluxString(deviceId)})
+                |> filter(fn: (r) => r["thingId"] == ${fluxString(thingId)})
+                |> filter(fn: (r) => r["propertyId"] == ${fluxString(propertyId)})`
+            : flux`
+                from(bucket: ${fluxString(this.bucket)})
+                |> range(start: ${fluxDateTime(from.toISOString())}, stop: ${fluxDateTime(to.toISOString())})
+                |> filter(fn: (r) => r["deviceId"] == ${fluxString(deviceId)})
+                |> filter(fn: (r) => r["thingId"] == ${fluxString(thingId)})`;
 
         const rows: Measurement[] = [];
 

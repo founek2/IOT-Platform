@@ -5,7 +5,7 @@ import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { CardMedia, Fade, styled, SxProps } from '@mui/material';
+import { CardMedia, CircularProgress, Fade, styled, SxProps } from '@mui/material';
 import {
     IThingProperty,
     IThingPropertyEnum,
@@ -34,6 +34,10 @@ import { VideoStream } from '../../components/VideoStream.js';
 import { isUrl } from 'common/utils/isUrl';
 import { WebRtcStream } from '../../components/WebRtcStream.js';
 import { onEnterRun } from 'common/utils/onEnter';
+import { HistoryQuery, useLazyThingHistoryQuery, useThingHistoryQuery } from '../../endpoints/thing.js';
+
+
+const REFRESH_HISTORY_INTERVAL = 3 * 60 * 100;
 
 const ConfirmationCircle = styled(CircleComponent)({
     position: 'absolute',
@@ -98,8 +102,8 @@ export function PropertyRowPlain({
                     stateValue !== undefined
                         ? Number(stateValue)
                         : value !== undefined
-                        ? Number(value)
-                        : propertyNumeric.format?.min
+                            ? Number(value)
+                            : propertyNumeric.format?.min
                 }
                 onChange={(e, newValue) => setStateValue(newValue as number)}
                 min={propertyNumeric.format?.min}
@@ -261,20 +265,22 @@ interface PropertyRowProps {
     state?: PropertyState;
     timestamp?: Date;
     onChange: (newValue: string | number) => void;
-    history?: Measurement[];
     defaultShowDetail?: boolean;
     sx?: SxProps<Theme>;
     className?: string;
     title?: string;
     onDetailClick?: () => any;
+    historyQuery?: HistoryQuery
 }
 
 const PropertyRow = forwardRef<HTMLDivElement, PropertyRowProps>(function PropertyRow(
-    { property, state, onChange, history, defaultShowDetail = false, sx, className, title, onDetailClick },
+    { property, state, onChange, defaultShowDetail = false, sx, className, title, onDetailClick, historyQuery },
     ref
 ) {
     const [showDetail, setshowDetail] = useState(defaultShowDetail);
     const toogleDetail = useCallback(() => setshowDetail(!showDetail), [setshowDetail, showDetail]);
+    const { data: history, isLoading, isError } = useThingHistoryQuery(historyQuery!, { skip: !showDetail, pollingInterval: REFRESH_HISTORY_INTERVAL });
+
     const { propertyClass, name } = property;
     const Icon = propertyClass ? SensorIcons[propertyClass] : null;
     const handleDetail = onDetailClick ? onDetailClick : toogleDetail;
@@ -296,9 +302,11 @@ const PropertyRow = forwardRef<HTMLDivElement, PropertyRowProps>(function Proper
                     prefix="Aktualizováno před"
                 />
             ) : null}
-            {showDetail && history?.some((v) => v.propertyId === property.propertyId) ? (
-                <DetailVisualization property={property} historyData={history} />
-            ) : null}
+            {showDetail && (isLoading
+                ? <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
+                : isError ? <Typography color="error">Chyba při načítání historie</Typography> : history?.some((v) => v.propertyId === property.propertyId) ? (
+                    <DetailVisualization property={property} historyData={history} />
+                ) : null)}
         </Box>
     );
 });

@@ -14,7 +14,6 @@ import { thingsReducerActions } from '../../store/slices/application/thingsSlice
 import { notificationActions } from '../../store/slices/notificationSlice.js';
 import PropertyRow from '.././room/PropertyRow.js';
 
-const REFRESH_HISTORY_INTERVAL = 3 * 60 * 100;
 
 export function ThingDialog() {
     const [editMode, setEditMode] = useState(false);
@@ -23,16 +22,11 @@ export function ThingDialog() {
     const thingId = urlSearchParams.get('thingId') || '';
     const thing = useAppSelector(getThing(thingId));
     const navigate = useNavigate();
-    const [fetchHistory, { data: historyData }] = useLazyThingHistoryQuery({
-        pollingInterval: thing ? REFRESH_HISTORY_INTERVAL : 0,
-    });
     const dispatch = useAppDispatch();
     const { mutateThingState } = useUpdateThingStateSmart(thingId);
     const [mutateThing] = useUpdateThingMutation();
 
-    useEffect(() => {
-        if (thing) fetchHistory({ deviceID: thing.deviceId, thingID: thing.config.nodeId });
-    }, [thing?._id]);
+
 
     function onMove(dragId: string, hoverId: string) {
         setThingDirty(true);
@@ -83,7 +77,7 @@ export function ThingDialog() {
                                     value,
                                 });
                             }}
-                            history={historyData}
+                            historyQuery={{ deviceID: thing.deviceId, thingID: thing._id, propertyId: property.propertyId }}
                             defaultShowDetail={i === 0}
                         />
                     </ThingContext.Provider>

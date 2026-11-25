@@ -32,11 +32,16 @@ export interface EditNotificationsFormData {
     }
     count: number
 }
+export interface HistoryQuery {
+    deviceID: Device['_id'];
+    thingID: Thing['config']['nodeId'];
+    propertyId?: IThingProperty['propertyId'];
+}
 export const thingsApi = api.injectEndpoints({
     endpoints: (build) => ({
-        thingHistory: build.query<HistoryResponse['docs'], { deviceID: Device['_id']; thingID: Thing['config']['nodeId'] }>({
-            query: ({ deviceID, thingID }) =>
-                `mqtt/device/${deviceID}/thing/${thingID}/history?from=${subDays(new Date(), 1).getTime()}`,
+        thingHistory: build.query<HistoryResponse['docs'], HistoryQuery>({
+            query: ({ deviceID, thingID, propertyId }) =>
+                `mqtt/device/${deviceID}/thing/${thingID}/history?from=${subDays(new Date(), 1).getTime()}${propertyId ? `&propertyId=${encodeURIComponent(propertyId)}` : ''}`,
             transformResponse: (res: HistoryResponse) => res.docs,
             providesTags: ['History'],
         }),
@@ -71,4 +76,4 @@ export const thingsApi = api.injectEndpoints({
     }),
 });
 
-export const { useLazyThingHistoryQuery, useUpdateThingStateMutation, useUpdateThingMutation, useThingNotificationsQuery, useUpdateThingNotificationsMutation } = thingsApi;
+export const { useLazyThingHistoryQuery, useThingHistoryQuery, useUpdateThingStateMutation, useUpdateThingMutation, useThingNotificationsQuery, useUpdateThingNotificationsMutation } = thingsApi;
